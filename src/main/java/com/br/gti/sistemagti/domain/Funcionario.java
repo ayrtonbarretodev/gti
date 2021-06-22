@@ -15,6 +15,10 @@ public class Funcionario extends AbstractEntity<Long>{
     @JoinColumn(name = "departamento_id_fk")
     private Departamento departamento;
 
+    @OneToOne (cascade = CascadeType.ALL)
+    @JoinColumn(name = "endereco_id_fk")
+    private Endereco endereco;
+
     public String getNome() {
         return nome;
     }
@@ -29,5 +33,13 @@ public class Funcionario extends AbstractEntity<Long>{
 
     public void setDepartamento(Departamento departamento) {
         this.departamento = departamento;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
     }
 }
