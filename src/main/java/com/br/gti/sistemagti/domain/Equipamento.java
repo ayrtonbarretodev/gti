@@ -35,4 +35,8 @@ public class Equipamento extends AbstractEntity<Long>{
     @JoinColumn(name = "id_categoria_fk")
     private Categoria categoria;
 
+    @ManyToOne
+    @JoinColumn(name = "id_departamento_fk")
+    private Departamento departamento;
+
 }
