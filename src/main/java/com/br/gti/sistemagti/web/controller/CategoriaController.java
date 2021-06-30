@@ -4,6 +4,7 @@ import com.br.gti.sistemagti.domain.Categoria;
 import com.br.gti.sistemagti.service.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +22,8 @@ public class CategoriaController {
     }
 
     @GetMapping("/listar")
-    public String listar(){
+    public String listar(ModelMap model){
+        model.addAttribute("categorias",service.buscarTodos());
         return "/categoria/lista";
     }
 
