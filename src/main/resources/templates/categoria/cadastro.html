@@ -25,6 +25,9 @@
 	        </nav>
 	
 	        <div class="container" id="cadastro">
+
+				<div th:replace="fragments/alert"></div>
+
 	            <form th:action="${categoria.id == null} ? @{/categorias/salvar} : @{/categorias/editar} " th:object="${categoria}" method="POST">
 	                <div class="form-row">
 	                    <div class="form-group col-md-6">

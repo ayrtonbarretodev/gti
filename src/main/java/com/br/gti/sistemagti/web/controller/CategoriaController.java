@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/categorias")
@@ -29,8 +30,9 @@ public class CategoriaController {
     }
 
     @PostMapping("/salvar")
-    public String salvar(Categoria categoria){
+    public String salvar(Categoria categoria, RedirectAttributes attr){
         service.salvar(categoria);
+        attr.addFlashAttribute("success", "Categoria inserida com sucesso");
         return "redirect:/categorias/cadastrar";
     }
 
@@ -41,17 +43,21 @@ public class CategoriaController {
     }
 
     @PostMapping("/editar")
-    public String editar(Categoria categoria){
+    public String editar(Categoria categoria, RedirectAttributes attr){
         service.editar(categoria);
+        attr.addFlashAttribute("success", "Categoria editada com sucesso");
         return "redirect:/categorias/cadastrar";
     }
 
     @GetMapping("/excluir/{id}")
-    public String excluir(@PathVariable("id") Long id, ModelMap model){
-        if(!service.categoriaTemEquipamentos(id)){
+    public String excluir(@PathVariable("id") Long id, RedirectAttributes attr){
+        if(service.categoriaTemEquipamentos(id)){
+            attr.addFlashAttribute("fail","Categoria não removida, possui equipamento(s) vinculado(s).");
+        }else{
             service.excluir(id);
+            attr.addFlashAttribute("success", "Categoria excluída com sucesso.");
         }
-        return listar(model);
+        return "redirect:/categorias/listar";
     }
 
 }
