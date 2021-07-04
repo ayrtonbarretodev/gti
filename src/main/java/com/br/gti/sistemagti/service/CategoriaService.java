@@ -15,4 +15,6 @@ public interface CategoriaService {
     Categoria buscarPorId(Long id);
 
     List<Categoria> buscarTodos();
+
+    boolean categoriaTemEquipamentos(Long id);
 }

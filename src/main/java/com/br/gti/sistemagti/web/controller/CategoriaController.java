@@ -46,4 +46,12 @@ public class CategoriaController {
         return "redirect:/categorias/cadastrar";
     }
 
+    @GetMapping("/excluir/{id}")
+    public String excluir(@PathVariable("id") Long id, ModelMap model){
+        if(!service.categoriaTemEquipamentos(id)){
+            service.excluir(id);
+        }
+        return listar(model);
+    }
+
 }

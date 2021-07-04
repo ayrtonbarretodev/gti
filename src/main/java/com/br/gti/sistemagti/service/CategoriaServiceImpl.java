@@ -29,13 +29,21 @@ public class CategoriaServiceImpl implements CategoriaService{
         dao.delete(id);
     }
 
-    @Override
+    @Override @Transactional (readOnly = true)
     public Categoria buscarPorId(Long id) {
         return dao.findById(id);
     }
 
-    @Override
+    @Override @Transactional (readOnly = true)
     public List<Categoria> buscarTodos() {
         return dao.findAll();
+    }
+
+    @Override
+    public boolean categoriaTemEquipamentos(Long id) {
+        if (buscarPorId(id).getEquipamentos().isEmpty()){
+            return false;
+        }
+        return true;
     }
 }
