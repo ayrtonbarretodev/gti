@@ -42,4 +42,9 @@ public class Departamento extends AbstractEntity<Long>{
     public List<Equipamento> getEquipamentos() {
         return equipamentos;
     }
+
+    public List<Funcionario> getFuncionarios() {
+        return funcionarios;
+    }
+
 }

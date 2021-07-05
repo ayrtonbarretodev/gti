@@ -49,4 +49,15 @@ public class DepartamentoController {
         attr.addFlashAttribute("success", "Departamento editado com sucesso");
         return "redirect:/departamentos/cadastrar";
     }
+
+    @GetMapping("/excluir/{id}")
+    public String excluir(@PathVariable("id") Long id, ModelMap model){
+        if (service.departamentoTemFuncionario(id) || service.departamentoTemEquipamento(id)){
+            model.addAttribute("fail","Departamento não removido. Possui funcionario(s) ou equipamento(s) vinculado(s).");
+        }else{
+            service.excluir(id);
+            model.addAttribute("success","Departamento excluído com sucesso.");
+        }
+        return listar(model);
+    }
 }
