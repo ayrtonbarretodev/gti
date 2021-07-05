@@ -1,8 +1,6 @@
 package com.br.gti.sistemagti.domain;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
-import java.time.LocalDate;
 
 @Entity
 @Table(name = "FUNCIONARIOS")
@@ -14,10 +12,6 @@ public class Funcionario extends AbstractEntity<Long>{
     @ManyToOne
     @JoinColumn(name = "departamento_id_fk")
     private Departamento departamento;
-
-    @OneToOne (cascade = CascadeType.ALL)
-    @JoinColumn(name = "endereco_id_fk")
-    private Endereco endereco;
 
     public String getNome() {
         return nome;
@@ -35,11 +29,4 @@ public class Funcionario extends AbstractEntity<Long>{
         this.departamento = departamento;
     }
 
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
 }

@@ -30,11 +30,11 @@ public class DepartamentoServiceImpl implements DepartamentoService{
 
     @Override  @Transactional (readOnly = true)
     public Departamento buscarPorId(Long id) {
-        return null;
+        return dao.findById(id);
     }
 
     @Override @Transactional (readOnly = true)
     public List<Departamento> buscarTodos() {
-        return null;
+        return dao.findAll();
     }
 }
