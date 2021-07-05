@@ -25,15 +25,24 @@
 	        </nav>
 	
 	        <div class="container" id="cadastro">
-	            <form th:action="@{/departamentos/salvar}" th:object="${departamento}" method="POST">
+	            <form th:action="${departamento.id == null} ? @{/departamentos/salvar} : @{/departamentos/editar}"
+					  th:object="${departamento}" method="POST">
 	                <div class="form-row">
 	                    <div class="form-group col-md-6">
 	                        <label for="nome">Departamento</label>
 	                        <input type="text" class="form-control" id="nome"
 	                               placeholder="Nome Departamento" autofocus="autofocus" th:field="*{nome}"/>
 	                    </div>
+						<div class="form-group col-md-2">
+							<label for="telefone">Telefone</label>
+							<input type="text" class="form-control" id="telefone" placeholder="Ex.: 0000-0000"
+								   data-mask="0000-0000" th:field="*{telefone}"/>
+							<div class="invalid-feedback">
+
+							</div>
+						</div>
 	                </div>
-	                <input type="hidden" id="id" name="id" value=""/>
+	                <input type="hidden" id="id" th:field="*{id}"/>
 	                <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
 	            </form>
 	        </div>
