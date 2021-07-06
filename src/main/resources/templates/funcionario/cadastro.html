@@ -26,6 +26,9 @@
 	        </div>
 	
 	        <div class="container" id="cadastro">
+
+				<div th:replace="fragments/alert"></div>
+
 	            <form th:action="@{/funcionarios/salvar}" th:object="${funcionario}" method="POST">
 	                <div class="form-row">
 	                    <div class="form-group col-md-6">
@@ -38,7 +41,7 @@
 						<div class="form-group col-md-6">
 							<label for="departamento">Departamento</label>
 							<select id="departamento" class="form-control" th:field="*{departamento}">
-								<option value="">Selecione...</option>
+								<option value="">Selecione</option>
 								<option th:each="d : ${departamentos}"
 										th:value="${d.id}"
 										th:text="${d.nome}">Direção</option>
