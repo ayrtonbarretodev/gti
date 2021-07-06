@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout}">
+	  xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layout}">
 <head>
     <meta charset="UTF-8"/>
 </head>
@@ -105,10 +106,10 @@
 	                    </tr>
 	                    </thead>
 	                    <tbody>
-	                    <tr>
-	                        <td>1</td>
-	                        <td>Ayrton da Silva Barreto</td>
-	                        <td>Gerência de Tecnologia da Informação</td>
+	                    <tr th:each="f : ${funcionarios}">
+	                        <td th:text="${f.id}">1</td>
+	                        <td th:text="${f.nome}">Ayrton da Silva Barreto</td>
+	                        <td th:text="${f.departamento.nome}">Gerência de Tecnologia da Informação</td>
 	                        <td colspan="2">
 	                            <a class="btn btn-info btn-sm" href="/funcionarios/editar/1" role="button">
 	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
