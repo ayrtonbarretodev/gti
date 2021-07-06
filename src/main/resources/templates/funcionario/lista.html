@@ -111,7 +111,7 @@
 	                        <td th:text="${f.nome}">Ayrton da Silva Barreto</td>
 	                        <td th:text="${f.departamento.nome}">Gerência de Tecnologia da Informação</td>
 	                        <td colspan="2">
-	                            <a class="btn btn-info btn-sm" href="/funcionarios/editar/1" role="button">
+	                            <a class="btn btn-info btn-sm" th:href="@{/funcionarios/editar/{id} (id=${f.id})}" role="button">
 	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
 	                            </a>
 	                            <button id="btn_funcionarios/excluir/1" type="button" class="btn btn-danger btn-sm"
