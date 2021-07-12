@@ -10,7 +10,7 @@ public class Funcionario extends AbstractEntity<Long>{
     private String nome;
 
     @ManyToOne
-    @JoinColumn(name = "departamento_id_fk")
+    @JoinColumn(name = "departamento_id_fk", nullable = false)
     private Departamento departamento;
 
     public String getNome() {

@@ -55,7 +55,7 @@
 							<td th:text="${#temporals.format(e.dataSaida, 'dd/MM/yyyy')}"></td>
 	                        <td th:text="${e.departamento?.nome}"></td>
 							<td th:text="${e.categoria?.nome}"></td>
-							<td th:text="${e.status}"></td>
+							<td th:text="${e.status?.descricao}"></td>
 							<td>
 								<button type="button" class="btn btn-secondary btn-sm" data-container="body"
 										data-toggle="popover" data-placement="top"

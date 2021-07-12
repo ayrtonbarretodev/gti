@@ -101,8 +101,8 @@
 				</div>
 
 				<div class="form-group col-md-4">
-					<label for="uf">Status</label>
-					<select id="uf" class="form-control" name="endereco.uf">
+					<label for="status">Status</label>
+					<select id="status" class="form-control" name="status">
 						<option value="">Selecione</option>
 						<option th:each="status : ${status}" th:value="${status}" th:text="${status.descricao}"></option>
 					</select>

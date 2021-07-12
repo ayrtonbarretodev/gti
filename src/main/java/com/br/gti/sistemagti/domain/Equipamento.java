@@ -27,8 +27,7 @@ public class Equipamento extends AbstractEntity<Long>{
 
     private String observacao;
 
-    @Basic(optional = true)
-    @Column(nullable = true)
+    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Status status;
 
@@ -36,11 +35,11 @@ public class Equipamento extends AbstractEntity<Long>{
     private String numeroSerie;
 
     @ManyToOne
-    @JoinColumn(name = "id_categoria_fk")
+    @JoinColumn(name = "id_categoria_fk",nullable = false)
     private Categoria categoria;
 
     @ManyToOne
-    @JoinColumn(name = "id_departamento_fk")
+    @JoinColumn(name = "id_departamento_fk",nullable = false)
     private Departamento departamento;
 
     @Column(nullable = false, unique = true, length = 17)

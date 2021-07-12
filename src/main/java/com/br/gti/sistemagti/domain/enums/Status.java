@@ -5,22 +5,7 @@ public enum Status {
     MANUTENCAO("Em manutenção"),
     DESCARTADO("Descartado");
 
-    //private final int valor;
     private String descricao;
-
-//    Status(int valor, String descricao) {
-//        this.valor = valor;
-//        this.descricao = descricao;
-//    }
-
-//    Status(int valor) {
-//        this.valor = valor;
-//    }
-//
-//    public int getValor() {
-//        return valor;
-//    }
-
 
     Status(String descricao) {
         this.descricao = descricao;
