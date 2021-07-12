@@ -40,4 +40,6 @@ public abstract class AbstractEntity<ID extends Serializable> implements Seriali
                 "id=" + id +
                 '}';
     }
+
+
 }

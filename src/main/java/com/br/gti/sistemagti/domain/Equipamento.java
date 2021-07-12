@@ -1,6 +1,7 @@
 package com.br.gti.sistemagti.domain;
 
 import com.br.gti.sistemagti.domain.enums.Status;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -16,16 +17,19 @@ public class Equipamento extends AbstractEntity<Long>{
 
     private String fabricante;
 
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Column(nullable = false, columnDefinition = "DATE")
     private LocalDate dataEntrada;
 
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Column(columnDefinition = "DATE")
     private LocalDate dataSaida;
 
     private String observacao;
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.ORDINAL)
+    @Basic(optional = true)
+    @Column(nullable = true)
+    @Enumerated(EnumType.STRING)
     private Status status;
 
     @Column(nullable = false, unique = true, length = 60)
@@ -39,4 +43,94 @@ public class Equipamento extends AbstractEntity<Long>{
     @JoinColumn(name = "id_departamento_fk")
     private Departamento departamento;
 
+    @Column(nullable = false, unique = true, length = 17)
+    private String enderecoMac;
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public String getFabricante() {
+        return fabricante;
+    }
+
+    public void setFabricante(String fabricante) {
+        this.fabricante = fabricante;
+    }
+
+    public LocalDate getDataEntrada() {
+        return dataEntrada;
+    }
+
+    public void setDataEntrada(LocalDate dataEntrada) {
+        this.dataEntrada = dataEntrada;
+    }
+
+    public LocalDate getDataSaida() {
+        return dataSaida;
+    }
+
+    public void setDataSaida(LocalDate dataSaida) {
+        this.dataSaida = dataSaida;
+    }
+
+    public String getObservacao() {
+        return observacao;
+    }
+
+    public void setObservacao(String observacao) {
+        this.observacao = observacao;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public String getNumeroSerie() {
+        return numeroSerie;
+    }
+
+    public void setNumeroSerie(String numeroSerie) {
+        this.numeroSerie = numeroSerie;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public Departamento getDepartamento() {
+        return departamento;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    public void setDepartamento(Departamento departamento) {
+        this.departamento = departamento;
+    }
+
+    public String getEnderecoMac() {
+        return enderecoMac;
+    }
+
+    public void setEnderecoMac(String enderecoMac) {
+        this.enderecoMac = enderecoMac;
+    }
 }

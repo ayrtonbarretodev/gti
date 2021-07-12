@@ -1,9 +1,6 @@
 package com.br.gti.sistemagti.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,4 +44,16 @@ public class Departamento extends AbstractEntity<Long>{
         return funcionarios;
     }
 
+    public void setEquipamentos(List<Equipamento> equipamentos) {
+        this.equipamentos = equipamentos;
+    }
+
+    public void setFuncionarios(List<Funcionario> funcionarios) {
+        this.funcionarios = funcionarios;
+    }
+
+//    @Override
+//    public String toString() {
+//        return nome;
+//    }
 }

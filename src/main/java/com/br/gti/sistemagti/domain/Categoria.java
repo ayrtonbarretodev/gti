@@ -27,4 +27,13 @@ public class Categoria extends AbstractEntity<Long>{
     public List<Equipamento> getEquipamentos() {
         return equipamentos;
     }
+
+    public void setEquipamentos(List<Equipamento> equipamentos) {
+        this.equipamentos = equipamentos;
+    }
+
+//    @Override
+//    public String toString() {
+//        return nome;
+//    }
 }

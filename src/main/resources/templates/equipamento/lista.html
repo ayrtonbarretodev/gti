@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout}">
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layout}">
 <head>
     <meta charset="UTF-8"/>
 </head>
@@ -29,16 +29,40 @@
 	                    <thead>
 	                    <tr>
 	                        <th>#</th>
-	                        <th>Cargo</th>
+	                        <th>Nome</th>
+							<th>N° de Série</th>
+							<th>Endereço MAC</th>
+							<th>Fabricante</th>
+							<th>Modelo</th>
+							<th>Data de Entrada</th>
+							<th>Data de Saída</th>
 	                        <th>Departamento</th>
-	                        <th>Ação</th>
+	                        <th>Categoria</th>
+							<th>Status</th>
+							<th>Observacao</th>
+							<th>Ação</th>
 	                    </tr>
 	                    </thead>
 	                    <tbody>
-	                    <tr>
-	                        <td>1</td>
-	                        <td>Auxiliar Contábil</td>
-	                        <td>Contabilidade</td>
+	                    <tr th:each="e : ${equipamentos}">
+	                        <td th:text="${e.id}"></td>
+	                        <td th:text="${e.nome}"></td>
+							<td th:text="${e.numeroSerie}"></td>
+							<td th:text="${e.enderecoMac}"></td>
+							<td th:text="${e.fabricante}"></td>
+							<td th:text="${e.modelo}"></td>
+							<td th:text="${#temporals.format(e.dataEntrada, 'dd/MM/yyyy')}"></td>
+							<td th:text="${#temporals.format(e.dataSaida, 'dd/MM/yyyy')}"></td>
+	                        <td th:text="${e.departamento?.nome}"></td>
+							<td th:text="${e.categoria?.nome}"></td>
+							<td th:text="${e.status}"></td>
+							<td>
+								<button type="button" class="btn btn-secondary btn-sm" data-container="body"
+										data-toggle="popover" data-placement="top"
+										th:attr="data-content=${e.observacao}">
+								<span class="oi oi-eye" title="Visualizar" aria-hidden="true"></span>
+								</button>
+							</td>
 	                        <td colspan="2">
 	                            <a class="btn btn-info btn-sm" href="/cargos/editar/1" role="button">
 	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
@@ -48,136 +72,7 @@
 	                            </button>
 	                        </td>
 	                    </tr>
-	                    <tr>
-	                        <td>2</td>
-	                        <td>Auxiliar Administrativo</td>
-	                        <td>Administração</td>
-	                        <td colspan="2">
-	                            <a class="btn btn-info btn-sm" href="/cargos/editar/2" role="button">
-	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-	                            </a>
-	                            <button type="button" class="btn btn-danger btn-sm" >
-	                                <span class="oi oi-circle-x" title="Exclusão desabilitada" aria-hidden="true"></span>
-	                            </button>
-	                        </td>
-	                    </tr>
-	                    <tr>
-	                        <td>3</td>
-	                        <td>Contador</td>
-	                        <td>Contabilidade</td>
-	                        <td colspan="2">
-	                            <a class="btn btn-info btn-sm" href="/cargos/editar/3" role="button">
-	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-	                            </a>
-	                            <button type="button" class="btn btn-danger btn-sm" >
-	                                <span class="oi oi-circle-x" title="Exclusão desabilitada" aria-hidden="true"></span>
-	                            </button>
-	                        </td>
-	                    </tr>
-	                    <tr>
-	                        <td>4</td>
-	                        <td>Adminitrador</td>
-	                        <td>Administração</td>
-	                        <td colspan="2">
-	                            <a class="btn btn-info btn-sm" href="/cargos/editar/4" role="button">
-	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-	                            </a>
-	                            <button type="button" class="btn btn-danger btn-sm" >
-	                                <span class="oi oi-circle-x" title="Exclusão desabilitada" aria-hidden="true"></span>
-	                            </button>
-	                        </td>
-	                    </tr>
-	                    <tr>
-	                        <td>5</td>
-	                        <td>Programado PHP</td>
-	                        <td>Tecnologia da Informação</td>
-	                        <td colspan="2">
-	                            <a class="btn btn-info btn-sm" href="/cargos/editar/5" role="button">
-	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-	                            </a>
-	                            <button type="button" class="btn btn-danger btn-sm" >
-	                                <span class="oi oi-circle-x" title="Exclusão desabilitada" aria-hidden="true"></span>
-	                            </button>
-	                        </td>
-	                    </tr>
-	                    <tr>
-	                        <td>6</td>
-	                        <td>Desenvolvedor Java Jr.</td>
-	                        <td>Tecnologia da Informação</td>
-	                        <td colspan="2">
-	                            <a class="btn btn-info btn-sm" href="/cargos/editar/6" role="button">
-	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-	                            </a>
-	                            <button type="button" class="btn btn-danger btn-sm" >
-	                                <span class="oi oi-circle-x" title="Exclusão desabilitada" aria-hidden="true"></span>
-	                            </button>
-	                        </td>
-	                    </tr>
-	                    <tr>
-	                        <td>7</td>
-	                        <td>Desenvolvedor Java Pleno</td>
-	                        <td>Tecnologia da Informação</td>
-	                        <td colspan="2">
-	                            <a class="btn btn-info btn-sm" href="/cargos/editar/7" role="button">
-	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-	                            </a>
-	                            <button type="button" class="btn btn-danger btn-sm" >
-	                                <span class="oi oi-circle-x" title="Exclusão desabilitada" aria-hidden="true"></span>
-	                            </button>
-	                        </td>
-	                    </tr>
-	                    <tr>
-	                        <td>8</td>
-	                        <td>Desenvolvedor Java Senior</td>
-	                        <td>Tecnologia da Informação</td>
-	                        <td colspan="2">
-	                            <a class="btn btn-info btn-sm" href="/cargos/editar/8" role="button">
-	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-	                            </a>
-	                            <button type="button" class="btn btn-danger btn-sm" >
-	                                <span class="oi oi-circle-x" title="Exclusão desabilitada" aria-hidden="true"></span>
-	                            </button>
-	                        </td>
-	                    </tr>
-	                    <tr>
-	                        <td>9</td>
-	                        <td>Auxiliar de RH</td>
-	                        <td>Recursos Humanos</td>
-	                        <td colspan="2">
-	                            <a class="btn btn-info btn-sm" href="/cargos/editar/9" role="button">
-	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-	                            </a>
-	                            <button type="button" class="btn btn-danger btn-sm" >
-	                                <span class="oi oi-circle-x" title="Exclusão desabilitada" aria-hidden="true"></span>
-	                            </button>
-	                        </td>
-	                    </tr>
-	                    <tr>
-	                        <td>10</td>
-	                        <td>Coordenador de RH</td>
-	                        <td>Recursos Humanos</td>
-	                        <td colspan="2">
-	                            <a class="btn btn-info btn-sm" href="/cargos/editar/10" role="button">
-	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-	                            </a>
-	                            <button type="button" class="btn btn-danger btn-sm" >
-	                                <span class="oi oi-circle-x" title="Exclusão desabilitada" aria-hidden="true"></span>
-	                            </button>
-	                        </td>
-	                    </tr>
-	                    <tr>
-	                        <td>11</td>
-	                        <td>Psicologo</td>
-	                        <td>Recursos Humanos</td>
-	                        <td colspan="2">
-	                            <a class="btn btn-info btn-sm" href="/cargos/editar/11" role="button">
-	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-	                            </a>
-	                            <button type="button" class="btn btn-danger btn-sm" >
-	                                <span class="oi oi-circle-x" title="Exclusão desabilitada" aria-hidden="true"></span>
-	                            </button>
-	                        </td>
-	                    </tr>
+
 	                    </tbody>
 	                </table>
 	            </div>

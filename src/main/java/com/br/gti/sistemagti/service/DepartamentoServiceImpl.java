@@ -40,7 +40,7 @@ public class DepartamentoServiceImpl implements DepartamentoService{
 
     @Override
     public boolean departamentoTemFuncionario(Long id) {
-        if (buscarPorId(id).getEquipamentos().isEmpty()){
+        if (buscarPorId(id).getFuncionarios().isEmpty()){
             return false;
         }
         return true;
