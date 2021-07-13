@@ -24,6 +24,9 @@
 	        </nav>
 	
 	        <div class="container" id="listagem">
+
+				<div th:replace="fragments/alert"></div>
+
 	            <div class="table-responsive">
 	                <table class="table table-striped table-hover table-sm">
 	                    <thead>
@@ -39,7 +42,7 @@
 	                        <th>Departamento</th>
 	                        <th>Categoria</th>
 							<th>Status</th>
-							<th>Observacao</th>
+							<th>Observacão</th>
 							<th>Ação</th>
 	                    </tr>
 	                    </thead>
@@ -64,11 +67,12 @@
 								</button>
 							</td>
 	                        <td colspan="2">
-	                            <a class="btn btn-info btn-sm" href="/cargos/editar/1" role="button">
+	                            <a class="btn btn-info btn-sm" th:href="@{/equipamentos/editar/{id} (id=${e.id})}" role="button">
 	                                <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
 	                            </a>
-	                            <button type="button" class="btn btn-danger btn-sm" >
-	                                <span class="oi oi-circle-x" title="Exclusão desabilitada" aria-hidden="true"></span>
+	                            <button th:id="${#strings.concat('btn_equipamentos/excluir/', e.id)}"  type="button" class="btn btn-danger btn-sm"
+								data-toggle="modal" data-target="#myModal">
+	                                <span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
 	                            </button>
 	                        </td>
 	                    </tr>
@@ -77,6 +81,7 @@
 	                </table>
 	            </div>
 	        </div>
+			<div th:replace="fragments/modal :: modal"></div>
 	    </section>
 </body>
 </html>		

@@ -29,7 +29,8 @@
 
 		<div th:replace="fragments/alert"></div>
 
-		<form th:action="@{/equipamentos/salvar}" th:object="${equipamento}" method="POST">
+		<form th:action="${equipamento.id == null} ? @{/equipamentos/salvar} : @{/equipamentos/editar}"
+			  th:object="${equipamento}" method="POST">
 			<div class="form-row">
 				<div class="form-group col-md-6">
 					<label for="nome">Nome Equipamento</label>

@@ -10,10 +10,7 @@ import com.br.gti.sistemagti.service.EquipamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -49,6 +46,26 @@ public class EquipamentoController {
         System.out.println(equipamento.getCategoria().getNome());
         attr.addFlashAttribute("success", "Equipamento inserido com sucesso");
         return "redirect:/equipamentos/cadastrar";
+    }
+
+    @GetMapping("/editar/{id}")
+    public String preEditar(@PathVariable("id") Long id, ModelMap model){
+        model.addAttribute("equipamento", equipamentoService.buscarPorId(id));
+        return "/equipamento/cadastro";
+    }
+
+    @PostMapping("/editar")
+    public String editar(Equipamento equipamento, RedirectAttributes attr){
+        equipamentoService.editar(equipamento);
+        attr.addFlashAttribute("success", "Equipamento editado com sucesso");
+        return "redirect:/equipamentos/cadastrar";
+    }
+
+    @GetMapping("/excluir/{id}")
+    public String excluir(@PathVariable("id") Long id, RedirectAttributes attr){
+        equipamentoService.excluir(id);
+        attr.addFlashAttribute("success", "Equipamento removido com sucesso.");
+        return "redirect:/equipamentos/listar";
     }
 
     @ModelAttribute("categorias")
