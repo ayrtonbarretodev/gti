@@ -30,8 +30,11 @@
 
         <form th:action="${categoria.id == null} ? @{/categorias/salvar} : @{/categorias/editar}"
               th:object="${categoria}" method="POST">
+
+            <div th:replace="fragments/validacao :: validacao"></div>
+
             <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-6 required">
                     <label for="nome">Categoria</label>
                     <input type="text" class="form-control" id="nome"
                            placeholder="Ex: Estabilizadores" autofocus="autofocus" th:field="*{nome}"/>

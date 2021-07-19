@@ -3,8 +3,8 @@ package com.br.gti.sistemagti.domain.enums;
 public enum Status {
     EMUSO("Em uso"),
     MANUTENCAO("Em manutenção"),
-    DEPOSITO("Em depósito"),
-    DISPONIVEL("Em disponibilidade"),
+    DEPOSITO("Depósito"),
+    DISPONIVEL("Disponível"),
     DESCARTADO("Descartado");
 
     private String descricao;

@@ -10,9 +10,11 @@ import com.br.gti.sistemagti.service.EquipamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -40,10 +42,11 @@ public class EquipamentoController {
     }
 
     @PostMapping("/salvar")
-    public String salvar(Equipamento equipamento, RedirectAttributes attr) {
+    public String salvar(@Valid Equipamento equipamento, BindingResult result, RedirectAttributes attr) {
+        if (result.hasErrors()){
+            return "/equipamento/cadastro";
+        }
         equipamentoService.salvar(equipamento);
-        System.out.println(equipamento.getDepartamento().getNome());
-        System.out.println(equipamento.getCategoria().getNome());
         attr.addFlashAttribute("success", "Equipamento inserido com sucesso");
         return "redirect:/equipamentos/cadastrar";
     }
@@ -55,7 +58,10 @@ public class EquipamentoController {
     }
 
     @PostMapping("/editar")
-    public String editar(Equipamento equipamento, RedirectAttributes attr) {
+    public String editar(@Valid Equipamento equipamento, BindingResult result, RedirectAttributes attr) {
+        if (result.hasErrors()){
+            return "/equipamento/cadastro";
+        }
         equipamentoService.editar(equipamento);
         attr.addFlashAttribute("success", "Equipamento editado com sucesso");
         return "redirect:/equipamentos/cadastrar";

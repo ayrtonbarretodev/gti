@@ -31,6 +31,9 @@
 
         <form th:action="${equipamento.id == null} ? @{/equipamentos/salvar} : @{/equipamentos/editar}"
               th:object="${equipamento}" method="POST">
+
+            <div th:replace="fragments/validacao :: validacao"></div>
+
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="nome">Nome Equipamento</label>
@@ -45,7 +48,7 @@
                 <div class="form-group col-md-3">
                     <label for="enderecoMac">Endereço MAC</label>
                     <input type="text" class="form-control" id="enderecoMac" placeholder="Ex: 00:19:B9:FB:E2:58"
-                           maxlength="17" autofocus="autofocus" th:field="*{enderecoMac}"/>
+                           maxlength="17" style="text-transform: uppercase" autofocus="autofocus" th:field="*{enderecoMac}"/>
                 </div>
             </div>
 
@@ -80,7 +83,7 @@
                         <option value="">Selecione</option>
                         <option th:each="d : ${departamentos}"
                                 th:value="${d.id}"
-                                th:text="${d.nome}">Direção
+                                th:text="${d.ambiente == ''} ? ${d.nome} : ${d.nome + '-' + d.ambiente}">
                         </option>
                     </select>
                 </div>

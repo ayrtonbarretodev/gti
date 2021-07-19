@@ -124,3 +124,7 @@ body {
     color: #777777;
     text-align: center;
 }
+
+.required > label:after{
+    content: "*";
+}

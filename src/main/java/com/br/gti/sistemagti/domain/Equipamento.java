@@ -6,6 +6,8 @@ import org.hibernate.envers.RelationTargetAuditMode;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Audited
@@ -13,6 +15,7 @@ import java.time.LocalDate;
 @Table(name = "EQUIPAMENTOS")
 public class Equipamento extends AbstractEntity<Long> {
 
+    @NotBlank(message = "O nome do Equipamento é obrigatório")
     @Column(nullable = false, length = 60)
     private String nome;
 
@@ -22,7 +25,7 @@ public class Equipamento extends AbstractEntity<Long> {
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Column(nullable = false, columnDefinition = "DATE")
-    private LocalDate dataEntrada;
+    private LocalDate dataEntrada = LocalDate.now();
 
 //    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
 //    @Column(columnDefinition = "DATE")
@@ -38,11 +41,13 @@ public class Equipamento extends AbstractEntity<Long> {
     private String numeroSerie;
 
     @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
+    @NotNull(message = "Seleciona a Categoria relativa ao Equipamento.")
     @ManyToOne
     @JoinColumn(name = "id_categoria_fk", nullable = false)
     private Categoria categoria;
 
     @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
+    @NotNull(message = "Seleciona o Departamento relativo ao Equipamento.")
     @ManyToOne
     @JoinColumn(name = "id_departamento_fk", nullable = false)
     private Departamento departamento;
@@ -55,7 +60,7 @@ public class Equipamento extends AbstractEntity<Long> {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.nome = nome.trim();
     }
 
     public String getModelo() {
@@ -63,7 +68,7 @@ public class Equipamento extends AbstractEntity<Long> {
     }
 
     public void setModelo(String modelo) {
-        this.modelo = modelo;
+        this.modelo = modelo.trim();
     }
 
     public String getFabricante() {
@@ -71,7 +76,7 @@ public class Equipamento extends AbstractEntity<Long> {
     }
 
     public void setFabricante(String fabricante) {
-        this.fabricante = fabricante;
+        this.fabricante = fabricante.trim();
     }
 
     public LocalDate getDataEntrada() {
@@ -88,7 +93,7 @@ public class Equipamento extends AbstractEntity<Long> {
     }
 
     public void setObservacao(String observacao) {
-        this.observacao = observacao;
+        this.observacao = observacao.trim();
     }
 
     public Status getStatus() {
@@ -104,7 +109,7 @@ public class Equipamento extends AbstractEntity<Long> {
     }
 
     public void setNumeroSerie(String numeroSerie) {
-        this.numeroSerie = numeroSerie;
+        this.numeroSerie = numeroSerie.toUpperCase().trim();
     }
 
     public Categoria getCategoria() {
@@ -128,6 +133,6 @@ public class Equipamento extends AbstractEntity<Long> {
     }
 
     public void setEnderecoMac(String enderecoMac) {
-        this.enderecoMac = enderecoMac;
+        this.enderecoMac = enderecoMac.trim();
     }
 }

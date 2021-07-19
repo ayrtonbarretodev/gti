@@ -8,8 +8,11 @@ import org.hibernate.envers.query.AuditQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.validation.Valid;
 
 
 @Controller
@@ -31,7 +34,11 @@ public class CategoriaController {
     }
 
     @PostMapping("/salvar")
-    public String salvar(Categoria categoria, RedirectAttributes attr) {
+    public String salvar(@Valid Categoria categoria, BindingResult result, RedirectAttributes attr) {
+        if (result.hasErrors()){
+            return "/categoria/cadastro";
+        }
+
         service.salvar(categoria);
         attr.addFlashAttribute("success", "Categoria inserida com sucesso");
         return "redirect:/categorias/cadastrar";
@@ -44,7 +51,10 @@ public class CategoriaController {
     }
 
     @PostMapping("/editar")
-    public String editar(Categoria categoria, RedirectAttributes attr) {
+    public String editar(@Valid Categoria categoria, BindingResult result, RedirectAttributes attr) {
+        if (result.hasErrors()){
+            return "/categoria/cadastro";
+        }
         service.editar(categoria);
         attr.addFlashAttribute("success", "Categoria editada com sucesso");
         return "redirect:/categorias/cadastrar";

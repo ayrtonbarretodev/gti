@@ -1,6 +1,8 @@
 package com.br.gti.sistemagti.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,9 +10,11 @@ import java.util.List;
 @Table(name = "DEPARTAMENTOS")
 public class Departamento extends AbstractEntity<Long> {
 
-    @Column(nullable = false, unique = true, length = 60)
+    @NotBlank(message = "O nome do Departamento é obrigatório")
+    @Column(nullable = false, length = 60)
     private String nome;
 
+    //@NotNull
     private String ambiente;
 
     @Column(length = 9)
@@ -24,7 +28,7 @@ public class Departamento extends AbstractEntity<Long> {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.nome = nome.trim();
     }
 
     public String getTelefone() {
@@ -32,7 +36,7 @@ public class Departamento extends AbstractEntity<Long> {
     }
 
     public void setTelefone(String telefone) {
-        this.telefone = telefone;
+        this.telefone = telefone.trim();
     }
 
     public String getAmbiente() {
@@ -40,7 +44,7 @@ public class Departamento extends AbstractEntity<Long> {
     }
 
     public void setAmbiente(String ambiente) {
-        this.ambiente = ambiente;
+        this.ambiente = ambiente.trim();
     }
 
     public List<Equipamento> getEquipamentos() {

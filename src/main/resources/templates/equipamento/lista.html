@@ -54,7 +54,7 @@
                     <td th:text="${e.fabricante}"></td>
                     <td th:text="${e.modelo}"></td>
                     <td th:text="${#temporals.format(e.dataEntrada, 'dd/MM/yyyy')}"></td>
-                    <td th:text="${e.departamento?.nome}"></td>
+                    <td th:text="${e.departamento?.ambiente == ''} ? ${e.departamento?.nome} : ${e.departamento?.nome + '-' + e.departamento?.ambiente}"></td>
                     <td th:text="${e.categoria?.nome}"></td>
                     <td th:text="${e.status?.descricao}"></td>
                     <td>

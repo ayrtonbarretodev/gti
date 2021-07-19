@@ -4,12 +4,15 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "CATEGORIAS")
 public class Categoria extends AbstractEntity<Long> {
+
+    @NotBlank(message = "O nome da Categoria é obrigatório")
     @Column(nullable = false, unique = true, length = 60)
     private String nome;
 
@@ -21,7 +24,7 @@ public class Categoria extends AbstractEntity<Long> {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        this.nome = nome.trim();
     }
 
     public List<Equipamento> getEquipamentos() {
