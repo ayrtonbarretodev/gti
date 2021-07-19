@@ -9,11 +9,11 @@ import java.util.List;
 
 @Entity
 @Table(name = "CATEGORIAS")
-public class Categoria extends AbstractEntity<Long>{
+public class Categoria extends AbstractEntity<Long> {
     @Column(nullable = false, unique = true, length = 60)
     private String nome;
 
-    @OneToMany (mappedBy = "categoria")
+    @OneToMany(mappedBy = "categoria")
     private List<Equipamento> equipamentos = new ArrayList<>();
 
     public String getNome() {

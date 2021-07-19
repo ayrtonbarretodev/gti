@@ -8,8 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service @Transactional
-public class CategoriaServiceImpl implements CategoriaService{
+@Service
+@Transactional
+public class CategoriaServiceImpl implements CategoriaService {
 
     @Autowired
     private CategoriaDao dao;
@@ -29,21 +30,28 @@ public class CategoriaServiceImpl implements CategoriaService{
         dao.delete(id);
     }
 
-    @Override @Transactional (readOnly = true)
+    @Override
+    @Transactional(readOnly = true)
     public Categoria buscarPorId(Long id) {
         return dao.findById(id);
     }
 
-    @Override @Transactional (readOnly = true)
+    @Override
+    @Transactional(readOnly = true)
     public List<Categoria> buscarTodos() {
         return dao.findAll();
     }
 
     @Override
     public boolean categoriaTemEquipamentos(Long id) {
-        if (buscarPorId(id).getEquipamentos().isEmpty()){
+        if (buscarPorId(id).getEquipamentos().isEmpty()) {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public List<Categoria> buscarPorNome(String nome) {
+        return dao.findByNome(nome);
     }
 }

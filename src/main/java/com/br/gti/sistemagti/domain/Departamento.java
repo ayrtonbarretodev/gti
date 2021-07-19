@@ -6,9 +6,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "DEPARTAMENTOS")
-public class Departamento extends AbstractEntity<Long>{
+public class Departamento extends AbstractEntity<Long> {
 
-    @Column(nullable = false,unique = true,length = 60)
+    @Column(nullable = false, unique = true, length = 60)
     private String nome;
 
     @Column(length = 9)
@@ -18,7 +18,7 @@ public class Departamento extends AbstractEntity<Long>{
     private List<Equipamento> equipamentos = new ArrayList<>();
 
     @OneToMany(mappedBy = "departamento")
-    private List<Funcionario>funcionarios = new ArrayList<>();
+    private List<Funcionario> funcionarios = new ArrayList<>();
 
     public String getNome() {
         return nome;

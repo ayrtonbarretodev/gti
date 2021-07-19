@@ -8,8 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service @Transactional
-public class FuncionarioServiceImpl implements FuncionarioService{
+@Service
+@Transactional
+public class FuncionarioServiceImpl implements FuncionarioService {
 
     @Autowired
     private FuncionarioDao dao;
@@ -29,12 +30,14 @@ public class FuncionarioServiceImpl implements FuncionarioService{
         dao.delete(id);
     }
 
-    @Override @Transactional (readOnly = true)
+    @Override
+    @Transactional(readOnly = true)
     public Funcionario buscarPorId(Long id) {
         return dao.findById(id);
     }
 
-    @Override @Transactional (readOnly = true)
+    @Override
+    @Transactional(readOnly = true)
     public List<Funcionario> buscarTodos() {
         return dao.findAll();
     }

@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface FuncionarioService {
 
-    void salvar (Funcionario funcionario);
+    void salvar(Funcionario funcionario);
 
-    void editar (Funcionario funcionario);
+    void editar(Funcionario funcionario);
 
-    void excluir (Long id);
+    void excluir(Long id);
 
     Funcionario buscarPorId(Long id);
 

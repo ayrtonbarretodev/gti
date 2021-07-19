@@ -29,18 +29,18 @@ public class EquipamentoController {
     private DepartamentoService departamentoService;
 
     @GetMapping("/cadastrar")
-    public String cadastrar(Equipamento equipamento){
+    public String cadastrar(Equipamento equipamento) {
         return "equipamento/cadastro";
     }
 
     @GetMapping("/listar")
     public String listar(ModelMap model) {
-        model.addAttribute("equipamentos",equipamentoService.buscarTodos());
+        model.addAttribute("equipamentos", equipamentoService.buscarTodos());
         return "/equipamento/lista";
     }
 
     @PostMapping("/salvar")
-    public String salvar (Equipamento equipamento, RedirectAttributes attr){
+    public String salvar(Equipamento equipamento, RedirectAttributes attr) {
         equipamentoService.salvar(equipamento);
         System.out.println(equipamento.getDepartamento().getNome());
         System.out.println(equipamento.getCategoria().getNome());
@@ -49,39 +49,38 @@ public class EquipamentoController {
     }
 
     @GetMapping("/editar/{id}")
-    public String preEditar(@PathVariable("id") Long id, ModelMap model){
+    public String preEditar(@PathVariable("id") Long id, ModelMap model) {
         model.addAttribute("equipamento", equipamentoService.buscarPorId(id));
         return "/equipamento/cadastro";
     }
 
     @PostMapping("/editar")
-    public String editar(Equipamento equipamento, RedirectAttributes attr){
+    public String editar(Equipamento equipamento, RedirectAttributes attr) {
         equipamentoService.editar(equipamento);
         attr.addFlashAttribute("success", "Equipamento editado com sucesso");
         return "redirect:/equipamentos/cadastrar";
     }
 
     @GetMapping("/excluir/{id}")
-    public String excluir(@PathVariable("id") Long id, RedirectAttributes attr){
+    public String excluir(@PathVariable("id") Long id, RedirectAttributes attr) {
         equipamentoService.excluir(id);
         attr.addFlashAttribute("success", "Equipamento removido com sucesso.");
         return "redirect:/equipamentos/listar";
     }
 
     @ModelAttribute("categorias")
-    public List<Categoria> listaDeCategorias(){
+    public List<Categoria> listaDeCategorias() {
         return categoriaService.buscarTodos();
     }
 
     @ModelAttribute("departamentos")
-    public List<Departamento> listaDeDepartamentos(){
+    public List<Departamento> listaDeDepartamentos() {
         return departamentoService.buscarTodos();
     }
 
     @ModelAttribute("status")
-    public Status[] getStatus(){
+    public Status[] getStatus() {
         return Status.values();
     }
-
 
 }

@@ -4,9 +4,9 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "FUNCIONARIOS")
-public class Funcionario extends AbstractEntity<Long>{
+public class Funcionario extends AbstractEntity<Long> {
 
-    @Column(nullable = false,unique = true)
+    @Column(nullable = false, unique = true)
     private String nome;
 
     @ManyToOne

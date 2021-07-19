@@ -14,7 +14,7 @@ public class StringToCategoriaConverter implements Converter<String, Categoria> 
 
     @Override
     public Categoria convert(String text) {
-        if (text.isEmpty()){
+        if (text.isEmpty()) {
             return null;
         }
         Long id = Long.valueOf(text);

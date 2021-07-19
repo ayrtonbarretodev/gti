@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-@Service @Transactional
-public class DepartamentoServiceImpl implements DepartamentoService{
+
+@Service
+@Transactional
+public class DepartamentoServiceImpl implements DepartamentoService {
 
     @Autowired
     private DepartamentoDao dao;
@@ -28,19 +30,21 @@ public class DepartamentoServiceImpl implements DepartamentoService{
         dao.delete(id);
     }
 
-    @Override  @Transactional (readOnly = true)
+    @Override
+    @Transactional(readOnly = true)
     public Departamento buscarPorId(Long id) {
         return dao.findById(id);
     }
 
-    @Override @Transactional (readOnly = true)
+    @Override
+    @Transactional(readOnly = true)
     public List<Departamento> buscarTodos() {
         return dao.findAll();
     }
 
     @Override
     public boolean departamentoTemFuncionario(Long id) {
-        if (buscarPorId(id).getFuncionarios().isEmpty()){
+        if (buscarPorId(id).getFuncionarios().isEmpty()) {
             return false;
         }
         return true;
@@ -48,7 +52,7 @@ public class DepartamentoServiceImpl implements DepartamentoService{
 
     @Override
     public boolean departamentoTemEquipamento(Long id) {
-        if (buscarPorId(id).getEquipamentos().isEmpty()){
+        if (buscarPorId(id).getEquipamentos().isEmpty()) {
             return false;
         }
         return true;

@@ -14,7 +14,7 @@ public class StringToDepartamentoConverter implements Converter<String, Departam
 
     @Override
     public Departamento convert(String text) {
-        if(text.isEmpty()){
+        if (text.isEmpty()) {
             return null;
         }
         Long id = Long.valueOf(text);

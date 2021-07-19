@@ -1,14 +1,17 @@
 package com.br.gti.sistemagti.domain;
 
 import com.br.gti.sistemagti.domain.enums.Status;
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.RelationTargetAuditMode;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 
+@Audited
 @Entity
 @Table(name = "EQUIPAMENTOS")
-public class Equipamento extends AbstractEntity<Long>{
+public class Equipamento extends AbstractEntity<Long> {
 
     @Column(nullable = false, length = 60)
     private String nome;
@@ -21,9 +24,9 @@ public class Equipamento extends AbstractEntity<Long>{
     @Column(nullable = false, columnDefinition = "DATE")
     private LocalDate dataEntrada;
 
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    @Column(columnDefinition = "DATE")
-    private LocalDate dataSaida;
+//    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+//    @Column(columnDefinition = "DATE")
+//    private LocalDate dataSaida;
 
     private String observacao;
 
@@ -34,12 +37,14 @@ public class Equipamento extends AbstractEntity<Long>{
     @Column(nullable = false, unique = true, length = 60)
     private String numeroSerie;
 
+    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
     @ManyToOne
-    @JoinColumn(name = "id_categoria_fk",nullable = false)
+    @JoinColumn(name = "id_categoria_fk", nullable = false)
     private Categoria categoria;
 
+    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
     @ManyToOne
-    @JoinColumn(name = "id_departamento_fk",nullable = false)
+    @JoinColumn(name = "id_departamento_fk", nullable = false)
     private Departamento departamento;
 
     @Column(nullable = false, unique = true, length = 17)
@@ -77,13 +82,13 @@ public class Equipamento extends AbstractEntity<Long>{
         this.dataEntrada = dataEntrada;
     }
 
-    public LocalDate getDataSaida() {
-        return dataSaida;
-    }
-
-    public void setDataSaida(LocalDate dataSaida) {
-        this.dataSaida = dataSaida;
-    }
+//    public LocalDate getDataSaida() {
+//        return dataSaida;
+//    }
+//
+//    public void setDataSaida(LocalDate dataSaida) {
+//        this.dataSaida = dataSaida;
+//    }
 
     public String getObservacao() {
         return observacao;

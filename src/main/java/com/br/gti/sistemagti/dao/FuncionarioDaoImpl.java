@@ -4,5 +4,5 @@ import com.br.gti.sistemagti.domain.Funcionario;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class FuncionarioDaoImpl extends AbstractDao<Funcionario,Long> implements FuncionarioDao {
+public class FuncionarioDaoImpl extends AbstractDao<Funcionario, Long> implements FuncionarioDao {
 }

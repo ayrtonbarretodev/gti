@@ -6,11 +6,11 @@ import java.util.List;
 
 public interface EquipamentoDao {
 
-    void save (Equipamento equipamento);
+    void save(Equipamento equipamento);
 
-    void update (Equipamento equipamento);
+    void update(Equipamento equipamento);
 
-    void delete (Long id);
+    void delete(Long id);
 
     Equipamento findById(Long id);
 

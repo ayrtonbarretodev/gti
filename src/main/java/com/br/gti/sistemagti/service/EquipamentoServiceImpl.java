@@ -8,8 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service  @Transactional
-public class EquipamentoServiceImpl implements EquipamentoService{
+@Service
+@Transactional
+public class EquipamentoServiceImpl implements EquipamentoService {
 
     @Autowired
     private EquipamentoDao dao;

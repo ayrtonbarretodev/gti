@@ -23,45 +23,45 @@ public class FuncionarioController {
     private DepartamentoService departamentoService;
 
     @GetMapping("/cadastrar")
-    public String cadastrar(Funcionario funcionario){
+    public String cadastrar(Funcionario funcionario) {
         return "/funcionario/cadastro";
     }
 
     @GetMapping("/listar")
-    public String listar(ModelMap model){
-        model.addAttribute("funcionarios",funcionarioService.buscarTodos());
+    public String listar(ModelMap model) {
+        model.addAttribute("funcionarios", funcionarioService.buscarTodos());
         return "/funcionario/lista";
     }
 
     @PostMapping("/salvar")
-    public String salvar(Funcionario funcionario, RedirectAttributes attr){
+    public String salvar(Funcionario funcionario, RedirectAttributes attr) {
         funcionarioService.salvar(funcionario);
-        attr.addFlashAttribute("success","Funcionário inserido com sucesso");
+        attr.addFlashAttribute("success", "Funcionário inserido com sucesso");
         return "redirect:/funcionarios/cadastrar";
     }
 
     @GetMapping("/editar/{id}")
-    public String preEditar(@PathVariable("id") Long id, ModelMap model){
+    public String preEditar(@PathVariable("id") Long id, ModelMap model) {
         model.addAttribute("funcionario", funcionarioService.buscarPorId(id));
         return "/funcionario/cadastro";
     }
 
     @PostMapping("/editar")
-    public String editar(Funcionario funcionario, RedirectAttributes attr){
+    public String editar(Funcionario funcionario, RedirectAttributes attr) {
         funcionarioService.editar(funcionario);
         attr.addFlashAttribute("success", "Funcionário editado com sucesso");
         return "redirect:/funcionarios/cadastrar";
     }
 
     @GetMapping("/excluir/{id}")
-    public String excluir(@PathVariable("id") Long id, RedirectAttributes attr){
+    public String excluir(@PathVariable("id") Long id, RedirectAttributes attr) {
         funcionarioService.excluir(id);
-        attr.addFlashAttribute("success","Funcionário removido com sucesso.");
+        attr.addFlashAttribute("success", "Funcionário removido com sucesso.");
         return "redirect:/funcionarios/listar";
     }
 
     @ModelAttribute("departamentos")
-    public List<Departamento> listaDeDepartamentos(){
+    public List<Departamento> listaDeDepartamentos() {
         return departamentoService.buscarTodos();
     }
 }
