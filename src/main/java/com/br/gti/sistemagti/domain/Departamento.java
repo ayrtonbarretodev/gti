@@ -19,9 +19,6 @@ public class Departamento extends AbstractEntity<Long> {
     @OneToMany(mappedBy = "departamento")
     private List<Equipamento> equipamentos = new ArrayList<>();
 
-    @OneToMany(mappedBy = "departamento")
-    private List<Funcionario> funcionarios = new ArrayList<>();
-
     public String getNome() {
         return nome;
     }
@@ -50,16 +47,8 @@ public class Departamento extends AbstractEntity<Long> {
         return equipamentos;
     }
 
-    public List<Funcionario> getFuncionarios() {
-        return funcionarios;
-    }
-
     public void setEquipamentos(List<Equipamento> equipamentos) {
         this.equipamentos = equipamentos;
-    }
-
-    public void setFuncionarios(List<Funcionario> funcionarios) {
-        this.funcionarios = funcionarios;
     }
 
 }

@@ -1,6 +1,5 @@
 package com.br.gti.sistemagti.web.controller;
 
-import com.br.gti.sistemagti.domain.Categoria;
 import com.br.gti.sistemagti.domain.Departamento;
 import com.br.gti.sistemagti.service.DepartamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,8 +51,8 @@ public class DepartamentoController {
 
     @GetMapping("/excluir/{id}")
     public String excluir(@PathVariable("id") Long id, ModelMap model) {
-        if (service.departamentoTemFuncionario(id) || service.departamentoTemEquipamento(id)) {
-            model.addAttribute("fail", "Departamento não removido. Possui funcionário(s) ou equipamento(s) vinculado(s).");
+        if (service.departamentoTemEquipamento(id)) {
+            model.addAttribute("fail", "Departamento não removido. Possui equipamento(s) vinculado(s).");
         } else {
             service.excluir(id);
             model.addAttribute("success", "Departamento excluído com sucesso.");
