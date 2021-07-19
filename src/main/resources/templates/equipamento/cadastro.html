@@ -35,8 +35,8 @@
             <div th:replace="fragments/validacao :: validacao"></div>
 
             <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="nome">Nome Equipamento</label>
+                <div class="form-group col-md-4 required">
+                    <label for="nome">Nome Equipamento </label>
                     <input type="text" class="form-control" id="nome" placeholder="Digite o nome do equipamento"
                            autofocus="autofocus" th:field="*{nome}"/>
                 </div>
@@ -53,12 +53,12 @@
             </div>
 
             <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-5">
                     <label for="fabricante">Fabricante</label>
                     <input type="text" class="form-control" id="fabricante" placeholder="Digite o nome do fabricante"
                            autofocus="autofocus" th:field="*{fabricante}"/>
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-5">
                     <label for="modelo">Modelo</label>
                     <input type="text" class="form-control" id="modelo" placeholder="Digite o nome do Modelo"
                            autofocus="autofocus" th:field="*{modelo}"/>
@@ -66,20 +66,24 @@
             </div>
 
             <div class="form-row">
-                <div class="form-group col-md-6">
+
+                <div class="form-group col-md-5">
+                    <label for="tomboPatrimonial">Tombo Patrimonial</label>
+                    <input type="number" class="form-control" id="tomboPatrimonial" placeholder="Digite o tombo patrimonial"
+                           autofocus="autofocus" th:field="*{tomboPatrimonial}"/>
+                </div>
+
+                <div class="form-group col-md-5 required">
                     <label for="dataEntrada">Data de Entrada</label>
                     <input type="date" class="form-control" id="dataEntrada" th:field="*{dataEntrada}"/>
-                    <div class="invalid-feedback">
-
-                    </div>
                 </div>
             </div>
 
 
             <div class="form-row">
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-4 required">
                     <label for="departamento">Departamento</label>
-                    <select id="departamento" class="form-control" th:field="*{departamento}">
+                    <select id="departamento" class="form-control" th:field="*{departamento}"/>
                         <option value="">Selecione</option>
                         <option th:each="d : ${departamentos}"
                                 th:value="${d.id}"
@@ -89,9 +93,9 @@
                 </div>
 
 
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-4 required">
                     <label for="categoria">Categoria</label>
-                    <select id="categoria" class="form-control" th:field="*{categoria}">
+                    <select id="categoria" class="form-control" th:field="*{categoria}"/>
                         <option value="">Selecione</option>
                         <option th:each="c : ${categorias}"
                                 th:value="${c.id}"
@@ -100,16 +104,13 @@
                     </select>
                 </div>
 
-                <div class="form-group col-md-4">
+                <div class="form-group col-md-2 required">
                     <label for="status">Status</label>
-                    <select id="status" class="form-control" name="status">
+                    <select id="status" class="form-control" th:field="*{status}"/>
                         <option value="">Selecione</option>
                         <option th:each="status : ${status}" th:value="${status}"
                                 th:text="${status.descricao}"></option>
                     </select>
-                    <div class="invalid-feedback">
-
-                    </div>
                 </div>
             </div>
 

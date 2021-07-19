@@ -12,7 +12,7 @@ import java.util.List;
 @Table(name = "CATEGORIAS")
 public class Categoria extends AbstractEntity<Long> {
 
-    @NotBlank(message = "O nome da Categoria é obrigatório")
+    @NotBlank(message = "O Campo Categoria é Obrigatório")
     @Column(nullable = false, unique = true, length = 60)
     private String nome;
 

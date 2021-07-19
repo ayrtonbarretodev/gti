@@ -6,8 +6,11 @@ import org.hibernate.envers.RelationTargetAuditMode;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
 @Audited
@@ -15,7 +18,7 @@ import java.time.LocalDate;
 @Table(name = "EQUIPAMENTOS")
 public class Equipamento extends AbstractEntity<Long> {
 
-    @NotBlank(message = "O nome do Equipamento é obrigatório")
+    @NotBlank (message = "O Campo Nome do Equipamento é Obrigatório")
     @Column(nullable = false, length = 60)
     private String nome;
 
@@ -23,35 +26,39 @@ public class Equipamento extends AbstractEntity<Long> {
 
     private String fabricante;
 
+    @NotNull
+    @PastOrPresent(message = "{PastOrPresent.equipamento.dataEntrada}")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Column(nullable = false, columnDefinition = "DATE")
     private LocalDate dataEntrada = LocalDate.now();
 
-//    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-//    @Column(columnDefinition = "DATE")
-//    private LocalDate dataSaida;
+    @Column(unique = true)
+    private Integer tomboPatrimonial;
 
+    @Size (max = 255)
     private String observacao;
 
+    @NotNull(message = "{NotNull.equipamento.status}")
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @Column(nullable = false, unique = true, length = 60)
+    @Column(unique = true, length = 60)
     private String numeroSerie;
 
     @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
-    @NotNull(message = "Seleciona a Categoria relativa ao Equipamento.")
+    @NotNull(message = "{NotNull.equipamento.categoria}")
     @ManyToOne
     @JoinColumn(name = "id_categoria_fk", nullable = false)
     private Categoria categoria;
 
     @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
-    @NotNull(message = "Seleciona o Departamento relativo ao Equipamento.")
+    @NotNull(message = "{NotNull.equipamento.departamento}")
     @ManyToOne
     @JoinColumn(name = "id_departamento_fk", nullable = false)
     private Departamento departamento;
 
+    @Size(min = 17, max = 17, message = "{Size.equipamento.enderecoMac}")
     @Column(nullable = false, unique = true, length = 17)
     private String enderecoMac;
 
@@ -134,5 +141,13 @@ public class Equipamento extends AbstractEntity<Long> {
 
     public void setEnderecoMac(String enderecoMac) {
         this.enderecoMac = enderecoMac.trim();
+    }
+
+    public Integer getTomboPatrimonial() {
+        return tomboPatrimonial;
+    }
+
+    public void setTomboPatrimonial(Integer tomboPatrimonial) {
+        this.tomboPatrimonial = tomboPatrimonial;
     }
 }

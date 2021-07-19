@@ -3,6 +3,7 @@ package com.br.gti.sistemagti.domain;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
 @Table(name = "DEPARTAMENTOS")
 public class Departamento extends AbstractEntity<Long> {
 
-    @NotBlank(message = "O nome do Departamento é obrigatório")
+    @NotBlank (message = "O Campo Departamento é Obrigatório")
     @Column(nullable = false, length = 60)
     private String nome;
 
@@ -18,6 +19,7 @@ public class Departamento extends AbstractEntity<Long> {
     private String ambiente;
 
     @Column(length = 9)
+    @Size(min = 9, max = 9, message = "{Size.departamento.telefone}")
     private String telefone;
 
     @OneToMany(mappedBy = "departamento")
