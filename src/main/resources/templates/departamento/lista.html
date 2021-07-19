@@ -25,6 +25,49 @@
 
     <div class="container" id="listagem">
 
+        <p>
+            <i class="oi oi-magnifying-glass"></i><span></span>
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseNome"
+                    aria-controls="collapseNome">Nome
+            </button>
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseAmbiente"
+                    aria-controls="collapseAmbiente">Ambiente
+            </button>
+        </p>
+
+        <div class="row">
+            <div class="col">
+                <div class="collapse" id="collapseNome">
+
+                    <nav class="navbar navbar-light bg-light">
+                        <form class="form-inline" method="GET" th:action="@{/departamentos/buscar/nome}">
+                            <input class="form-control mr-sm-2" type="search" placeholder="nome" aria-label="Search"
+                                   name="nome"/>
+                            <button class="btn btn-outline-success my-2 my-sm-0">Pesquisar</button>
+                        </form>
+                    </nav>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="collapse" id="collapseAmbiente">
+
+                    <nav class="navbar navbar-light bg-light">
+                        <form class="form-inline" method="GET" th:action="@{/departamentos/buscar/ambiente}">
+                            <input class="form-control mr-sm-2" type="search" placeholder="nome" aria-label="Search"
+                                   name="ambiente"/>
+                            <button class="btn btn-outline-success my-2 my-sm-0">Pesquisar</button>
+                        </form>
+                    </nav>
+
+                </div>
+            </div>
+        </div>
+
+
+
         <div th:replace="fragments/alert"></div>
 
         <div class="table-responsive">

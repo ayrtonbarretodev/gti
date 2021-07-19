@@ -49,4 +49,14 @@ public class DepartamentoServiceImpl implements DepartamentoService {
         }
         return true;
     }
+
+    @Override
+    public List<Departamento> buscarPorNome(String nome) {
+        return dao.findByNome(nome);
+    }
+
+    @Override
+    public List<Departamento> buscarPorAmbiente(String ambiente) {
+        return dao.findByAmbiente(ambiente);
+    }
 }

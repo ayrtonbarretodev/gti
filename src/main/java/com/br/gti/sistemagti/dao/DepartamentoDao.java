@@ -16,4 +16,8 @@ public interface DepartamentoDao {
     Departamento findById(Long id);
 
     List<Departamento> findAll();
+
+    List<Departamento> findByNome(String nome);
+
+    List<Departamento> findByAmbiente(String ambiente);
 }

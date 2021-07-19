@@ -16,4 +16,8 @@ public interface DepartamentoService {
     List<Departamento> buscarTodos();
 
     boolean departamentoTemEquipamento(Long id);
+
+    List<Departamento> buscarPorNome(String nome);
+
+    List<Departamento> buscarPorAmbiente(String ambiente);
 }
