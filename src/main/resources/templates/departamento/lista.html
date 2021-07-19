@@ -33,15 +33,17 @@
                 <tr>
                     <th>#</th>
                     <th>Nome</th>
+                    <th>Ambiente</th>
                     <th>Telefone</th>
                     <th>Ação</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr th:each="d : ${departamentos}">
-                    <td th:text="${d.id}">3</td>
-                    <td th:text="${d.nome}">Administração</td>
-                    <td th:text="${d.telefone}">3</td>
+                    <td th:text="${d.id}"></td>
+                    <td th:text="${d.nome}"></td>
+                    <td th:text="${d.ambiente}"></td>
+                    <td th:text="${d.telefone}"></td>
                     <td colspan="2">
                         <a class="btn btn-info btn-sm" th:href="@{/departamentos/editar/{id} (id=${d.id})}"
                            role="button">

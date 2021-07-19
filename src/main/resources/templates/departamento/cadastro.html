@@ -34,15 +34,23 @@
                 <div class="form-group col-md-6">
                     <label for="nome">Departamento</label>
                     <input type="text" class="form-control" id="nome"
-                           placeholder="Ex: Graduação - Laboratório de Informática" autofocus="autofocus" th:field="*{nome}"/>
+                           placeholder="Ex: Graduação" autofocus="autofocus" th:field="*{nome}"/>
                 </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="ambiente">Ambiente</label>
+                    <input type="text" class="form-control" id="ambiente"
+                           placeholder="Ex: Laboratório de Informática" autofocus="autofocus" th:field="*{ambiente}"/>
+                </div>
+            </div>
+
+            <div class="form-row">
                 <div class="form-group col-md-2">
                     <label for="telefone">Telefone</label>
                     <input type="text" class="form-control" id="telefone" placeholder="Ex.: 0000-0000"
                            data-mask="0000-0000" th:field="*{telefone}"/>
-                    <div class="invalid-feedback">
-
-                    </div>
                 </div>
             </div>
             <input type="hidden" id="id" th:field="*{id}"/>

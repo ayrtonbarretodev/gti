@@ -32,8 +32,4 @@ public class Categoria extends AbstractEntity<Long> {
         this.equipamentos = equipamentos;
     }
 
-//    @Override
-//    public String toString() {
-//        return nome;
-//    }
 }

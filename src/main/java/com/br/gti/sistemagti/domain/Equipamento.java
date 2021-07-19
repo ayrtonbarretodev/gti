@@ -82,13 +82,6 @@ public class Equipamento extends AbstractEntity<Long> {
         this.dataEntrada = dataEntrada;
     }
 
-//    public LocalDate getDataSaida() {
-//        return dataSaida;
-//    }
-//
-//    public void setDataSaida(LocalDate dataSaida) {
-//        this.dataSaida = dataSaida;
-//    }
 
     public String getObservacao() {
         return observacao;

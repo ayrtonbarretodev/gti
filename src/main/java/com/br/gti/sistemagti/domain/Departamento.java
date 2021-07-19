@@ -11,6 +11,8 @@ public class Departamento extends AbstractEntity<Long> {
     @Column(nullable = false, unique = true, length = 60)
     private String nome;
 
+    private String ambiente;
+
     @Column(length = 9)
     private String telefone;
 
@@ -36,6 +38,14 @@ public class Departamento extends AbstractEntity<Long> {
         this.telefone = telefone;
     }
 
+    public String getAmbiente() {
+        return ambiente;
+    }
+
+    public void setAmbiente(String ambiente) {
+        this.ambiente = ambiente;
+    }
+
     public List<Equipamento> getEquipamentos() {
         return equipamentos;
     }
@@ -52,8 +62,4 @@ public class Departamento extends AbstractEntity<Long> {
         this.funcionarios = funcionarios;
     }
 
-//    @Override
-//    public String toString() {
-//        return nome;
-//    }
 }
