@@ -8,15 +8,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta name="description" content="" />
   <meta name="author" content="" />
-  <link rel="icon" href="/image/favicon.png" />
+  <link rel="icon" href="/image/warning.png" />
 
   <title th:text="${status}"></title>
 
   <!-- Bootstrap core CSS -->
-  <link href="/webjars/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="/webjars/open-iconic/font/css/open-iconic-bootstrap.min.css" rel="stylesheet" />
+  <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+  <link th:href="@{/webjars/open-iconic/font/css/open-iconic-bootstrap.min.csss}" rel="stylesheet" />
   <!-- Custom styles for this template -->
-  <link href="/css/style.css" rel="stylesheet" />
+  <link th:href="@{/css/style.css}" rel="stylesheet" />
 </head>
 <body class="text-center">
 <div>
