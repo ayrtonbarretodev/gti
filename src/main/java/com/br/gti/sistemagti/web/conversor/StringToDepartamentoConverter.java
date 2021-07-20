@@ -1,4 +1,4 @@
-package com.br.gti.sistemagti.web.controller.conversor;
+package com.br.gti.sistemagti.web.conversor;
 
 import com.br.gti.sistemagti.domain.Departamento;
 import com.br.gti.sistemagti.service.DepartamentoService;
