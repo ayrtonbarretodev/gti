@@ -26,61 +26,97 @@
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <i class="oi oi-caret-right"></i>
-                    <span>Início</span>
+                    <span>Informações do Sistema</span>
                 </li>
             </ul>
         </div>
     </nav>
 
     <div class="container">
-        <div id="list-home" class="row">
-            <div class="col-4">
-                <div class="list-group" id="list-tab" role="tablist">
-                    <a class="list-group-item list-group-item-action active"
-                       id="list-spring-boot-list" data-toggle="list" href="#spring-boot"
-                       role="tab" aria-controls="spring-boot">Equipamentos em Uso: 300</a>
-                    <a class="list-group-item list-group-item-action"
-                       id="list-sts-list" data-toggle="list" href="#sts"
-                       role="tab" aria-controls="sts">Equipamentos em Manutenção: 30</a>
-                    <a class="list-group-item list-group-item-action" id="list-thymeleaf-list" data-toggle="list" href="#thymeleaf"
-                       role="tab" aria-controls="thymeleaf">Equipamentos em Disponibilidade: 40</a>
-                    <a class="list-group-item list-group-item-action" id="list-webjars-list" data-toggle="list" href="#webjars"
-                        role="tab" aria-controls="webjars">#</a>
-                    <a class="list-group-item list-group-item-action" id="list-hibernate-list" data-toggle="list" href="#hibernate"
-                        role="tab" aria-controls="hibernate">#</a>
-                    <a class="list-group-item list-group-item-action" id="list-bootstrap-list" data-toggle="list" href="#bootstrap"
-                        role="tab" aria-controls="bootstrap">#</a>
-                </div>
-            </div>
-            <div class="col-8">
-                <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="spring-boot"
-                         role="tabpanel" aria-labelledby="list-spring-boot-list">
-                        #
-                    </div>
-                    <div class="tab-pane fade" id="sts" role="tabpanel"
-                         aria-labelledby="list-sts-list">
-                        #
-                    </div>
-                    <div class="tab-pane fade" id="thymeleaf" role="tabpanel"
-                         aria-labelledby="list-thymeleaf-list">
-                        #
-                    </div>
-                    <div class="tab-pane fade" id="webjars" role="tabpanel"
-                         aria-labelledby="list-webjars-list">
-                        #
-                    </div>
-                    <div class="tab-pane fade" id="hibernate" role="tabpanel"
-                         aria-labelledby="list-hibernate-list">
-                        #
-                    </div>
-                    <div class="tab-pane fade" id="bootstrap" role="tabpanel"
-                         aria-labelledby="list-bootstrap-list">
-                        #
+        <!-- Container for all products -->
+        <div class="container mb-5 mt-5">
+            <div class="row">
+
+                <!-- Card 1 -->
+                <div class="col-md-4">
+                    <div class="card mt-3">
+                        <div class="product-1 align-items-center p-2 text-center">
+                            <img src="/image/pc-desktop.png" alt="" class="rounded" width="160">
+                            <h5>Computadores</h5>
+
+                            <!-- card info-->
+                            <div class="mt-3 info">
+                                <span class="text1 d-block">texto</span>
+                                <span class="text1">texto</span>
+                            </div>
+                            <div class="cost mt-3 text-dark">
+                                <span>Quantidade: 100</span>
+                            </div>
+                            <!-- button for cards -->
+                            <div class="p-3 pc text-center text-white mt-3 cursor">
+                                <span class="text-uppercase"></span>
+                            </div>
+                        </div>
+                        <!-- card info ends here-->
                     </div>
                 </div>
+                <!-- card 1 ends here -->
+
+
+                <!-- Card 2 -->
+                <div class="col-md-4">
+                    <div class="card mt-3">
+                        <div class="product-1 align-items-center p-2 text-center">
+                            <img src="/image/network.png" alt="" class="rounded" width="160">
+                            <h5>Equipamentos de Redes</h5>
+
+                            <!-- card info-->
+                            <div class="mt-3 info">
+                                <span class="text1 d-block">texto</span>
+                                <span class="text1">texto</span>
+                            </div>
+                            <div class="net mt-3 text-dark">
+                                <span>Quantidade: 200</span>
+                            </div>
+                            <!-- button for cards -->
+                            <div class="p-3 network text-center text-white mt-3 cursor">
+                                <span class="text-uppercase"></span>
+                            </div>
+                        </div>
+                        <!-- card info ends here-->
+                    </div>
+                </div>
+                <!-- card 2 ends here -->
+
+                <!-- Card 3 -->
+                <div class="col-md-4">
+                    <div class="card mt-3">
+                        <div class="product-1 align-items-center p-2 text-center">
+                            <img src="/image/imp.png" alt="" class="rounded" width="160">
+                            <h5>Impressoras</h5>
+
+                            <!-- card info-->
+                            <div class="mt-3 info">
+                                <span class="text1 d-block">texto</span>
+                                <span class="text1">texto</span>
+                            </div>
+                            <div class="impress mt-3 text-dark">
+                                <span>Quantidade: 200</span>
+                            </div>
+                            <!-- button for cards -->
+                            <div class="p-3 imp text-center text-white mt-3 cursor">
+                                <span class="text-uppercase"></span>
+                            </div>
+                        </div>
+                        <!-- card info ends here-->
+                    </div>
+                </div>
+                <!-- card 3 ends here -->
             </div>
         </div>
+        <!-- Container for all products ends -->
+
+
     </div>
 
 </section>

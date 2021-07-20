@@ -128,3 +128,74 @@ body {
 .required > label:after{
     content: "*";
 }
+
+@import "https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css";
+
+.card{
+    border: none;
+    outline: none;
+    background-color: #fff;
+    border-radius: 20px;
+    border-style: ridge;
+}
+
+.card:hover{
+    transform: translateY(-15px);
+    transition: transform .3s;
+}
+
+.text1{
+    font-size: 13px;
+    color: #cbcbcb;
+}
+
+.info{
+    line-height: 17px;
+}
+
+
+/* card 1 */
+.cost span{
+    color:#fb3531;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.pc{
+    background: #dc3545;
+}
+
+/* card 2 */
+
+.net span{
+    color:#286783;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.network {
+    background: #286783;
+}
+
+/* card 3 */
+
+.impress span{
+    color:#0012b2;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.imp{
+    background-color: #0012b2;
+}
+
+/*Univeral Styling again for all product cards */
+.imp:hover, .network:hover, .pc:hover{
+    opacity: .8;
+}
+
+.cursor{
+    cursor: pointer;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
