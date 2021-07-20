@@ -24,19 +24,19 @@ public class CategoriaController {
 
     @GetMapping("/cadastrar")
     public String cadastrar(Categoria categoria) {
-        return "/categoria/cadastro";
+        return "categoria/cadastro";
     }
 
     @GetMapping("/listar")
     public String listar(ModelMap model) {
         model.addAttribute("categorias", service.buscarTodos());
-        return "/categoria/lista";
+        return "categoria/lista";
     }
 
     @PostMapping("/salvar")
     public String salvar(@Valid Categoria categoria, BindingResult result, RedirectAttributes attr) {
         if (result.hasErrors()){
-            return "/categoria/cadastro";
+            return "categoria/cadastro";
         }
 
         service.salvar(categoria);
@@ -47,13 +47,13 @@ public class CategoriaController {
     @GetMapping("/editar/{id}")
     public String preEditar(@PathVariable("id") Long id, ModelMap model) {
         model.addAttribute("categoria", service.buscarPorId(id));
-        return "/categoria/cadastro";
+        return "categoria/cadastro";
     }
 
     @PostMapping("/editar")
     public String editar(@Valid Categoria categoria, BindingResult result, RedirectAttributes attr) {
         if (result.hasErrors()){
-            return "/categoria/cadastro";
+            return "categoria/cadastro";
         }
         service.editar(categoria);
         attr.addFlashAttribute("success", "Categoria editada com sucesso");
@@ -74,7 +74,7 @@ public class CategoriaController {
     @GetMapping("buscar/nome")
     public String getPorNome(@RequestParam("nome") String nome, ModelMap model) {
         model.addAttribute("categorias", service.buscarPorNome(nome));
-        return "/categoria/lista";
+        return "categoria/lista";
     }
 
 

@@ -38,13 +38,13 @@ public class EquipamentoController {
     @GetMapping("/listar")
     public String listar(ModelMap model) {
         model.addAttribute("equipamentos", equipamentoService.buscarTodos());
-        return "/equipamento/lista";
+        return "equipamento/lista";
     }
 
     @PostMapping("/salvar")
     public String salvar(@Valid Equipamento equipamento, BindingResult result, RedirectAttributes attr) {
         if (result.hasErrors()){
-            return "/equipamento/cadastro";
+            return "equipamento/cadastro";
         }
         equipamentoService.salvar(equipamento);
         attr.addFlashAttribute("success", "Equipamento inserido com sucesso");
@@ -54,13 +54,13 @@ public class EquipamentoController {
     @GetMapping("/editar/{id}")
     public String preEditar(@PathVariable("id") Long id, ModelMap model) {
         model.addAttribute("equipamento", equipamentoService.buscarPorId(id));
-        return "/equipamento/cadastro";
+        return "equipamento/cadastro";
     }
 
     @PostMapping("/editar")
     public String editar(@Valid Equipamento equipamento, BindingResult result, RedirectAttributes attr) {
         if (result.hasErrors()){
-            return "/equipamento/cadastro";
+            return "equipamento/cadastro";
         }
         equipamentoService.editar(equipamento);
         attr.addFlashAttribute("success", "Equipamento editado com sucesso");
