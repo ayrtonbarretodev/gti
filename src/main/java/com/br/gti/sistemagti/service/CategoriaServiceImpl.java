@@ -2,6 +2,7 @@ package com.br.gti.sistemagti.service;
 
 import com.br.gti.sistemagti.dao.CategoriaDao;
 import com.br.gti.sistemagti.domain.Categoria;
+import com.br.gti.sistemagti.util.PaginacaoUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -53,5 +54,10 @@ public class CategoriaServiceImpl implements CategoriaService {
     @Override
     public List<Categoria> buscarPorNome(String nome) {
         return dao.findByNome(nome);
+    }
+
+    @Override
+    public PaginacaoUtil<Categoria> buscaPorPagina(int pagina, String direcao) {
+        return dao.buscaPaginada(pagina, direcao);
     }
 }

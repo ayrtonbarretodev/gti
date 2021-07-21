@@ -54,12 +54,18 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Nome</th>
+                    <th>
+                        <a class="" th:href="@{/categorias/listar(page=${pageCategoria.pagina}, dir=desc)}" tabindex="-1" >
+                        <span class="oi oi-arrow-bottom"></span></a>
+                        Nome
+                        <a class="" th:href="@{/categorias/listar(page=${pageCategoria.pagina}, dir=asc)}" tabindex="-1" >
+                        <span class="oi oi-arrow-top"></span></a>
+                    </th>
                     <th>Ação</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="c : ${categorias}">
+                <tr th:each="c : ${pageCategoria.registros}">
                     <td th:text="${c.id}">3</td>
                     <td th:text="${c.nome}">Monitores</td>
                     <td colspan="2">
@@ -74,6 +80,25 @@
                 </tr>
                 </tbody>
             </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item">
+                        <a class="page-link" th:href="@{/categorias/listar(page=${1}, dir=${pageCategoria.direcao})}" tabindex="-1" >Primeira</a>
+                    </li>
+                    <li th:class="${pageCategoria.pagina == 1} ? 'page-item disabled' : 'page-item'">
+                        <a class="page-link" th:href="@{/categorias/listar(page=${pageCategoria.pagina -1}, dir=${pageCategoria.direcao})}" tabindex="-1" >Anterior</a>
+                    </li>
+                    <li class="page-item">
+                        <span class="page-link" th:text="|${pageCategoria.pagina} de ${pageCategoria.totalDePaginas}|"></span>
+                    </li>
+                    <li th:class="${pageCategoria.pagina == pageCategoria.totalDePaginas} ? 'page-item disabled' : 'page-item'">
+                        <a class="page-link" th:href="@{/categorias/listar(page=${pageCategoria.pagina +1}, dir=${pageCategoria.direcao})}">Próxima</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" th:href="@{/categorias/listar(page=${pageCategoria.totalDePaginas}, dir=${pageCategoria.direcao})}" tabindex="-1" >Última</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
 
