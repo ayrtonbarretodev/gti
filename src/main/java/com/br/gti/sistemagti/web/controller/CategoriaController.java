@@ -3,9 +3,6 @@ package com.br.gti.sistemagti.web.controller;
 import com.br.gti.sistemagti.domain.Categoria;
 import com.br.gti.sistemagti.service.CategoriaService;
 import com.br.gti.sistemagti.util.PaginacaoUtil;
-import org.hibernate.envers.AuditReader;
-import org.hibernate.envers.AuditReaderFactory;
-import org.hibernate.envers.query.AuditQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -82,9 +79,18 @@ public class CategoriaController {
     }
 
     @GetMapping("buscar/nome")
-    public String getPorNome(@RequestParam("nome") String nome, ModelMap model) {
-        model.addAttribute("categorias", service.buscarPorNome(nome));
+    public String getPorNome(ModelMap model,
+                             @RequestParam("page") Optional<Integer> page,
+                             @RequestParam("dir") Optional<String> dir,
+                             @RequestParam("nome") Optional<String> nome) {
+        int paginaAtual = page.orElse(1);
+        String ordem = dir.orElse("asc");
+        String name = nome.orElse("");
+
+        PaginacaoUtil<Categoria> pageNome = service.buscaPorNome(paginaAtual,ordem, name);
+
+        model.addAttribute("pageCategoria", pageNome);
         return "categoria/lista";
     }
-    
+
 }

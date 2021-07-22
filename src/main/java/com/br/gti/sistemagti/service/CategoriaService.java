@@ -4,6 +4,7 @@ import com.br.gti.sistemagti.domain.Categoria;
 import com.br.gti.sistemagti.util.PaginacaoUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CategoriaService {
 
@@ -22,4 +23,6 @@ public interface CategoriaService {
     List<Categoria> buscarPorNome(String nome);
 
     PaginacaoUtil<Categoria> buscaPorPagina (int pagina, String direcao);
+
+    PaginacaoUtil<Categoria> buscaPorNome (int pagina, String direcao, String nome);
 }

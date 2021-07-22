@@ -4,6 +4,7 @@ import com.br.gti.sistemagti.domain.Categoria;
 import com.br.gti.sistemagti.util.PaginacaoUtil;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CategoriaDao {
     void save(Categoria categoria);
@@ -19,4 +20,6 @@ public interface CategoriaDao {
     List<Categoria> findByNome(String nome);
 
     PaginacaoUtil<Categoria> buscaPaginada (int pagina, String direcao);
+
+    PaginacaoUtil<Categoria> buscaPorNome (int pagina, String direcao, String nome);
 }
