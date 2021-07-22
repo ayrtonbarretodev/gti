@@ -40,7 +40,7 @@
                 <div class="collapse" id="collapseNome">
 
                     <nav class="navbar navbar-light bg-light">
-                        <form class="form-inline" method="GET" th:action="@{/departamentos/buscar/nome}">
+                        <form class="form-inline" method="GET" th:action="@{/departamentos/buscar/nome(page=${pageDepartamento.pagina}, dir=${pageDepartamento.direcao})}">
                             <input class="form-control mr-sm-2" type="search" placeholder="nome" aria-label="Search"
                                    name="nome"/>
                             <button class="btn btn-outline-success my-2 my-sm-0">Pesquisar</button>
@@ -75,14 +75,20 @@
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Nome</th>
+                    <th>
+                        <a class="" th:href="@{/departamentos/listar(page=${pageDepartamento.pagina}, dir=desc)}" tabindex="-1" >
+                            <span class="oi oi-arrow-bottom"></span></a>
+                        Nome
+                        <a class="" th:href="@{/departamentos/listar(page=${pageDepartamento.pagina}, dir=asc)}" tabindex="-1" >
+                            <span class="oi oi-arrow-top"></span></a>
+                    </th>
                     <th>Ambiente</th>
                     <th>Telefone</th>
                     <th>Ação</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="d : ${departamentos}">
+                <tr th:each="d : ${pageDepartamento.registros}">
                     <td th:text="${d.id}"></td>
                     <td th:text="${d.nome}"></td>
                     <td th:text="${d.ambiente}"></td>
@@ -101,6 +107,25 @@
                 </tr>
                 </tbody>
             </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item">
+                        <a class="page-link" th:href="@{/departamentos/listar(page=${1}, dir=${pageDepartamento.direcao})}" tabindex="-1" >Primeira</a>
+                    </li>
+                    <li th:class="${pageDepartamento.pagina == 1} ? 'page-item disabled' : 'page-item'">
+                        <a class="page-link" th:href="@{/departamentos/listar(page=${pageDepartamento.pagina -1}, dir=${pageDepartamento.direcao})}" tabindex="-1" >Anterior</a>
+                    </li>
+                    <li class="page-item">
+                        <span class="page-link" th:text="|${pageDepartamento.pagina} de ${pageDepartamento.totalDePaginas}|"></span>
+                    </li>
+                    <li th:class="${pageDepartamento.pagina == pageDepartamento.totalDePaginas} ? 'page-item disabled' : 'page-item'">
+                        <a class="page-link" th:href="@{/departamentos/listar(page=${pageDepartamento.pagina +1}, dir=${pageDepartamento.direcao})}">Próxima</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" th:href="@{/departamentos/listar(page=${pageDepartamento.totalDePaginas}, dir=${pageDepartamento.direcao})}" tabindex="-1" >Última</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
     <div th:replace="fragments/modal :: modal"></div>

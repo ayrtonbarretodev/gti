@@ -1,6 +1,7 @@
 package com.br.gti.sistemagti.service;
 
 import com.br.gti.sistemagti.domain.Departamento;
+import com.br.gti.sistemagti.util.PaginacaoUtil;
 
 import java.util.List;
 
@@ -20,4 +21,8 @@ public interface DepartamentoService {
     List<Departamento> buscarPorNome(String nome);
 
     List<Departamento> buscarPorAmbiente(String ambiente);
+
+    PaginacaoUtil<Departamento> buscaPorPagina (int pagina, String direcao);
+
+    PaginacaoUtil<Departamento> buscarPorNome (int pagina, String direcao, String nome);
 }

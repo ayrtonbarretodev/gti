@@ -2,6 +2,7 @@ package com.br.gti.sistemagti.service;
 
 import com.br.gti.sistemagti.dao.DepartamentoDao;
 import com.br.gti.sistemagti.domain.Departamento;
+import com.br.gti.sistemagti.util.PaginacaoUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -58,5 +59,15 @@ public class DepartamentoServiceImpl implements DepartamentoService {
     @Override
     public List<Departamento> buscarPorAmbiente(String ambiente) {
         return dao.findByAmbiente(ambiente);
+    }
+
+    @Override
+    public PaginacaoUtil<Departamento> buscaPorPagina(int pagina, String direcao) {
+        return dao.buscaPaginada(pagina,direcao);
+    }
+
+    @Override
+    public PaginacaoUtil<Departamento> buscarPorNome(int pagina, String direcao, String nome) {
+        return dao.buscarPorNome(pagina,direcao,nome);
     }
 }

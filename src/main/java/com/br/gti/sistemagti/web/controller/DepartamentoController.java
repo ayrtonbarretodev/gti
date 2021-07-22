@@ -1,7 +1,9 @@
 package com.br.gti.sistemagti.web.controller;
 
+import com.br.gti.sistemagti.domain.Categoria;
 import com.br.gti.sistemagti.domain.Departamento;
 import com.br.gti.sistemagti.service.DepartamentoService;
+import com.br.gti.sistemagti.util.PaginacaoUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/departamentos")
@@ -24,8 +27,16 @@ public class DepartamentoController {
     }
 
     @GetMapping("/listar")
-    public String listar(ModelMap model) {
-        model.addAttribute("departamentos", service.buscarTodos());
+    public String listar(ModelMap model,
+                         @RequestParam("page") Optional<Integer> page,
+                         @RequestParam("dir") Optional<String> dir) {
+
+        int paginaAtual = page.orElse(1);
+        String ordem = dir.orElse("asc");
+
+        PaginacaoUtil<Departamento> pageDepartamento = service.buscaPorPagina(paginaAtual,ordem);
+
+        model.addAttribute("pageDepartamento", pageDepartamento);
         return "departamento/lista";
     }
 
@@ -59,19 +70,34 @@ public class DepartamentoController {
     }
 
     @GetMapping("/excluir/{id}")
-    public String excluir(@PathVariable("id") Long id, ModelMap model) {
+    public String excluir(@PathVariable("id") Long id, RedirectAttributes attr) {
         if (service.departamentoTemEquipamento(id)) {
-            model.addAttribute("fail", "Departamento não removido. Possui equipamento(s) vinculado(s).");
+            attr.addFlashAttribute("fail", "Departamento não removido. Possui equipamento(s) vinculado(s).");
         } else {
             service.excluir(id);
-            model.addAttribute("success", "Departamento excluído com sucesso.");
+            attr.addFlashAttribute("success", "Departamento excluído com sucesso.");
         }
-        return listar(model);
+        return "redirect:/departamentos/listar";
     }
 
+//    @GetMapping("buscar/nome")
+//    public String getPorNome(@RequestParam("nome") String nome, ModelMap model) {
+//        model.addAttribute("departamentos", service.buscarPorNome(nome));
+//        return "departamento/lista";
+//    }
+
     @GetMapping("buscar/nome")
-    public String getPorNome(@RequestParam("nome") String nome, ModelMap model) {
-        model.addAttribute("departamentos", service.buscarPorNome(nome));
+    public String getPorNome(ModelMap model,
+                             @RequestParam("page") Optional<Integer> page,
+                             @RequestParam("dir") Optional<String> dir,
+                             @RequestParam("nome") Optional<String> nome) {
+        int paginaAtual = page.orElse(1);
+        String ordem = dir.orElse("asc");
+        String name = nome.orElse("");
+
+        PaginacaoUtil<Departamento> pageNome = service.buscarPorNome(paginaAtual,ordem, name);
+
+        model.addAttribute("pageDepartamento", pageNome);
         return "departamento/lista";
     }
 
