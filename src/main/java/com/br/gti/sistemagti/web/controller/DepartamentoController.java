@@ -1,6 +1,5 @@
 package com.br.gti.sistemagti.web.controller;
 
-import com.br.gti.sistemagti.domain.Categoria;
 import com.br.gti.sistemagti.domain.Departamento;
 import com.br.gti.sistemagti.service.DepartamentoService;
 import com.br.gti.sistemagti.util.PaginacaoUtil;
@@ -79,12 +78,6 @@ public class DepartamentoController {
         }
         return "redirect:/departamentos/listar";
     }
-
-//    @GetMapping("buscar/nome")
-//    public String getPorNome(@RequestParam("nome") String nome, ModelMap model) {
-//        model.addAttribute("departamentos", service.buscarPorNome(nome));
-//        return "departamento/lista";
-//    }
 
     @GetMapping("buscar/nome")
     public String getPorNome(ModelMap model,
