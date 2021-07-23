@@ -38,19 +38,16 @@
             <div class="row">
 
                 <!-- Card 1 -->
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="card mt-3">
                         <div class="product-1 align-items-center p-2 text-center">
-                            <img src="/image/pc-desktop.png" alt="" class="rounded" width="160">
-                            <h5>Computadores</h5>
+                            <img src="/image/equipment.png" alt="" class="rounded" width="160">
+                            <h5>Equipamentos</h5>
 
                             <!-- card info-->
-                            <div class="mt-3 info">
-                                <span class="text1 d-block">texto</span>
-                                <span class="text1">texto</span>
-                            </div>
                             <div class="cost mt-3 text-dark">
-                                <span>Quantidade: 100</span>
+                                <h5>Total</h5>
+                                <span th:text="${qtdEquipamentos}"></span>
                             </div>
                             <!-- button for cards -->
                             <div class="p-3 pc text-center text-white mt-3 cursor">
@@ -64,19 +61,16 @@
 
 
                 <!-- Card 2 -->
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="card mt-3">
                         <div class="product-1 align-items-center p-2 text-center">
-                            <img src="/image/network.png" alt="" class="rounded" width="160">
-                            <h5>Equipamentos de Redes</h5>
+                            <img src="/image/department.png" alt="" class="rounded" width="160">
+                            <h5>Departamentos</h5>
 
                             <!-- card info-->
-                            <div class="mt-3 info">
-                                <span class="text1 d-block">texto</span>
-                                <span class="text1">texto</span>
-                            </div>
                             <div class="net mt-3 text-dark">
-                                <span>Quantidade: 200</span>
+                                <h5>Total</h5>
+                                <span th:text="${qtdDepartamentos}"></span>
                             </div>
                             <!-- button for cards -->
                             <div class="p-3 network text-center text-white mt-3 cursor">
@@ -89,19 +83,16 @@
                 <!-- card 2 ends here -->
 
                 <!-- Card 3 -->
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="card mt-3">
                         <div class="product-1 align-items-center p-2 text-center">
-                            <img src="/image/imp.png" alt="" class="rounded" width="160">
-                            <h5>Impressoras</h5>
+                            <img src="/image/digital.png" alt="" class="rounded" width="160">
+                            <h5>Categorias</h5>
 
                             <!-- card info-->
-                            <div class="mt-3 info">
-                                <span class="text1 d-block">texto</span>
-                                <span class="text1">texto</span>
-                            </div>
                             <div class="impress mt-3 text-dark">
-                                <span>Quantidade: 200</span>
+                                <h5>Total</h5>
+                                <span th:text="${qtdCategorias}"></span>
                             </div>
                             <!-- button for cards -->
                             <div class="p-3 imp text-center text-white mt-3 cursor">
@@ -112,6 +103,79 @@
                     </div>
                 </div>
                 <!-- card 3 ends here -->
+            </div>
+        </div>
+        <!-- Container for all products ends -->
+
+        <div class="container mb-5 mt-5">
+            <div class="row">
+
+                <!-- Card 4 -->
+                <div class="col-md-3">
+                    <div class="card mt-3">
+                        <div class="product-1 align-items-center p-2 text-center">
+                            <img src="/image/gear.png" alt="" class="rounded" width="160">
+                            <h5>Em Uso</h5>
+
+                            <!-- card info-->
+                            <div class="cost mt-3 text-dark">
+                                <h5>Total</h5>
+                                <span th:text="${qtdEquipamentos}"></span>
+                            </div>
+                            <!-- button for cards -->
+                            <div class="p-3 pc text-center text-white mt-3 cursor">
+                                <span class="text-uppercase"></span>
+                            </div>
+                        </div>
+                        <!-- card info ends here-->
+                    </div>
+                </div>
+                <!-- card 4 ends here -->
+
+
+                <!-- Card 5 -->
+                <div class="col-md-3">
+                    <div class="card mt-3">
+                        <div class="product-1 align-items-center p-2 text-center">
+                            <img src="/image/store.png" alt="" class="rounded" width="160">
+                            <h5>Depósito GTI</h5>
+
+                            <!-- card info-->
+                            <div class="net mt-3 text-dark">
+                                <h5>Total</h5>
+                                <span th:text="${qtdDepartamentos}"></span>
+                            </div>
+                            <!-- button for cards -->
+                            <div class="p-3 network text-center text-white mt-3 cursor">
+                                <span class="text-uppercase"></span>
+                            </div>
+                        </div>
+                        <!-- card info ends here-->
+                    </div>
+                </div>
+                <!-- card 5 ends here -->
+
+                <!-- Card 6 -->
+                <div class="col-md-3">
+                    <div class="card mt-3">
+                        <div class="product-1 align-items-center p-2 text-center">
+                            <img src="/image/manutencao.png" alt="" class="rounded" width="160">
+                            <h5>Em Manutenção</h5>
+
+                            <!-- card info-->
+                            <div class="impress mt-3 text-dark">
+                                <h5>Total</h5>
+                                <span th:text="${qtdCategorias}"></span>
+                            </div>
+                            <!-- button for cards -->
+                            <div class="p-3 imp text-center text-white mt-3 cursor">
+                                <span class="text-uppercase"></span>
+                            </div>
+                        </div>
+                        <!-- card info ends here-->
+                    </div>
+                </div>
+                <!-- card 6 ends here -->
             </div>
         </div>
         <!-- Container for all products ends -->

@@ -65,6 +65,12 @@
                         </button>
                     </td>
                     <td colspan="2">
+
+                        <button th:id="${#strings.concat('btn_equipamentos/excluir/', e.id)}" type="button"
+                                class="btn btn-dark btn-sm"
+                                data-toggle="modal" data-target="#myModalEq">
+                            <span class="oi oi-spreadsheet" title="Consultar" aria-hidden="true"></span>
+                        </button>
                         <a class="btn btn-info btn-sm" th:href="@{/equipamentos/editar/{id} (id=${e.id})}"
                            role="button">
                             <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
@@ -82,6 +88,7 @@
         </div>
     </div>
     <div th:replace="fragments/modal :: modal"></div>
+    <div th:replace="fragments/modalEq :: modal"></div>
 </section>
 </body>
 </html>		

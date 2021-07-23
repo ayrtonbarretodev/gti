@@ -15,8 +15,9 @@ public class CategoriaDaoImpl extends AbstractDao<Categoria, Long> implements Ca
         return createQuery("select c from Categoria c where c.nome like concat('%',?1,'%')", nome);
     }
 
+
     public PaginacaoUtil<Categoria> buscaPaginada (int pagina, String direcao){
-        int tamanho = 5;
+        int tamanho = 10;
         int inicio = (pagina-1) * tamanho;
         List<Categoria> categorias = getEntityManager()
                 .createQuery("select c from Categoria c order by c.nome " + direcao,Categoria.class)

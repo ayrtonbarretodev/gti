@@ -84,6 +84,11 @@ public class EquipamentoController {
         return departamentoService.buscarTodos();
     }
 
+    @ModelAttribute("qtdDepartamentos")
+    public int listaDeDepartamentosTotal() {
+        return departamentoService.buscarTodos().size();
+    }
+
     @ModelAttribute("status")
     public Status[] getStatus() {
         return Status.values();

@@ -21,7 +21,7 @@ public class DepartamentoDaoImpl extends AbstractDao<Departamento, Long> impleme
 
     @Override
     public PaginacaoUtil<Departamento> buscaPaginada(int pagina, String direcao) {
-        int tamanho = 5;
+        int tamanho = 10;
         int inicio = (pagina-1) * tamanho;
         List<Departamento> departamentos = getEntityManager()
                 .createQuery("select d from Departamento d order by d.nome " + direcao,Departamento.class)
