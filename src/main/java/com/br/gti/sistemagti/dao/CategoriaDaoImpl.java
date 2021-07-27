@@ -17,7 +17,7 @@ public class CategoriaDaoImpl extends AbstractDao<Categoria, Long> implements Ca
 
 
     public PaginacaoUtil<Categoria> buscaPaginada (int pagina, String direcao){
-        int tamanho = 10;
+        int tamanho = 5;
         int inicio = (pagina-1) * tamanho;
         List<Categoria> categorias = getEntityManager()
                 .createQuery("select c from Categoria c order by c.nome " + direcao,Categoria.class)
