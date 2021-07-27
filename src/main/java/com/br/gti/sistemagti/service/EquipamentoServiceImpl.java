@@ -2,6 +2,7 @@ package com.br.gti.sistemagti.service;
 
 import com.br.gti.sistemagti.dao.EquipamentoDao;
 import com.br.gti.sistemagti.domain.Equipamento;
+import com.br.gti.sistemagti.util.PaginacaoUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,5 +39,10 @@ public class EquipamentoServiceImpl implements EquipamentoService {
     @Override
     public List<Equipamento> buscarTodos() {
         return dao.findAll();
+    }
+
+    @Override
+    public PaginacaoUtil<Equipamento> buscaPorPagina(int pagina, String direcao) {
+        return dao.buscaPaginada(pagina,direcao);
     }
 }

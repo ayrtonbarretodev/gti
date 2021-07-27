@@ -31,7 +31,13 @@
             <table class="table table-striped table-hover table-sm">
                 <thead>
                 <tr>
-                    <th>Nome</th>
+                    <th>
+                        <a class="" th:href="@{/equipamentos/listar(page=${pageEquipamento.pagina}, dir=desc)}" tabindex="-1" >
+                            <span class="oi oi-arrow-bottom"></span></a>
+                        Nome
+                        <a class="" th:href="@{/equipamentos/listar(page=${pageEquipamento.pagina}, dir=asc)}" tabindex="-1" >
+                            <span class="oi oi-arrow-top"></span></a>
+                    </th>
                     <th>Tombo</th>
                     <th>N° de Série</th>
                     <th>Endereço MAC</th>
@@ -46,7 +52,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="e : ${equipamentos}">
+                <tr th:each="e : ${pageEquipamento.registros}">
                     <td th:text="${e.nome}"></td>
                     <td th:text="${e.tomboPatrimonial}"></td>
                     <td th:text="${e.numeroSerie}"></td>
@@ -85,6 +91,25 @@
 
                 </tbody>
             </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item">
+                        <a class="page-link" th:href="@{/equipamentos/listar(page=${1}, dir=${pageEquipamento.direcao})}" tabindex="-1" >Primeira</a>
+                    </li>
+                    <li th:class="${pageEquipamento.pagina == 1} ? 'page-item disabled' : 'page-item'">
+                        <a class="page-link" th:href="@{/equipamentos/listar(page=${pageEquipamento.pagina -1}, dir=${pageEquipamento.direcao})}" tabindex="-1" >Anterior</a>
+                    </li>
+                    <li class="page-item">
+                        <span class="page-link" th:text="|${pageEquipamento.pagina} de ${pageEquipamento.totalDePaginas}|"></span>
+                    </li>
+                    <li th:class="${pageEquipamento.pagina == pageEquipamento.totalDePaginas} ? 'page-item disabled' : 'page-item'">
+                        <a class="page-link" th:href="@{/equipamentos/listar(page=${pageEquipamento.pagina +1}, dir=${pageEquipamento.direcao})}">Próxima</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" th:href="@{/equipamentos/listar(page=${pageEquipamento.totalDePaginas}, dir=${pageEquipamento.direcao})}" tabindex="-1" >Última</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
     <div th:replace="fragments/modal :: modal"></div>
