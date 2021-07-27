@@ -22,21 +22,4 @@ public class Categoria extends AbstractEntity<Long> {
 
     @OneToMany(mappedBy = "categoria")
     private List<Equipamento> equipamentos = new ArrayList<>();
-
-//    public String getNome() {
-//        return nome;
-//    }
-//
-//    public void setNome(String nome) {
-//        this.nome = nome.trim();
-//    }
-//
-//    public List<Equipamento> getEquipamentos() {
-//        return equipamentos;
-//    }
-//
-//    public void setEquipamentos(List<Equipamento> equipamentos) {
-//        this.equipamentos = equipamentos;
-//    }
-
 }
