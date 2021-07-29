@@ -21,7 +21,7 @@ public class HomeController {
     @Autowired
     private CategoriaService categoriaService;
 
-    @GetMapping("/")
+    @GetMapping({"/home"})
     public String home() {
         return "home";
     }
