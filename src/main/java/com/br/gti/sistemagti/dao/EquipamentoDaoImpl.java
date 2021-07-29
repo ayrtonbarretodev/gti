@@ -10,6 +10,7 @@ import java.util.List;
 @Repository
 public class EquipamentoDaoImpl extends AbstractDao<Equipamento, Long> implements EquipamentoDao {
 
+
     public PaginacaoUtil<Equipamento> buscaPaginada (int pagina, String direcao){
         int tamanho = 5;
         int inicio = (pagina-1) * tamanho;

@@ -83,6 +83,15 @@ public class EquipamentoController {
         return "redirect:/equipamentos/listar";
     }
 
+//    @GetMapping("buscar/nome")
+//    public String getPorNome(@RequestParam("nome") String nome, ModelMap model) {
+//        equipamentoService.buscarPorNome(nome);
+//        //model.addAttribute("equipamentos", equipamentoService.buscarPorNome(nome));
+//        return "/funcionario/lista";
+//    }
+
+
+
     @ModelAttribute("categorias")
     public List<Categoria> listaDeCategorias() {
         return categoriaService.buscarTodos();
