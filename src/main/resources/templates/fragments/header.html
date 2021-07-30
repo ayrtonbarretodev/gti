@@ -6,7 +6,7 @@
 </head>
 <body>
 <header th:fragment="cabecalho">
-    <nav class="navbar navbar-inverse navbar navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-expand-md navbar navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="btn btn-dark navbar-toggle pull-left">
@@ -14,6 +14,27 @@
                 </button>
                 <a class="navbar-brand " th:href="@{/home}"><span th:text="#{header.titulo}"> </span></a>
             </div>
+
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown"><a
+                        class="btn btn-dark dropdown-toggle" href="#" id="dropdown01"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administrador</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown01">
+                        <a class="dropdown-item" th:href="@{/u/novo/cadastro/usuario}">Cadastro de Usuários</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" th:href="@{/u/lista}">Lista de Usuários</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown"><a
+                        class="btn btn-dark dropdown-toggle" href="#" id="dropdown02"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Estagiário</a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown02">
+                        <a class="dropdown-item" th:href="@{/medicos/dados}">Dados Cadastrais</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" th:href="@{/u/editar/senha}">Editar Senha</a>
+                    </div>
+                </li>
+            </ul>
 
             <form th:action="@{/logout}" sec:authorize="isAuthenticated()"
                   method="post"  class="form-inline mt-2 mt-md-0">
