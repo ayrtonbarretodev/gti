@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
+<html layout:decorate="~{layout}"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout}">
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
 </head>
@@ -17,8 +17,8 @@
                 </li>
             </ul>
         </div>
-        <a class="btn btn-primary btn-md" th:href="@{/equipamentos/cadastrar}" role="button">
-            <span class="oi oi-plus" title="Cadastro" aria-hidden="true"></span>
+        <a class="btn btn-primary btn-md" role="button" th:href="@{/equipamentos/cadastrar}">
+            <span aria-hidden="true" class="oi oi-plus" title="Cadastro"></span>
             <span>Novo Equipamento</span>
         </a>
     </nav>
@@ -32,10 +32,12 @@
                 <thead>
                 <tr>
                     <th>
-                        <a class="" th:href="@{/equipamentos/listar(page=${pageEquipamento.pagina}, dir=desc)}" tabindex="-1" >
+                        <a class="" tabindex="-1"
+                           th:href="@{/equipamentos/listar(page=${pageEquipamento.pagina}, dir=desc)}">
                             <span class="oi oi-arrow-bottom"></span></a>
                         Nome
-                        <a class="" th:href="@{/equipamentos/listar(page=${pageEquipamento.pagina}, dir=asc)}" tabindex="-1" >
+                        <a class="" tabindex="-1"
+                           th:href="@{/equipamentos/listar(page=${pageEquipamento.pagina}, dir=asc)}">
                             <span class="oi oi-arrow-top"></span></a>
                     </th>
                     <th>Tombo</th>
@@ -64,27 +66,27 @@
                     <td th:text="${e.categoria?.nome}"></td>
                     <td th:text="${e.status?.descricao}"></td>
                     <td>
-                        <button type="button" class="btn btn-secondary btn-sm" data-container="body"
-                                data-toggle="popover" data-placement="top"
-                                th:attr="data-content=${e.observacao}">
-                            <span class="oi oi-eye" title="Visualizar" aria-hidden="true"></span>
+                        <button class="btn btn-secondary btn-sm" data-container="body" data-placement="top"
+                                data-toggle="popover" th:attr="data-content=${e.observacao}"
+                                type="button">
+                            <span aria-hidden="true" class="oi oi-eye" title="Visualizar"></span>
                         </button>
                     </td>
                     <td colspan="2">
 
-                        <button th:id="${#strings.concat('btn_equipamentos/excluir/', e.id)}" type="button"
-                                class="btn btn-dark btn-sm"
-                                data-toggle="modal" data-target="#myModalEq">
-                            <span class="oi oi-spreadsheet" title="Consultar" aria-hidden="true"></span>
+                        <button class="btn btn-dark btn-sm" data-target="#myModalEq"
+                                data-toggle="modal"
+                                th:id="${#strings.concat('btn_equipamentos/excluir/', e.id)}" type="button">
+                            <span aria-hidden="true" class="oi oi-spreadsheet" title="Consultar"></span>
                         </button>
-                        <a class="btn btn-info btn-sm" th:href="@{/equipamentos/editar/{id} (id=${e.id})}"
-                           role="button">
-                            <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
+                        <a class="btn btn-info btn-sm" role="button"
+                           th:href="@{/equipamentos/editar/{id} (id=${e.id})}">
+                            <span aria-hidden="true" class="oi oi-brush" title="Editar"></span>
                         </a>
-                        <button th:id="${#strings.concat('btn_equipamentos/excluir/', e.id)}" type="button"
-                                class="btn btn-danger btn-sm"
-                                data-toggle="modal" data-target="#myModal">
-                            <span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
+                        <button class="btn btn-danger btn-sm" data-target="#myModal"
+                                data-toggle="modal"
+                                th:id="${#strings.concat('btn_equipamentos/excluir/', e.id)}" type="button">
+                            <span aria-hidden="true" class="oi oi-circle-x" title="Excluir"></span>
                         </button>
                     </td>
                 </tr>
@@ -94,19 +96,26 @@
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-center">
                     <li class="page-item">
-                        <a class="page-link" th:href="@{/equipamentos/listar(page=${1}, dir=${pageEquipamento.direcao})}" tabindex="-1" >Primeira</a>
+                        <a class="page-link"
+                           tabindex="-1" th:href="@{/equipamentos/listar(page=${1}, dir=${pageEquipamento.direcao})}">Primeira</a>
                     </li>
                     <li th:class="${pageEquipamento.pagina == 1} ? 'page-item disabled' : 'page-item'">
-                        <a class="page-link" th:href="@{/equipamentos/listar(page=${pageEquipamento.pagina -1}, dir=${pageEquipamento.direcao})}" tabindex="-1" >Anterior</a>
+                        <a class="page-link"
+                           tabindex="-1"
+                           th:href="@{/equipamentos/listar(page=${pageEquipamento.pagina -1}, dir=${pageEquipamento.direcao})}">Anterior</a>
                     </li>
                     <li class="page-item">
-                        <span class="page-link" th:text="|${pageEquipamento.pagina} de ${pageEquipamento.totalDePaginas}|"></span>
+                        <span class="page-link"
+                              th:text="|${pageEquipamento.pagina} de ${pageEquipamento.totalDePaginas}|"></span>
                     </li>
                     <li th:class="${pageEquipamento.pagina == pageEquipamento.totalDePaginas} ? 'page-item disabled' : 'page-item'">
-                        <a class="page-link" th:href="@{/equipamentos/listar(page=${pageEquipamento.pagina +1}, dir=${pageEquipamento.direcao})}">Próxima</a>
+                        <a class="page-link"
+                           th:href="@{/equipamentos/listar(page=${pageEquipamento.pagina +1}, dir=${pageEquipamento.direcao})}">Próxima</a>
                     </li>
                     <li class="page-item">
-                        <a class="page-link" th:href="@{/equipamentos/listar(page=${pageEquipamento.totalDePaginas}, dir=${pageEquipamento.direcao})}" tabindex="-1" >Última</a>
+                        <a class="page-link"
+                           tabindex="-1"
+                           th:href="@{/equipamentos/listar(page=${pageEquipamento.totalDePaginas}, dir=${pageEquipamento.direcao})}">Última</a>
                     </li>
                 </ul>
             </nav>
@@ -117,5 +126,7 @@
 
     </div>
 </section>
+<script th:fragment="js" th:src="~{}"></script>
+<script th:fragment="inlinescript" th:inline="javascript"></script>
 </body>
 </html>		

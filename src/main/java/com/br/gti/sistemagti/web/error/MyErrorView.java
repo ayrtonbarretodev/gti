@@ -17,8 +17,8 @@ public class MyErrorView implements ErrorViewResolver {
         //map.forEach((k,v) -> System.out.println(k + ":" + "\n"));
 
         ModelAndView model = new ModelAndView("error");
-        model.addObject("status",status.value());
-        switch (status.value()){
+        model.addObject("status", status.value());
+        switch (status.value()) {
             case 404:
                 model.addObject("error", "Página não encontrada");
                 model.addObject("message", "A url para a página '" + map.get("path") + "' não existe");

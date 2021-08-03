@@ -43,6 +43,6 @@ public class EquipamentoServiceImpl implements EquipamentoService {
 
     @Override
     public PaginacaoUtil<Equipamento> buscaPorPagina(int pagina, String direcao) {
-        return dao.buscaPaginada(pagina,direcao);
+        return dao.buscaPaginada(pagina, direcao);
     }
 }

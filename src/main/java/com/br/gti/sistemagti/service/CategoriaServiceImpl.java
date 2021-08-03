@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -64,7 +63,7 @@ public class CategoriaServiceImpl implements CategoriaService {
 
     @Override
     public PaginacaoUtil<Categoria> buscaPorNome(int pagina, String direcao, String nome) {
-        return dao.buscaPorNome(pagina,direcao,nome);
+        return dao.buscaPorNome(pagina, direcao, nome);
     }
 
 

@@ -18,7 +18,7 @@ public interface CategoriaDao {
 
     List<Categoria> findByNome(String nome);
 
-    PaginacaoUtil<Categoria> buscaPaginada (int pagina, String direcao);
+    PaginacaoUtil<Categoria> buscaPaginada(int pagina, String direcao);
 
-    PaginacaoUtil<Categoria> buscaPorNome (int pagina, String direcao, String nome);
+    PaginacaoUtil<Categoria> buscaPorNome(int pagina, String direcao, String nome);
 }

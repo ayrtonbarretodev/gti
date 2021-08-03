@@ -10,6 +10,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
 import java.util.List;
+
 @Getter
 @Setter
 @Entity

@@ -34,7 +34,7 @@ public class CategoriaController {
         int paginaAtual = page.orElse(1);
         String ordem = dir.orElse("asc");
 
-        PaginacaoUtil<Categoria> pageCategoria = service.buscaPorPagina(paginaAtual,ordem);
+        PaginacaoUtil<Categoria> pageCategoria = service.buscaPorPagina(paginaAtual, ordem);
 
         model.addAttribute("pageCategoria", pageCategoria);
         return "categoria/lista";
@@ -42,7 +42,7 @@ public class CategoriaController {
 
     @PostMapping("/salvar")
     public String salvar(@Valid Categoria categoria, BindingResult result, RedirectAttributes attr) {
-        if (result.hasErrors()){
+        if (result.hasErrors()) {
             return "categoria/cadastro";
         }
 
@@ -59,7 +59,7 @@ public class CategoriaController {
 
     @PostMapping("/editar")
     public String editar(@Valid Categoria categoria, BindingResult result, RedirectAttributes attr) {
-        if (result.hasErrors()){
+        if (result.hasErrors()) {
             return "categoria/cadastro";
         }
         service.editar(categoria);
@@ -87,7 +87,7 @@ public class CategoriaController {
         String ordem = dir.orElse("asc");
         String name = nome.orElse("");
 
-        PaginacaoUtil<Categoria> pageNome = service.buscaPorNome(paginaAtual,ordem, name);
+        PaginacaoUtil<Categoria> pageNome = service.buscaPorNome(paginaAtual, ordem, name);
 
         model.addAttribute("pageCategoria", pageNome);
         return "categoria/lista";

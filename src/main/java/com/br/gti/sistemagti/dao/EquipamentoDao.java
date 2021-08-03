@@ -17,5 +17,5 @@ public interface EquipamentoDao {
 
     List<Equipamento> findAll();
 
-    PaginacaoUtil<Equipamento> buscaPaginada (int pagina, String direcao);
+    PaginacaoUtil<Equipamento> buscaPaginada(int pagina, String direcao);
 }

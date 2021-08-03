@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
+<html lang="pt" layout:decorate="~{layout}"
+      xmlns="http://www.w3.org/1999/xhtml"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout}">
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
 </head>
@@ -17,8 +17,8 @@
                     <span>Cadastrar Departamentos</span>
                 </li>
             </ul>
-            <a class="btn btn-primary btn-md" th:href="@{/departamentos/listar}" role="button">
-                <span class="oi oi-spreadsheet" title="Listar" aria-hidden="true"></span>
+            <a class="btn btn-primary btn-md" role="button" th:href="@{/departamentos/listar}">
+                <span aria-hidden="true" class="oi oi-spreadsheet" title="Listar"></span>
                 <span>Listar Departamentos</span>
             </a>
         </div>
@@ -28,38 +28,40 @@
 
         <div th:replace="fragments/alert"></div>
 
-        <form th:action="${departamento.id == null} ? @{/departamentos/salvar} : @{/departamentos/editar}"
-              th:object="${departamento}" method="POST">
+        <form method="POST"
+              th:action="${departamento.id == null} ? @{/departamentos/salvar} : @{/departamentos/editar}" th:object="${departamento}">
 
             <div th:replace="fragments/validacao :: validacao"></div>
 
             <div class="form-row">
                 <div class="form-group col-md-4 required">
                     <label for="nome">Departamento</label>
-                    <input type="text" class="form-control" id="nome"
-                           placeholder="Ex: Graduação" autofocus="autofocus" th:field="*{nome}"/>
+                    <input autofocus="autofocus" class="form-control" id="nome"
+                           placeholder="Ex: Graduação" th:field="*{nome}" type="text"/>
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group col-md-4">
                     <label for="ambiente">Ambiente</label>
-                    <input type="text" class="form-control" id="ambiente"
-                           placeholder="Ex: Laboratório de Informática" autofocus="autofocus" th:field="*{ambiente}"/>
+                    <input autofocus="autofocus" class="form-control" id="ambiente"
+                           placeholder="Ex: Laboratório de Informática" th:field="*{ambiente}" type="text"/>
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group col-md-2">
                     <label for="telefone">Telefone</label>
-                    <input type="text" class="form-control" id="telefone" placeholder="Ex.: 0000-0000"
-                           data-mask="0000-0000" th:field="*{telefone}"/>
+                    <input class="form-control" data-mask="0000-0000" id="telefone" placeholder="Ex.: 0000-0000"
+                           th:field="*{telefone}" type="text"/>
                 </div>
             </div>
-            <input type="hidden" id="id" th:field="*{id}"/>
-            <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+            <input id="id" th:field="*{id}" type="hidden"/>
+            <button class="btn btn-primary btn-sm" type="submit">Salvar</button>
         </form>
     </div>
 </section>
+<script th:fragment="js" th:src="~{}"></script>
+<script th:fragment="inlinescript" th:inline="javascript"></script>
 </body>
 </html>

@@ -1,7 +1,6 @@
 package com.br.gti.sistemagti.dao;
 
 
-import com.br.gti.sistemagti.domain.Categoria;
 import com.br.gti.sistemagti.domain.Departamento;
 import com.br.gti.sistemagti.util.PaginacaoUtil;
 
@@ -23,7 +22,7 @@ public interface DepartamentoDao {
 
     List<Departamento> findByAmbiente(String ambiente);
 
-    PaginacaoUtil<Departamento> buscaPaginada (int pagina, String direcao);
+    PaginacaoUtil<Departamento> buscaPaginada(int pagina, String direcao);
 
-    PaginacaoUtil<Departamento> buscarPorNome (int pagina, String direcao, String nome);
+    PaginacaoUtil<Departamento> buscarPorNome(int pagina, String direcao, String nome);
 }

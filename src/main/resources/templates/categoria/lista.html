@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
+<html layout:decorate="~{layout}"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout}">
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
 </head>
@@ -17,8 +17,8 @@
                     <span>Lista de Categorias</span>
                 </li>
             </ul>
-            <a class="btn btn-primary btn-md" th:href="@{/categorias/cadastrar}" role="button">
-                <span class="oi oi-plus" title="Cadastro" aria-hidden="true"></span>
+            <a class="btn btn-primary btn-md" role="button" th:href="@{/categorias/cadastrar}">
+                <span aria-hidden="true" class="oi oi-plus" title="Cadastro"></span>
                 <span>Nova Categoria</span>
             </a>
         </div>
@@ -28,8 +28,8 @@
 
         <p>
             <i class="oi oi-magnifying-glass"></i><span></span>
-            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseNome"
-                    aria-controls="collapseNome">Nome
+            <button aria-controls="collapseNome" class="btn btn-primary" data-target="#collapseNome" data-toggle="collapse"
+                    type="button">Nome
             </button>
         </p>
         <div class="row">
@@ -37,70 +37,83 @@
                 <div class="collapse" id="collapseNome">
 
                     <nav class="navbar navbar-light bg-light">
-                         <form class="form-inline" method="GET" th:action="@{/categorias/buscar/nome(page=${pageCategoria.pagina}, dir=${pageCategoria.direcao})}">
-                             <input class="form-control mr-sm-2" type="search" placeholder="Nome da Categoria" aria-label="Search"
-                                    name="nome"/>
-                             <button class="btn btn-outline-success my-2 my-sm-0">Pesquisar</button>
-                         </form>
-                     </nav>
-                 </div>
-             </div>
-         </div>
+                        <form class="form-inline" method="GET"
+                              th:action="@{/categorias/buscar/nome(page=${pageCategoria.pagina}, dir=${pageCategoria.direcao})}">
+                            <input aria-label="Search" class="form-control mr-sm-2" name="nome"
+                                   placeholder="Nome da Categoria"
+                                   type="search"/>
+                            <button class="btn btn-outline-success my-2 my-sm-0">Pesquisar</button>
+                        </form>
+                    </nav>
+                </div>
+            </div>
+        </div>
 
-         <div th:replace="fragments/alert"></div>
+        <div th:replace="fragments/alert"></div>
 
-         <div class="table-responsive">
-             <table class="table table-striped table-hover table-sm">
-                 <thead>
-                 <tr>
-                     <th>
-                         <a class="" th:href="@{/categorias/listar(page=${pageCategoria.pagina}, dir=desc)}" tabindex="-1" >
-                         <span class="oi oi-arrow-bottom"></span></a>
-                         Nome
-                         <a class="" th:href="@{/categorias/listar(page=${pageCategoria.pagina}, dir=asc)}" tabindex="-1" >
-                         <span class="oi oi-arrow-top"></span></a>
-                     </th>
-                     <th>Ação</th>
-                 </tr>
-                 </thead>
-                 <tbody>
-                 <tr th:each="c : ${pageCategoria.registros}">
-                     <td th:text="${c.nome}">Monitores</td>
-                     <td colspan="2">
-                         <a class="btn btn-info btn-sm" th:href="@{/categorias/editar/{id} (id=${c.id}) }" role="button">
-                             <span class="oi oi-brush" title="Editar" aria-hidden="true"></span>
-                         </a>
-                         <button th:id="${'btn_categorias/excluir/' + c.id}" type="button" class="btn btn-danger btn-sm"
-                                 data-toggle="modal" data-target="#myModal">
-                             <span class="oi oi-circle-x" title="Excluir" aria-hidden="true"></span>
-                         </button>
-                     </td>
-                 </tr>
-                 </tbody>
-             </table>
-             <nav aria-label="Page navigation example">
-                 <ul class="pagination justify-content-center">
-                     <li class="page-item">
-                         <a class="page-link" th:href="@{/categorias/listar(page=${1}, dir=${pageCategoria.direcao})}" tabindex="-1" >Primeira</a>
-                     </li>
-                     <li th:class="${pageCategoria.pagina == 1} ? 'page-item disabled' : 'page-item'">
-                         <a class="page-link" th:href="@{/categorias/listar(page=${pageCategoria.pagina -1}, dir=${pageCategoria.direcao})}" tabindex="-1" >Anterior</a>
-                     </li>
-                     <li class="page-item">
-                         <span class="page-link" th:text="|${pageCategoria.pagina} de ${pageCategoria.totalDePaginas}|"></span>
-                     </li>
-                     <li th:class="${pageCategoria.pagina == pageCategoria.totalDePaginas} ? 'page-item disabled' : 'page-item'">
-                         <a class="page-link" th:href="@{/categorias/listar(page=${pageCategoria.pagina +1}, dir=${pageCategoria.direcao})}">Próxima</a>
-                     </li>
-                     <li class="page-item">
-                         <a class="page-link" th:href="@{/categorias/listar(page=${pageCategoria.totalDePaginas}, dir=${pageCategoria.direcao})}" tabindex="-1" >Última</a>
-                     </li>
-                 </ul>
-             </nav>
-         </div>
-     </div>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover table-sm">
+                <thead>
+                <tr>
+                    <th>
+                        <a class="" tabindex="-1"
+                           th:href="@{/categorias/listar(page=${pageCategoria.pagina}, dir=desc)}">
+                            <span class="oi oi-arrow-bottom"></span></a>
+                        Nome
+                        <a class="" tabindex="-1"
+                           th:href="@{/categorias/listar(page=${pageCategoria.pagina}, dir=asc)}">
+                            <span class="oi oi-arrow-top"></span></a>
+                    </th>
+                    <th>Ação</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="c : ${pageCategoria.registros}">
+                    <td th:text="${c.nome}">Monitores</td>
+                    <td colspan="2">
+                        <a class="btn btn-info btn-sm" role="button" th:href="@{/categorias/editar/{id} (id=${c.id}) }">
+                            <span aria-hidden="true" class="oi oi-brush" title="Editar"></span>
+                        </a>
+                        <button class="btn btn-danger btn-sm" data-target="#myModal" data-toggle="modal"
+                                th:id="${'btn_categorias/excluir/' + c.id}" type="button">
+                            <span aria-hidden="true" class="oi oi-circle-x" title="Excluir"></span>
+                        </button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item">
+                        <a class="page-link" tabindex="-1"
+                           th:href="@{/categorias/listar(page=${1}, dir=${pageCategoria.direcao})}">Primeira</a>
+                    </li>
+                    <li th:class="${pageCategoria.pagina == 1} ? 'page-item disabled' : 'page-item'">
+                        <a class="page-link"
+                           tabindex="-1"
+                           th:href="@{/categorias/listar(page=${pageCategoria.pagina -1}, dir=${pageCategoria.direcao})}">Anterior</a>
+                    </li>
+                    <li class="page-item">
+                        <span class="page-link"
+                              th:text="|${pageCategoria.pagina} de ${pageCategoria.totalDePaginas}|"></span>
+                    </li>
+                    <li th:class="${pageCategoria.pagina == pageCategoria.totalDePaginas} ? 'page-item disabled' : 'page-item'">
+                        <a class="page-link"
+                           th:href="@{/categorias/listar(page=${pageCategoria.pagina +1}, dir=${pageCategoria.direcao})}">Próxima</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link"
+                           tabindex="-1"
+                           th:href="@{/categorias/listar(page=${pageCategoria.totalDePaginas}, dir=${pageCategoria.direcao})}">Última</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
 
-     <div th:replace="fragments/modal :: modal"></div>
- </section>
- </body>
- </html>
+    <div th:replace="fragments/modal :: modal"></div>
+</section>
+<script th:fragment="js" th:src="~{}"></script>
+<script th:fragment="inlinescript" th:inline="javascript"></script>
+</body>
+</html>

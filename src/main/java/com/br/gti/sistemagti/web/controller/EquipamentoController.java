@@ -44,7 +44,7 @@ public class EquipamentoController {
         int paginaAtual = page.orElse(1);
         String ordem = dir.orElse("asc");
 
-        PaginacaoUtil<Equipamento> pageEquipamento = equipamentoService.buscaPorPagina(paginaAtual,ordem);
+        PaginacaoUtil<Equipamento> pageEquipamento = equipamentoService.buscaPorPagina(paginaAtual, ordem);
 
         model.addAttribute("pageEquipamento", pageEquipamento);
         return "equipamento/lista";
@@ -52,7 +52,7 @@ public class EquipamentoController {
 
     @PostMapping("/salvar")
     public String salvar(@Valid Equipamento equipamento, BindingResult result, RedirectAttributes attr) {
-        if (result.hasErrors()){
+        if (result.hasErrors()) {
             return "equipamento/cadastro";
         }
         equipamentoService.salvar(equipamento);
@@ -68,7 +68,7 @@ public class EquipamentoController {
 
     @PostMapping("/editar")
     public String editar(@Valid Equipamento equipamento, BindingResult result, RedirectAttributes attr) {
-        if (result.hasErrors()){
+        if (result.hasErrors()) {
             return "equipamento/cadastro";
         }
         equipamentoService.editar(equipamento);
@@ -89,7 +89,6 @@ public class EquipamentoController {
 //        //model.addAttribute("equipamentos", equipamentoService.buscarPorNome(nome));
 //        return "/funcionario/lista";
 //    }
-
 
 
     @ModelAttribute("categorias")

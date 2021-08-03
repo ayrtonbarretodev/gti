@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout}">
+<html lang="pt" layout:decorate="~{layout}"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
     <meta charset="UTF-8"/>
 </head>
@@ -10,7 +10,7 @@
     <nav class="navbar navbar-inverse navbar navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="btn btn-dark navbar-toggle pull-left">
+                <button class="btn btn-dark navbar-toggle pull-left" type="button">
                     <i class="oi oi-menu"></i>
                 </button>
                 <a class="navbar-brand " th:href="@{/home}"> <span th:text="#{home.titulo}"></span></a>
@@ -41,7 +41,7 @@
                 <div class="col-md-3">
                     <div class="card mt-3">
                         <div class="product-1 align-items-center p-2 text-center">
-                            <img src="/image/equipment.png" alt="" class="rounded" width="160">
+                            <img alt="" class="rounded" src="/image/equipment.png" width="160">
                             <h5>Equipamentos</h5>
 
                             <!-- card info-->
@@ -64,7 +64,7 @@
                 <div class="col-md-3">
                     <div class="card mt-3">
                         <div class="product-1 align-items-center p-2 text-center">
-                            <img src="/image/department.png" alt="" class="rounded" width="160">
+                            <img alt="" class="rounded" src="/image/department.png" width="160">
                             <h5>Departamentos</h5>
 
                             <!-- card info-->
@@ -86,7 +86,7 @@
                 <div class="col-md-3">
                     <div class="card mt-3">
                         <div class="product-1 align-items-center p-2 text-center">
-                            <img src="/image/digital.png" alt="" class="rounded" width="160">
+                            <img alt="" class="rounded" src="/image/digital.png" width="160">
                             <h5>Categorias</h5>
 
                             <!-- card info-->
@@ -114,7 +114,7 @@
                 <div class="col-md-3">
                     <div class="card mt-3">
                         <div class="product-1 align-items-center p-2 text-center">
-                            <img src="/image/gear.png" alt="" class="rounded" width="160">
+                            <img alt="" class="rounded" src="/image/gear.png" width="160">
                             <h5>Em Uso</h5>
 
                             <!-- card info-->
@@ -137,7 +137,7 @@
                 <div class="col-md-3">
                     <div class="card mt-3">
                         <div class="product-1 align-items-center p-2 text-center">
-                            <img src="/image/store.png" alt="" class="rounded" width="160">
+                            <img alt="" class="rounded" src="/image/store.png" width="160">
                             <h5>Depósito GTI</h5>
 
                             <!-- card info-->
@@ -159,7 +159,7 @@
                 <div class="col-md-3">
                     <div class="card mt-3">
                         <div class="product-1 align-items-center p-2 text-center">
-                            <img src="/image/manutencao.png" alt="" class="rounded" width="160">
+                            <img alt="" class="rounded" src="/image/manutencao.png" width="160">
                             <h5>Em Manutenção</h5>
 
                             <!-- card info-->
@@ -191,6 +191,7 @@
         <span class="footer-copy">&copy; 2021 UFRN. Todos os direitos reservados.</span>
     </div>
 </footer>
-
+<script th:src="~{}" th:fragment="js"></script>
+<script th:inline="javascript" th:fragment="inlinescript"></script>
 </body>
 </html>

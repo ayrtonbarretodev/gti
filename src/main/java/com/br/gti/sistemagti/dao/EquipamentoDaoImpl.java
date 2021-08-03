@@ -11,22 +11,22 @@ import java.util.List;
 public class EquipamentoDaoImpl extends AbstractDao<Equipamento, Long> implements EquipamentoDao {
 
 
-    public PaginacaoUtil<Equipamento> buscaPaginada (int pagina, String direcao){
+    public PaginacaoUtil<Equipamento> buscaPaginada(int pagina, String direcao) {
         int tamanho = 5;
-        int inicio = (pagina-1) * tamanho;
+        int inicio = (pagina - 1) * tamanho;
         List<Equipamento> equipamentos = getEntityManager()
-                .createQuery("select e from Equipamento e order by e.nome " + direcao,Equipamento.class)
+                .createQuery("select e from Equipamento e order by e.nome " + direcao, Equipamento.class)
                 .setFirstResult(inicio)
                 .setMaxResults(tamanho)
                 .getResultList();
 
         long totalRegistros = count();
-        long totalDePaginas = (totalRegistros + (tamanho-1))/tamanho;
+        long totalDePaginas = (totalRegistros + (tamanho - 1)) / tamanho;
 
-        return new PaginacaoUtil<>(tamanho,pagina,totalDePaginas,direcao,equipamentos);
+        return new PaginacaoUtil<>(tamanho, pagina, totalDePaginas, direcao, equipamentos);
     }
 
-    public long count(){ //retorna total de registros na tabela
+    public long count() { //retorna total de registros na tabela
         return getEntityManager()
                 .createQuery("select count(nome) from Equipamento", Long.class)
                 .getSingleResult();

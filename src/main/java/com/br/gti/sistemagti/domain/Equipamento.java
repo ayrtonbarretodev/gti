@@ -8,7 +8,6 @@ import org.hibernate.envers.RelationTargetAuditMode;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
@@ -20,47 +19,69 @@ import java.time.LocalDate;
 @Table(name = "EQUIPAMENTOS")
 public class Equipamento extends AbstractEntity<Long> {
 
-    @NotBlank (message = "O Campo Nome do Equipamento é Obrigatório.")
+    @NotBlank(message = "O Campo Nome do Equipamento é Obrigatório.")
     @Column(nullable = false, length = 60)
-    @Getter @Setter private String nome;
+    @Getter
+    @Setter
+    private String nome;
 
-    @Getter @Setter private String modelo;
+    @Getter
+    @Setter
+    private String modelo;
 
-    @Getter @Setter private String fabricante;
+    @Getter
+    @Setter
+    private String fabricante;
 
     @NotNull
     @PastOrPresent(message = "{PastOrPresent.equipamento.dataEntrada}")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @Column(nullable = false, columnDefinition = "DATE")
-    @Getter @Setter private LocalDate dataEntrada = LocalDate.now();
+    @Getter
+    @Setter
+    private LocalDate dataEntrada = LocalDate.now();
 
     @Column(unique = true)
-    @Getter @Setter private Integer tomboPatrimonial;
+    @Getter
+    @Setter
+    private Integer tomboPatrimonial;
 
-    @Size (max = 255)
-    @Getter @Setter private String observacao;
+    @Size(max = 255)
+    @Getter
+    @Setter
+    private String observacao;
 
     @NotNull(message = "{NotNull.equipamento.status}")
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    @Getter @Setter private Status status;
+    @Getter
+    @Setter
+    private Status status;
 
     @Column(unique = true, length = 60)
-    @Getter @Setter private String numeroSerie;
+    @Getter
+    @Setter
+    private String numeroSerie;
 
     @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
     @NotNull(message = "{NotNull.equipamento.categoria}")
     @ManyToOne
     @JoinColumn(name = "id_categoria_fk", nullable = false)
-    @Getter @Setter private Categoria categoria;
+    @Getter
+    @Setter
+    private Categoria categoria;
 
     @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
     @NotNull(message = "{NotNull.equipamento.departamento}")
     @ManyToOne
     @JoinColumn(name = "id_departamento_fk", nullable = false)
-    @Getter @Setter private Departamento departamento;
+    @Getter
+    @Setter
+    private Departamento departamento;
 
     @Size(min = 17, max = 17, message = "{Size.equipamento.enderecoMac}")
     @Column(nullable = false, unique = true, length = 17)
-    @Getter @Setter private String enderecoMac;
+    @Getter
+    @Setter
+    private String enderecoMac;
 }

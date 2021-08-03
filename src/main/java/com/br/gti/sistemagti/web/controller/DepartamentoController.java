@@ -33,7 +33,7 @@ public class DepartamentoController {
         int paginaAtual = page.orElse(1);
         String ordem = dir.orElse("asc");
 
-        PaginacaoUtil<Departamento> pageDepartamento = service.buscaPorPagina(paginaAtual,ordem);
+        PaginacaoUtil<Departamento> pageDepartamento = service.buscaPorPagina(paginaAtual, ordem);
 
         model.addAttribute("pageDepartamento", pageDepartamento);
         return "departamento/lista";
@@ -41,7 +41,7 @@ public class DepartamentoController {
 
     @PostMapping("/salvar")
     public String salvar(@Valid Departamento departamento, BindingResult result, RedirectAttributes attr) {
-        if (result.hasErrors()){
+        if (result.hasErrors()) {
             return "departamento/cadastro";
         }
 
@@ -59,7 +59,7 @@ public class DepartamentoController {
     @PostMapping("/editar")
     public String editar(@Valid Departamento departamento, BindingResult result, RedirectAttributes attr) {
 
-        if (result.hasErrors()){ //se retornar true significa que algum campo não passou no sistema de validação
+        if (result.hasErrors()) { //se retornar true significa que algum campo não passou no sistema de validação
             return "departamento/cadastro";
         }
 
@@ -88,7 +88,7 @@ public class DepartamentoController {
         String ordem = dir.orElse("asc");
         String name = nome.orElse("");
 
-        PaginacaoUtil<Departamento> pageNome = service.buscarPorNome(paginaAtual,ordem, name);
+        PaginacaoUtil<Departamento> pageNome = service.buscarPorNome(paginaAtual, ordem, name);
 
         model.addAttribute("pageDepartamento", pageNome);
         return "departamento/lista";

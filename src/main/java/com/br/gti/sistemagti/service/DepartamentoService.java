@@ -22,7 +22,7 @@ public interface DepartamentoService {
 
     List<Departamento> buscarPorAmbiente(String ambiente);
 
-    PaginacaoUtil<Departamento> buscaPorPagina (int pagina, String direcao);
+    PaginacaoUtil<Departamento> buscaPorPagina(int pagina, String direcao);
 
-    PaginacaoUtil<Departamento> buscarPorNome (int pagina, String direcao, String nome);
+    PaginacaoUtil<Departamento> buscarPorNome(int pagina, String direcao, String nome);
 }

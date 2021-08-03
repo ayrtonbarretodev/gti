@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt" layout:decorate="~{layout}"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+<section class="layout-content" layout:fragment="corpo">
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+
+            <div class="d-flex justify-content-center">
+                <div class="col-md-8">
+
+                    <div th:replace="fragments/alertaUsers :: alerta-sucesso"></div>
+
+                    <form class="was-validated"
+                          method="POST" th:action="@{/u/cadastro/salvar}" th:object="${usuario}">
+
+                        <div class="mb-3">
+                            <label for="email">Email</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+										<span class="input-group-text"
+                                              id="validationTooltipUsernamePrepend">@</span>
+                                </div>
+                                <input aria-describedby="validationTooltipUsernamePrepend" class="form-control" id="email"
+                                       placeholder="Email" required
+                                       th:field="*{email}" type="email"/>
+                                <div class="invalid-feedback">Email é requerido.</div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="senha">Senha</label>
+                            <input class="form-control" id="senha" maxlength="6" placeholder="Insira sua senha de acesso"
+                                   required th:field="*{senha}" type="password"/>
+                            <div class="invalid-feedback">Senha é requerida para confirmar a operação.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="perfis">Perfil</label>
+                            <select class="custom-select" id="perfis" multiple
+                                    required size="4" th:field="*{perfis}">
+                                <option value="1">Administrador</option>
+                                <option value="2">Estagiário</option>
+                            </select>
+                            <input name="perfis" type="hidden" value="0">
+                            <div class="invalid-feedback">Pelo menos um perfil é requerido.</div>
+                        </div>
+
+                        <div class="mb-3">
+                            <div class="custom-control custom-switch">
+                                <input class="custom-control-input" id="ativo"
+                                       th:field="*{ativo}" th:if="${ativo == true ? 'checked=checked' : ''}"
+                                       type="checkbox"/>
+                                <label class="custom-control-label" for="ativo">Cadastro Ativo</label>
+                            </div>
+                        </div>
+
+                        <input th:field="*{id}" type="hidden">
+                        <div class="form-group row">
+                            <div class="col-sm-10">
+                                <button class="btn btn-primary" data-placement="right"
+                                        data-toggle="tooltip" title="Salvar" type="submit">
+                                    <i class="fas fa-save"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script th:src="~{}" th:fragment="js"></script>
+<script th:inline="javascript" th:fragment="inlinescript"></script>
+</body>
+</html>

@@ -16,5 +16,5 @@ public interface EquipamentoService {
 
     List<Equipamento> buscarTodos();
 
-    PaginacaoUtil<Equipamento> buscaPorPagina (int pagina, String direcao);
+    PaginacaoUtil<Equipamento> buscaPorPagina(int pagina, String direcao);
 }

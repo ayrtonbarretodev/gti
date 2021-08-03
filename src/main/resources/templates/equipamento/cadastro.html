@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org"
+<html lang="pt" layout:decorate="~{layout}"
+      xmlns="http://www.w3.org/1999/xhtml"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout}">
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
 </head>
@@ -18,8 +18,8 @@
                     </li>
                 </ul>
             </div>
-            <a class="btn btn-primary btn-md" th:href="@{/equipamentos/listar}" role="button">
-                <span class="oi oi-spreadsheet" title="Cadastro" aria-hidden="true"></span>
+            <a class="btn btn-primary btn-md" role="button" th:href="@{/equipamentos/listar}">
+                <span aria-hidden="true" class="oi oi-spreadsheet" title="Cadastro"></span>
                 <span>Listar Equipamentos</span>
             </a>
         </nav>
@@ -29,39 +29,40 @@
 
         <div th:replace="fragments/alert"></div>
 
-        <form th:action="${equipamento.id == null} ? @{/equipamentos/salvar} : @{/equipamentos/editar}"
-              th:object="${equipamento}" method="POST">
+        <form method="POST"
+              th:action="${equipamento.id == null} ? @{/equipamentos/salvar} : @{/equipamentos/editar}" th:object="${equipamento}">
 
             <div th:replace="fragments/validacao :: validacao"></div>
 
             <div class="form-row">
                 <div class="form-group col-md-4 required">
                     <label for="nome">Nome Equipamento </label>
-                    <input type="text" class="form-control" id="nome" placeholder="Digite o nome do equipamento"
-                           autofocus="autofocus" th:field="*{nome}"/>
+                    <input autofocus="autofocus" class="form-control" id="nome" placeholder="Digite o nome do equipamento"
+                           th:field="*{nome}" type="text"/>
                 </div>
                 <div class="form-group col-md-3">
                     <label for="numeroSerie">Número de Série</label>
-                    <input type="text" class="form-control" id="numeroSerie" placeholder="Digite o número de série"
-                           autofocus="autofocus" th:field="*{numeroSerie}"/>
+                    <input autofocus="autofocus" class="form-control" id="numeroSerie" placeholder="Digite o número de série"
+                           th:field="*{numeroSerie}" type="text"/>
                 </div>
                 <div class="form-group col-md-3">
                     <label for="enderecoMac">Endereço MAC</label>
-                    <input type="text" class="form-control" id="enderecoMac" placeholder="Ex: 00:19:B9:FB:E2:58"
-                           maxlength="17" style="text-transform: uppercase" autofocus="autofocus" th:field="*{enderecoMac}"/>
+                    <input autofocus="autofocus" class="form-control" id="enderecoMac" maxlength="17"
+                           placeholder="Ex: 00:19:B9:FB:E2:58" style="text-transform: uppercase" th:field="*{enderecoMac}"
+                           type="text"/>
                 </div>
             </div>
 
             <div class="form-row">
                 <div class="form-group col-md-5">
                     <label for="fabricante">Fabricante</label>
-                    <input type="text" class="form-control" id="fabricante" placeholder="Digite o nome do fabricante"
-                           autofocus="autofocus" th:field="*{fabricante}"/>
+                    <input autofocus="autofocus" class="form-control" id="fabricante" placeholder="Digite o nome do fabricante"
+                           th:field="*{fabricante}" type="text"/>
                 </div>
                 <div class="form-group col-md-5">
                     <label for="modelo">Modelo</label>
-                    <input type="text" class="form-control" id="modelo" placeholder="Digite o nome do Modelo"
-                           autofocus="autofocus" th:field="*{modelo}"/>
+                    <input autofocus="autofocus" class="form-control" id="modelo" placeholder="Digite o nome do Modelo"
+                           th:field="*{modelo}" type="text"/>
                 </div>
             </div>
 
@@ -69,13 +70,14 @@
 
                 <div class="form-group col-md-5">
                     <label for="tomboPatrimonial">Tombo Patrimonial</label>
-                    <input type="number" class="form-control" id="tomboPatrimonial" placeholder="Digite o tombo patrimonial"
-                           autofocus="autofocus" th:field="*{tomboPatrimonial}"/>
+                    <input autofocus="autofocus" class="form-control" id="tomboPatrimonial"
+                           placeholder="Digite o tombo patrimonial"
+                           th:field="*{tomboPatrimonial}" type="number"/>
                 </div>
 
                 <div class="form-group col-md-5 required">
                     <label for="dataEntrada">Data de Entrada</label>
-                    <input type="date" class="form-control" id="dataEntrada" th:field="*{dataEntrada}"/>
+                    <input class="form-control" id="dataEntrada" th:field="*{dataEntrada}" type="date"/>
                 </div>
             </div>
 
@@ -83,33 +85,33 @@
             <div class="form-row">
                 <div class="form-group col-md-4 required">
                     <label for="departamento">Departamento</label>
-                    <select id="departamento" class="form-control" th:field="*{departamento}"/>
-                        <option value="">Selecione</option>
-                        <option th:each="d : ${departamentos}"
-                                th:value="${d.id}"
-                                th:text="${d.ambiente == ''} ? ${d.nome} : ${d.nome + '-' + d.ambiente}">
-                        </option>
+                    <select class="form-control" id="departamento" th:field="*{departamento}"/>
+                    <option value="">Selecione</option>
+                    <option th:each="d : ${departamentos}"
+                            th:text="${d.ambiente == ''} ? ${d.nome} : ${d.nome + '-' + d.ambiente}"
+                            th:value="${d.id}">
+                    </option>
                     </select>
                 </div>
 
 
                 <div class="form-group col-md-4 required">
                     <label for="categoria">Categoria</label>
-                    <select id="categoria" class="form-control" th:field="*{categoria}"/>
-                        <option value="">Selecione</option>
-                        <option th:each="c : ${categorias}"
-                                th:value="${c.id}"
-                                th:text="${c.nome}">Direção
-                        </option>
+                    <select class="form-control" id="categoria" th:field="*{categoria}"/>
+                    <option value="">Selecione</option>
+                    <option th:each="c : ${categorias}"
+                            th:text="${c.nome}"
+                            th:value="${c.id}">Direção
+                    </option>
                     </select>
                 </div>
 
                 <div class="form-group col-md-2 required">
                     <label for="status">Status</label>
-                    <select id="status" class="form-control" th:field="*{status}"/>
-                        <option value="">Selecione</option>
-                        <option th:each="status : ${status}" th:value="${status}"
-                                th:text="${status.descricao}"></option>
+                    <select class="form-control" id="status" th:field="*{status}"/>
+                    <option value="">Selecione</option>
+                    <option th:each="status : ${status}" th:text="${status.descricao}"
+                            th:value="${status}"></option>
                     </select>
                 </div>
             </div>
@@ -118,17 +120,19 @@
 
                 <div class="form-group col-md-10">
                     <label for="observacao">Observação</label>
-                    <input type="text" class="form-control" id="observacao" placeholder="Digite alguma observação"
-                           autofocus="autofocus" th:field="*{observacao}"/>
+                    <input autofocus="autofocus" class="form-control" id="observacao" placeholder="Digite alguma observação"
+                           th:field="*{observacao}" type="text"/>
                 </div>
 
             </div>
 
 
-            <input type="hidden" id="id" th:field="*{id}"/>
-            <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
+            <input id="id" th:field="*{id}" type="hidden"/>
+            <button class="btn btn-primary btn-sm" type="submit">Salvar</button>
         </form>
     </div>
 </section>
+<script th:fragment="js" th:src="~{}"></script>
+<script th:fragment="inlinescript" th:inline="javascript"></script>
 </body>
 </html>		

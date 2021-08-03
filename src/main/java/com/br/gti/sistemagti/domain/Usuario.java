@@ -13,7 +13,7 @@ import java.util.List;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "usuarios", indexes = {@Index(name = "idx_usuario_email", columnList = "email")})
-public class Usuario extends AbstractEntity<Long>{
+public class Usuario extends AbstractEntity<Long> {
     @Column(name = "email", unique = true, nullable = false)
     private String email;
 
@@ -24,8 +24,8 @@ public class Usuario extends AbstractEntity<Long>{
     @ManyToMany
     @JoinTable(
             name = "usuarios_tem_perfis",
-            joinColumns = { @JoinColumn(name = "usuario_id", referencedColumnName = "id") },
-            inverseJoinColumns = { @JoinColumn(name = "perfil_id", referencedColumnName = "id") }
+            joinColumns = {@JoinColumn(name = "usuario_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "perfil_id", referencedColumnName = "id")}
     )
     private List<Perfil> perfis;
 
@@ -43,15 +43,15 @@ public class Usuario extends AbstractEntity<Long>{
         super.setId(id);
     }
 
+    public Usuario(String email) {
+        this.email = email;
+    }
+
     // adiciona perfis a lista
     public void addPerfil(PerfilTipo tipo) {
         if (this.perfis == null) {
             this.perfis = new ArrayList<>();
         }
         this.perfis.add(new Perfil(tipo.getCod()));
-    }
-
-    public Usuario(String email) {
-        this.email = email;
     }
 }

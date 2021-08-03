@@ -63,11 +63,11 @@ public class DepartamentoServiceImpl implements DepartamentoService {
 
     @Override
     public PaginacaoUtil<Departamento> buscaPorPagina(int pagina, String direcao) {
-        return dao.buscaPaginada(pagina,direcao);
+        return dao.buscaPaginada(pagina, direcao);
     }
 
     @Override
     public PaginacaoUtil<Departamento> buscarPorNome(int pagina, String direcao, String nome) {
-        return dao.buscarPorNome(pagina,direcao,nome);
+        return dao.buscarPorNome(pagina, direcao, nome);
     }
 }

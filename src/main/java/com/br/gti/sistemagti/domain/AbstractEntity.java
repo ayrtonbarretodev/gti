@@ -22,6 +22,14 @@ public abstract class AbstractEntity<ID extends Serializable> implements Seriali
         this.id = id;
     }
 
+    public boolean hasNotId() {
+        return id == null;
+    }
+
+    public boolean hasId() {
+        return id != null;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

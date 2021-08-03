@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
 >
 <head>
     <meta charset="UTF-8">
@@ -9,7 +9,7 @@
     <nav class="navbar navbar-expand-md navbar navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="btn btn-dark navbar-toggle pull-left">
+                <button class="btn btn-dark navbar-toggle pull-left" type="button">
                     <i class="oi oi-menu"></i>
                 </button>
                 <a class="navbar-brand " th:href="@{/home}"><span th:text="#{header.titulo}"> </span></a>
@@ -17,44 +17,43 @@
 
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item dropdown"><a
-                        class="btn btn-dark dropdown-toggle" href="#" id="dropdown01"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administrador</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdown01">
+                        aria-expanded="false" aria-haspopup="true" class="btn btn-dark dropdown-toggle"
+                        data-toggle="dropdown" href="#" id="dropdown01">Administrador</a>
+                    <div aria-labelledby="dropdown01" class="dropdown-menu">
                         <a class="dropdown-item" th:href="@{/u/novo/cadastro/usuario}">Cadastro de Usuários</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" th:href="@{/u/lista}">Lista de Usuários</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown"><a
-                        class="btn btn-dark dropdown-toggle" href="#" id="dropdown02"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Estagiário</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdown02">
-                        <a class="dropdown-item" th:href="@{/medicos/dados}">Dados Cadastrais</a>
+                        aria-expanded="false" aria-haspopup="true" class="btn btn-dark dropdown-toggle"
+                        data-toggle="dropdown" href="#" id="dropdown02">Estagiário</a>
+                    <div aria-labelledby="dropdown02" class="dropdown-menu">
+                        <a class="dropdown-item" th:href="@{/estagiarios/dados}">Dados Cadastrais</a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" th:href="@{/u/editar/senha}">Editar Senha</a>
                     </div>
                 </li>
             </ul>
 
-            <form th:action="@{/logout}" sec:authorize="isAuthenticated()"
-                  method="post"  class="form-inline mt-2 mt-md-0">
+            <form class="form-inline mt-2 mt-md-0" method="post"
+                  sec:authorize="isAuthenticated()" th:action="@{/logout}">
                 <div class="btn-group mb-2 mr-sm-2">
-                    <button type="button" class="btn btn-light">
+                    <button class="btn btn-light" type="button">
                         <i class="oi oi-person"></i> <span class=""
                                                            sec:authentication="name"></span>
                     </button>
-                    <button type="button"
-                            class="btn btn-danger dropdown-toggle dropdown-toggle-split"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button aria-expanded="false"
+                            aria-haspopup="true"
+                            class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" type="button">
                     </button>
                     <div class="dropdown-menu">
-                        <button type="submit" class="dropdown-item">Sair</button>
+                        <button class="dropdown-item" type="submit">Sair</button>
                     </div>
                 </div>
             </form>
         </div>
     </nav>
 </header>
-
 </body>
 </html>

@@ -1,5 +1,6 @@
 package com.br.gti.sistemagti.config;
 
+import com.br.gti.sistemagti.domain.PerfilTipo;
 import com.br.gti.sistemagti.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -11,24 +12,39 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private static final String ADMIN = PerfilTipo.ADMIN.getDesc();
+    private static final String ESTAGIARIO = PerfilTipo.ESTAGIARIO.getDesc();
+
+
     @Autowired
     private UsuarioService service;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/webjars/**", "/css/**", "/js/**","/image/**").permitAll()
+                //acessos públicos liberados
+                .antMatchers("/webjars/**", "/css/**", "/js/**", "/image/**").permitAll()
                 //.antMatchers("/home").permitAll()
+
+                //acessos privados admin
+                .antMatchers("/u/**").hasAuthority(ADMIN)
+
+                //acessos privados estagiarios
+                .antMatchers("/estagiarios/**").hasAuthority(ESTAGIARIO)
+
                 .anyRequest().authenticated()
                 .and()
-                    .formLogin()
-                    .loginPage("/login")
-                    .defaultSuccessUrl("/home", true)
-                    .failureUrl("/login-error")
-                    .permitAll()
+                .formLogin()
+                .loginPage("/login")
+                .defaultSuccessUrl("/home", true)
+                .failureUrl("/login-error")
+                .permitAll()
                 .and()
                     .logout()
-                    .logoutSuccessUrl("/login");
+                    .logoutSuccessUrl("/login")
+                .and()
+                    .exceptionHandling()
+                    .accessDeniedPage("/acesso-negado");
     }
 
     @Override
