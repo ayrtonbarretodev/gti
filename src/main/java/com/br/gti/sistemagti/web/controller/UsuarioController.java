@@ -4,6 +4,7 @@ import com.br.gti.sistemagti.domain.Perfil;
 import com.br.gti.sistemagti.domain.Usuario;
 import com.br.gti.sistemagti.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,12 +48,16 @@ public class UsuarioController {
     public String salvarUsuarios(Usuario usuario, RedirectAttributes attr){
         List<Perfil> perfis = usuario.getPerfis();
         if (perfis.size() > 1 ||
-                perfis.contains(Arrays.asList(new Perfil(1L), new Perfil(2L)))) {
-            attr.addFlashAttribute("falha", "Estagiário não pode ser Admin ou Admin não pode ser Estagiário");
+                perfis.containsAll(Arrays.asList(new Perfil(1L), new Perfil(2L)))) {
+            attr.addFlashAttribute("falha", "Selecione somente um perfil");
             attr.addFlashAttribute("usuario", usuario);
         }else{
-            service.salvarUsuario(usuario);
-            attr.addFlashAttribute("sucesso", "Operação realizada com sucesso!");
+            try {
+                service.salvarUsuario(usuario);
+                attr.addFlashAttribute("sucesso", "Operação realizada com sucesso!");
+            }catch (DataIntegrityViolationException ex){
+                attr.addFlashAttribute("falha", "Cadastro não realizado, email já existente.");
+            }
         }
         return "redirect:/u/novo/cadastro/usuario";
     }
