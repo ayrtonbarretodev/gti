@@ -67,8 +67,13 @@ public class UsuarioService implements UserDetailsService {
 
     @Transactional(readOnly = false)
     public void salvarUsuario(Usuario usuario) {
-        String crypt = new BCryptPasswordEncoder().encode(usuario.getEmail());
+        String crypt = new BCryptPasswordEncoder().encode(usuario.getSenha());
         usuario.setSenha(crypt);
         repository.save(usuario);
+    }
+
+    @Transactional(readOnly = true)
+    public Usuario buscarPorId(Long id) {
+        return repository.findById(id).get();
     }
 }
