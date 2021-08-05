@@ -41,7 +41,8 @@ public class Equipamento extends AbstractEntity<Long> {
     @Setter
     private LocalDate dataEntrada = LocalDate.now();
 
-    @Column(unique = true)
+    @Column(unique = true,length = 10)
+    //@Size(min = 10, max = 10, message = "{Size.equipamento.tombo}")
     @Getter
     @Setter
     private Integer tomboPatrimonial;
