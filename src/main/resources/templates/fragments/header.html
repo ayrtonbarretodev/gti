@@ -16,7 +16,7 @@
             </div>
 
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item dropdown"><a
+                <li class="nav-item dropdown" sec:authorize="hasAuthority('ADMIN')"><a
                         aria-expanded="false" aria-haspopup="true" class="btn btn-dark dropdown-toggle"
                         data-toggle="dropdown" href="#" id="dropdown01">Administrador</a>
                     <div aria-labelledby="dropdown01" class="dropdown-menu">
@@ -25,7 +25,7 @@
                         <a class="dropdown-item" th:href="@{/u/lista}">Lista de Usuários</a>
                     </div>
                 </li>
-                <li class="nav-item dropdown"><a
+                <li class="nav-item dropdown" sec:authorize="hasAuthority('ESTAGIARIO')"><a
                         aria-expanded="false" aria-haspopup="true" class="btn btn-dark dropdown-toggle"
                         data-toggle="dropdown" href="#" id="dropdown02">Estagiário</a>
                     <div aria-labelledby="dropdown02" class="dropdown-menu">
