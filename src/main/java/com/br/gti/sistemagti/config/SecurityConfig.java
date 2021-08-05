@@ -28,13 +28,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //.antMatchers("/u/**").permitAll()
 
                 //acessos privados admin
-                .antMatchers("/u/editar/senha", "u/confirmar/senha").hasAuthority(ESTAGIARIO)
+                .antMatchers("/u/editar/senha", "/u/confirmar/senha").hasAuthority(ESTAGIARIO)
                 .antMatchers("/u/**").hasAuthority(ADMIN)
                 .antMatchers("/departamentos/**", "/categorias/**").hasAuthority(ADMIN)
 
 
                 //acessos privados estagiarios
-                .antMatchers("/estagiarios/dados", "estagiarios/salvar", "estagiarios/editar").hasAnyAuthority(ESTAGIARIO,ADMIN)
+                .antMatchers("/estagiarios/dados", "/estagiarios/salvar", "/estagiarios/editar").hasAnyAuthority(ESTAGIARIO,ADMIN)
                 .antMatchers("/estagiarios/**").hasAuthority(ESTAGIARIO)
 
                 .anyRequest().authenticated()
