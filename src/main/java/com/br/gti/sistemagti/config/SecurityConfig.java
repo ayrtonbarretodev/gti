@@ -21,15 +21,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+        http
+                .authorizeRequests()
                 //acessos públicos liberados
                 .antMatchers("/webjars/**", "/css/**", "/js/**", "/image/**").permitAll()
-                //.antMatchers("/home").permitAll()
+                //.antMatchers("/u/**").permitAll()
 
                 //acessos privados admin
+                .antMatchers("/u/editar/senha", "u/confirmar/senha").hasAuthority(ESTAGIARIO)
                 .antMatchers("/u/**").hasAuthority(ADMIN)
 
+
                 //acessos privados estagiarios
+                .antMatchers("/estagiarios/dados", "estagiarios/salvar", "estagiarios/editar").hasAnyAuthority(ESTAGIARIO,ADMIN)
                 .antMatchers("/estagiarios/**").hasAuthority(ESTAGIARIO)
 
                 .anyRequest().authenticated()
@@ -45,6 +49,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                     .exceptionHandling()
                     .accessDeniedPage("/acesso-negado");
+
+
     }
 
     @Override

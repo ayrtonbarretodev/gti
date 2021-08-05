@@ -16,7 +16,7 @@ public class Estagiario extends AbstractEntity<Long> {
     private String nome;
 
     @Column(name = "matricula", unique = true, nullable = false)
-    private Integer matricula;
+    private Long matricula;
 
     @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "id_usuario")
@@ -28,5 +28,9 @@ public class Estagiario extends AbstractEntity<Long> {
 
     public Estagiario(Long id) {
         super.setId(id);
+    }
+
+    public Estagiario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt" layout:decorate="~{layout}"
-      xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.w3.org/1999/xhtml">
+      <!--xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org" --> >
 <head>
     <meta charset="UTF-8"/>
 </head>
@@ -16,8 +16,9 @@
 
                     <div th:replace="fragments/alertaUsers  :: alerta-sucesso"></div>
 
-                    <form class="was-validated"
-                          method="POST" th:action="${estagiario.id == null} ? @{/estagiarios/salvar} : @{/estagiarios/editar}" th:object="${estagiario}">
+                    <form class="was-validated" method="POST"
+                          th:action="${estagiario.id == null} ? @{/estagiarios/salvar} : @{/estagiarios/editar}"
+                          th:object="${estagiario}">
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label class="form-group" for="nome">Nome Completo</label>
@@ -29,8 +30,8 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="crm">Matrícula</label>
-                                <input class="form-control" id="crm" placeholder="00000000000" required
+                                <label for="matricula">Matrícula</label>
+                                <input class="form-control" id="matricula" placeholder="00000000000" required
                                        th:field="*{matricula}" type="text"/>
                                 <div class="invalid-feedback">Matrícula é requerida.</div>
                             </div>
@@ -49,13 +50,14 @@
                         </div>
                     </form>
 
-                    <hr/>
+                    <!-- <hr/> -->
                 </div>
             </div>
         </div>
     </div>
 </section>
-<script	th:src="@{/js/estagiario.js(v=${version})}"	th:fragment="js"></script>
-<script th:inline="javascript" th:fragment="inlinescript"></script>
+<!-- <script	th:src="@{/js/estagiario.js(v=${version})}"	th:fragment="js"></script> -->
+<script th:fragment="js" th:src="~{}"></script>
+<script th:fragment="inlinescript" th:inline="javascript"></script>
 </body>
 </html>
