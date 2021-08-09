@@ -12,10 +12,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 import java.util.List;
@@ -119,4 +122,35 @@ public class UsuarioController {
         attr.addFlashAttribute("sucesso", "Senha alterada com sucesso");
         return "redirect:/u/editar/senha";
     }
+
+    @GetMapping("/e/redefinir/senha")
+    public String pedidoRedefinirSenha(){
+        return "usuario/pedido-recuperar-senha";
+    }
+
+    @GetMapping("/e/recuperar/senha")
+    public String redefinirSenha(String email, ModelMap model) throws MessagingException {
+        service.pedidoRedefinicaoDeSenha(email);
+        model.addAttribute("sucesso", "Em instantes você receberá um e-mail para " +
+                "prosseguir com a redefinição de sua senha");
+        model.addAttribute("usuario", new Usuario(email));
+        return "usuario/recuperar-senha";
+    }
+
+    @PostMapping("/e/nova/senha")
+    public String confirmacaoDeRedefinicaoDeSenha(Usuario usuario, ModelMap model){
+        Usuario u = service.buscarPorEmail(usuario.getEmail());
+        if (!usuario.getCodigoVerificador().equals(u.getCodigoVerificador())){
+            model.addAttribute("falha", "Código verificador não confere");
+            return "usuario/recuperar-senha";
+        }
+
+        u.setCodigoVerificador(null);
+        service.alterarSenha(u, usuario.getSenha());
+        model.addAttribute("alerta", "sucesso");
+        model.addAttribute("titulo", "Senha redefinida");
+        model.addAttribute("texto", "Você já pode logar no sistema");
+        return "login";
+    }
+
 }

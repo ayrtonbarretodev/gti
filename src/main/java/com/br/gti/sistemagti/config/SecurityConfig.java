@@ -25,7 +25,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 //acessos públicos liberados
                 .antMatchers("/webjars/**", "/css/**", "/js/**", "/image/**").permitAll()
-                //.antMatchers("/u/**").permitAll()
+                .antMatchers("/u/e/**").permitAll()
 
                 //acessos privados admin
                 .antMatchers("/u/editar/senha", "/u/confirmar/senha").hasAuthority(ESTAGIARIO)
@@ -49,9 +49,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .logoutSuccessUrl("/login")
                 .and()
                     .exceptionHandling()
-                    .accessDeniedPage("/acesso-negado");
-
-
+                    .accessDeniedPage("/acesso-negado")
+                .and()
+                    .rememberMe();
     }
 
     @Override

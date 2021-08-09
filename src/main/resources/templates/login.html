@@ -35,7 +35,7 @@
       th:action="@{/login}">
     <div class="text-center mb-4">
         <img alt="" class="mb-4" height="72"
-             th:src="@{/image/logo-gti-login.png}" width="72">
+             th:src="@{/image/technology-login.png}" width="72">
         <h1 class="h3 mb-3 font-weight-normal">Gerência de Tecnologia da Informação</h1>
 
         <p class="font-weight-lighter">Seja bem-vindo.</p>
@@ -64,19 +64,15 @@
     </div>
 
     <div class="checkbox mb-3">
-        <label> <input type="checkbox" value="remember-me">
+        <label> <input type="checkbox" id="remember-me" name="remember-me">
             Remember me
         </label>
     </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
     <hr>
     <nav class="nav nav-pills flex-column flex-sm-row">
-        <a class="flex-sm-fill text-sm-left nav-link text-decoration-none" th:href="@{/u/novo/cadastro}"><i
-                class="far fa-arrow-alt-circle-right"></i>&nbsp;Novo cadastro</a>
-        <a class="flex-sm-fill text-sm-left nav-link text-decoration-none" th:href="@{/u/p/redefinir/senha}"><i
+        <a class="flex-sm-fill text-sm-left nav-link text-decoration-none" th:href="@{/u/e/redefinir/senha}"><i
                 class="fas fa-key"></i>&nbsp;Recuperar senha</a>
-        <a class="flex-sm-fill text-sm-left nav-link text-decoration-none" th:href="@{/home}"><i
-                class="fas fa-home"></i>&nbsp;Home</a>
     </nav>
     <p class="mt-5 mb-3 text-muted text-center">&copy; 2021 UFRN. Todos os direitos reservados.</p>
 </form>

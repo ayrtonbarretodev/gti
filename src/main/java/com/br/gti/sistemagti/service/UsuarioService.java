@@ -3,6 +3,7 @@ package com.br.gti.sistemagti.service;
 import com.br.gti.sistemagti.datatables.Datatables;
 import com.br.gti.sistemagti.datatables.DatatablesColunas;
 import com.br.gti.sistemagti.domain.Perfil;
+import com.br.gti.sistemagti.domain.PerfilTipo;
 import com.br.gti.sistemagti.domain.Usuario;
 import com.br.gti.sistemagti.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +16,13 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.apache.commons.lang3.RandomStringUtils;
 
+import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Service
 public class UsuarioService implements UserDetailsService {
@@ -28,6 +32,9 @@ public class UsuarioService implements UserDetailsService {
 
     @Autowired
     private Datatables datatables;
+
+    @Autowired
+    private EmailService emailService;
 
     public static boolean isSenhaCorreta(String senhaDigitada, String senhaArmazenada) {
         return new BCryptPasswordEncoder().matches(senhaDigitada,senhaArmazenada);
@@ -42,7 +49,7 @@ public class UsuarioService implements UserDetailsService {
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Usuario usuario = buscarPorEmail(username);
+        Usuario usuario = buscarPorEmailEAtivo(username).orElseThrow(() -> new UsernameNotFoundException("Usuario " + username + "não encontrado."));
 
         return new User(
                 usuario.getEmail(),
@@ -91,5 +98,21 @@ public class UsuarioService implements UserDetailsService {
     public void alterarSenha(Usuario usuario, String senha) {
         usuario.setSenha(new BCryptPasswordEncoder().encode(senha));
         repository.save(usuario);
+    }
+
+    @Transactional(readOnly = true)
+    public Optional<Usuario> buscarPorEmailEAtivo(String email){
+        return repository.findByEmailAndAtivo(email);
+    }
+
+    @Transactional(readOnly = false)
+    public void pedidoRedefinicaoDeSenha(String email) throws MessagingException {
+        Usuario usuario = buscarPorEmailEAtivo(email).orElseThrow(() -> new UsernameNotFoundException("Usuario " + email + " não encontrado."));
+
+        String verificador = RandomStringUtils.randomAlphanumeric(6);
+
+        usuario.setCodigoVerificador(verificador);
+
+        emailService.enviarPedidoRedifinicaoSenha(email,verificador);
     }
 }
