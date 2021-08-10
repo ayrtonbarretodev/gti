@@ -3,11 +3,13 @@
  */
 html, body {
     height: 100%;
+    background-color: #f8f9fa;
 }
 
 body {
     padding-top: 56px;
     padding-left: 0;
+    font-weight: 500;
 }
 
 /*
@@ -25,6 +27,7 @@ body {
 .layout-content {
     width: 100%;
     padding-top: 0px;
+    background-color: #f8f9fa;
 }
 
 .container {
@@ -34,7 +37,8 @@ body {
 
 @media (min-width: 1200px) {
     .container, .container-lg, .container-md, .container-sm, .container-xl {
-        max-width: 1600px;
+        max-width: 1200px;
+        background-color:#f8f9fa;
     }
 }
 
@@ -43,9 +47,9 @@ body {
  */
 .sidebar {
     width: 0px;
-    height: 100vh;
+    height: 121vh;
     border-top: 1px solid #eee;
-    border-right: 1px solid #eee;
+    border-right: 1px solid #21252959;
     background-color: #f8f9fa;
     flex-shrink: 0;
     overflow: hidden;
@@ -85,7 +89,7 @@ body {
 }
 
 .sidebar.sidebar-open {
-    width: 300px;
+    width: 200px;
 }
 
 /*
@@ -115,7 +119,7 @@ body {
     bottom: 0;
     margin: 0;
     height: 50px;
-    border-top: 1px solid #eeeeee;
+    border-top: 1px solid #21252959;
 }
 
 .footer-copy {

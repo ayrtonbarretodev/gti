@@ -32,7 +32,7 @@ public class Usuario extends AbstractEntity<Long> {
     @Column(name = "ativo", nullable = false, columnDefinition = "TINYINT(1)")
     private boolean ativo;
 
-    @Column(name = "codigo_verificador", length = 6)
+    @Column(name = "codigo_verificador", length = 10)
     private String codigoVerificador;
 
     public Usuario() {
