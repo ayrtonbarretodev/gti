@@ -49,7 +49,7 @@
                     <th>Departamento</th>
                     <th>Categoria</th>
                     <th>Status</th>
-                    <th>Observacão</th>
+                   <!-- <th>Observacão</th> -->
                     <th>Ação</th>
                 </tr>
                 </thead>
@@ -65,13 +65,13 @@
                     <td th:text="${e.departamento?.ambiente == ''} ? ${e.departamento?.nome} : ${e.departamento?.nome + '-' + e.departamento?.ambiente}"></td>
                     <td th:text="${e.categoria?.nome}"></td>
                     <td th:text="${e.status?.descricao}"></td>
-                    <td>
+                   <!-- <td>
                         <button class="btn btn-secondary btn-sm" data-container="body" data-placement="top"
                                 data-toggle="popover" th:attr="data-content=${e.observacao}"
                                 type="button">
                             <span aria-hidden="true" class="oi oi-eye" title="Visualizar"></span>
                         </button>
-                    </td>
+                    </td> -->
                     <td colspan="2">
 
                         <button class="btn btn-dark btn-sm" data-target="#myModalEq"
