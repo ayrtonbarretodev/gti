@@ -80,8 +80,8 @@ public class Equipamento extends AbstractEntity<Long> {
     @Setter
     private Departamento departamento;
 
-    @Size(min = 17, max = 17, message = "{Size.equipamento.enderecoMac}")
-    @Column(nullable = false, unique = true, length = 17)
+    @Size(max = 17, message = "{Size.equipamento.enderecoMac}")
+    @Column(unique = true, length = 17)
     @Getter
     @Setter
     private String enderecoMac;

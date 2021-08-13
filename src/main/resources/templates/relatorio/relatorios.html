@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt" layout:decorate="~{layout}"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+<section class="layout-content" layout:fragment="corpo">
+
+    <nav class="navbar navbar-expand-md bg-light">
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <i class="oi oi-caret-right"></i>
+                    <span>Relatórios</span>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container" id="cadastro">
+
+        <h3>Relatório Completo</h3>
+        <a class="btn btn-info btn-sm" role="button" th:href="@{/relatorio/pdf/jr1(code='01' , acao='v')}" target="_blank">
+            <span aria-hidden="true" class="oi oi-eye" title="Visualizar"></span>
+        </a>
+        <a class="btn btn-info btn-sm" role="button" th:href="@{/relatorio/pdf/jr1(code='01' , acao='d')}">
+            <span aria-hidden="true" class="oi oi-data-transfer-download" title="Download"></span>
+        </a>
+
+        <hr>
+
+        <h3>Relatório por Departamento</h3>
+        <form>
+            <select id="dep" name="">
+                <option>Selecione a Departamento</option>
+            </select>
+            <a class="btn btn-info btn-sm" role="button"  target="_blank">
+                <span aria-hidden="true" class="oi oi-eye" title="Visualizar"></span>
+            </a>
+        </form>
+
+        <hr>
+
+        <h3>Relatório por Categoria</h3>
+        <form>
+            <select id="cat" name="">
+                <option>Selecione a Categoria</option>
+            </select>
+            <a class="btn btn-info btn-sm" role="button"  target="_blank">
+                <span aria-hidden="true" class="oi oi-eye" title="Visualizar"></span>
+            </a>
+        </form>
+
+        <hr>
+
+        <h3>Relatório por Status</h3>
+        <form>
+            <select id="status" name="">
+                <option>Selecione o Status</option>
+            </select>
+            <a class="btn btn-info btn-sm" role="button"  target="_blank">
+                <span aria-hidden="true" class="oi oi-eye" title="Visualizar"></span>
+            </a>
+        </form>
+
+
+    </div>
+</section>
+<script th:fragment="js" th:src="~{}"></script>
+<script th:fragment="inlinescript" th:inline="javascript"></script>
+</body>
+</html>
