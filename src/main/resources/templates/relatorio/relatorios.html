@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="pt" layout:decorate="~{layout}"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
 </head>
@@ -37,31 +38,19 @@
                 <option value="">Selecione a Categoria</option>
                 <option th:each="categoria : ${categorias}" th:value="${categoria}" th:text="${categoria}">Selecione a Categoria</option>
             </select>
-            <a class="btn btn-info btn-sm" role="button"  target="_blank">
-                <span aria-hidden="true" class="oi oi-eye" title="Visualizar"></span>
+            <button class="oi oi-eye" type="submit" aria-hidden="true" title="Visualizar"></button>
             </a>
         </form>
-
-<!--        <div>-->
-<!--            <h3>Relatório por Categoria</h3>-->
-<!--            <form th:action="@{/relatorio/pdf/jr2/02}" method="get">-->
-<!--                <select id="categoria" name="categoria" >-->
-<!--                    <option value="">Selecione a Categoria</option>-->
-<!--                    <option th:each="categoria : ${categorias}" th:value="${categoria}" th:text="${categoria}">Selecione a Categoria</option>-->
-<!--                </select>-->
-<!--                <button type="submit"> Buscar </button>-->
-<!--            </form>-->
-<!--        </div>-->
 
         <hr>
 
         <h3>Relatório por Departamento</h3>
-        <form>
-            <select id="dep" name="dep">
-                <option>Selecione o Departamento</option>
+        <form th:action="@{/relatorio/pdf/jr3/03}" method="get">
+            <select id="departamento" name="departamento" >
+                <option value="">Selecione o Departamento</option>
+                <option th:each="departamento : ${departamentos}" th:value="${departamento}" th:text="${departamento}">Selecione o Departamento</option>
             </select>
-            <a class="btn btn-info btn-sm" role="button"  target="_blank">
-                <span aria-hidden="true" class="oi oi-eye" title="Visualizar"></span>
+            <button class="oi oi-eye" type="submit" aria-hidden="true" title="Visualizar"></button>
             </a>
         </form>
 

@@ -53,6 +53,18 @@ public class JasperController {
         response.getOutputStream().write(bytes);
     }
 
+    @GetMapping("/relatorio/pdf/jr3/{code}")
+    public void exibirRelatorioPorDepartamento(@PathVariable("code") String code,
+                                            @RequestParam (name = "departamento", required = false) String departamento,
+                                            HttpServletResponse response) throws IOException {
+
+        service.addParams("DEPARTAMENTO_DESC", departamento.isEmpty() ? null : departamento);
+        byte[] bytes = service.exportarPDF(code);
+        response.setContentType(MediaType.APPLICATION_PDF_VALUE);
+        response.setHeader("Content-disposition", "inline; filename=relatorio-"+ code + ".pdf" );
+        response.getOutputStream().write(bytes);
+    }
+
     @ModelAttribute("categorias")
     public List<String> getCategorias(){
         return categoriaRepository.findCategorias();
