@@ -115,12 +115,13 @@
                     <div class="card mt-3">
                         <div class="product-1 align-items-center p-2 text-center">
                             <img alt="" class="rounded" src="/image/gear.png" width="160">
-                            <h5>Em Uso</h5>
+                            <h5>Equipamentos</h5>
+                            <h4>Ativos</h4>
 
                             <!-- card info-->
                             <div class="cost mt-3 text-dark">
                                 <h5>Total</h5>
-                                <span th:text="${qtdEquipamentos}"></span>
+                                <span th:text="${qtdEquipamentosEmUso}"></span>
                             </div>
                             <!-- button for cards -->
                             <div class="p-3 pc text-center text-white mt-3 cursor">
@@ -138,12 +139,13 @@
                     <div class="card mt-3">
                         <div class="product-1 align-items-center p-2 text-center">
                             <img alt="" class="rounded" src="/image/store.png" width="160">
-                            <h5>Depósito GTI</h5>
+                            <h5>Equipamentos</h5>
+                            <h4>Depósito GTI</h4>
 
                             <!-- card info-->
                             <div class="net mt-3 text-dark">
                                 <h5>Total</h5>
-                                <span th:text="${qtdDepartamentos}"></span>
+                                <span th:text="${qtdEquipamentosDeposito}"></span>
                             </div>
                             <!-- button for cards -->
                             <div class="p-3 network text-center text-white mt-3 cursor">
@@ -160,12 +162,13 @@
                     <div class="card mt-3">
                         <div class="product-1 align-items-center p-2 text-center">
                             <img alt="" class="rounded" src="/image/manutencao.png" width="160">
-                            <h5>Em Manutenção</h5>
+                            <h5>Equipamentos</h5>
+                            <h4>Em Manutenção</h4>
 
                             <!-- card info-->
                             <div class="impress mt-3 text-dark">
                                 <h5>Total</h5>
-                                <span th:text="${qtdCategorias}"></span>
+                                <span th:text="${qtdEquipamentosManutencao}"></span>
                             </div>
                             <!-- button for cards -->
                             <div class="p-3 imp text-center text-white mt-3 cursor">
@@ -176,6 +179,7 @@
                     </div>
                 </div>
                 <!-- card 6 ends here -->
+
             </div>
         </div>
         <!-- Container for all products ends -->

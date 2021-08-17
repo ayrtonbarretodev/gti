@@ -77,9 +77,11 @@
 
     $('button[id*="btn_"]').click(function () {
         url = "http://localhost:8080/" + $(this).attr('id').split("_")[1];
+        console.log(url);
     });
 
     $('#ok_confirm').click(function () {
+        console.log(url);
         document.location.href = url;
     })
 

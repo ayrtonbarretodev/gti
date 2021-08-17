@@ -2,6 +2,17 @@
 $(document).ready(function() {
     moment.locale('pt-BR');
     var table = $('#table-usuarios').DataTable({
+        "language":{
+            "lengthMenu": "Mostrar _MENU_ registros por página",
+            "infoEmpty": "Nenhum registro disponível",
+            "zeroRecords": "Nenhum registro encontrado",
+            "info": "Mostrando página _PAGE_ de _PAGES_",
+            "search": "Pesquisar:",
+            "paginate": {
+                "previous": "Anterior",
+                "next":"Próxima"
+            }
+        },
         searching : true,
         lengthMenu : [ 5, 10 ],
         processing : true,

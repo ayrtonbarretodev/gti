@@ -203,3 +203,17 @@ body {
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
 }
+
+.btn.btn-info.btn-sm.btn-block{
+    background-color: #ea4646;
+    border-color:black;
+}
+
+.btn.btn-success.btn-sm.btn-block{
+    border-color:black;
+}
+
+/*div.dataTables_wrapper {*/
+/*    width: 1000px;*/
+/*    margin: 0 auto;*/
+/*}*/

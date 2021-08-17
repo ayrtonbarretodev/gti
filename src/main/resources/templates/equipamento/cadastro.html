@@ -87,7 +87,7 @@
                     <label for="departamento">Departamento</label>
                     <select class="form-control" id="departamento" th:field="*{departamento}"/>
                     <option value="">Selecione</option>
-                    <option th:each="d : ${departamentos}"
+                    <option th:selected="${d.nome} == ${equipamento.departamento?.nome}" th:each="d : ${departamentos}"
                             th:text="${d.ambiente == ''} ? ${d.nome} : ${d.nome + '-' + d.ambiente}"
                             th:value="${d.id}">
                     </option>
@@ -99,9 +99,9 @@
                     <label for="categoria">Categoria</label>
                     <select class="form-control" id="categoria" th:field="*{categoria}"/>
                     <option value="">Selecione</option>
-                    <option th:each="c : ${categorias}"
+                    <option th:selected="${c.nome} == ${equipamento.categoria?.nome}" th:each="c : ${categorias}"
                             th:text="${c.nome}"
-                            th:value="${c.id}">Direção
+                            th:value="${c.id}">
                     </option>
                     </select>
                 </div>
@@ -110,7 +110,7 @@
                     <label for="status">Status</label>
                     <select class="form-control" id="status" th:field="*{status}"/>
                     <option value="">Selecione</option>
-                    <option th:each="status : ${status}" th:text="${status.descricao}"
+                    <option th:selected="${status.descricao} == ${equipamento.status?.descricao}" th:each="status : ${status}" th:text="${status.descricao}"
                             th:value="${status}"></option>
                     </select>
                 </div>

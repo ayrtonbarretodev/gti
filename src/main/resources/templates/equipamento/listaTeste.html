@@ -14,12 +14,12 @@
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <i class="oi oi-caret-right"></i>
-                    <span>Lista de Categorias</span>
+                    <span>Lista de Equipamentos</span>
                 </li>
             </ul>
-            <a class="btn btn-primary btn-md" role="button" th:href="@{/categorias/cadastrar}">
+            <a class="btn btn-primary btn-md" role="button" th:href="@{/equipamentos/cadastrar}">
                 <span aria-hidden="true" class="oi oi-plus" title="Cadastro"></span>
-                <span>Nova Categoria</span>
+                <span>Novo Equipamento</span>
             </a>
         </div>
     </nav>
@@ -32,16 +32,25 @@
 
 
                     <div th:replace="fragments/alert"></div>
-                    <h2>Lista de Categorias</h2>
+                    <h2>Lista de Equipamentos</h2>
                     <table class="table table-sm table-striped table-bordered nowrap"
-                           id="table-categorias"
+                           id="table-equipamentos"
                            style="width: 100%">
                         <thead class="thead-dark">
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Nome</th>
+                            <th scope="col">Tombo Patrimonial</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Categoria</th>
+                            <th scope="col">Departamento</th>
+                            <th scope="col">Endereço MAC</th>
                             <th scope="col">Editar</th>
                             <th scope="col">Excluir</th>
+                            <th scope="col">Data de Entrada</th>
+                            <th scope="col">Modelo</th>
+                            <th scope="col">Fabricante</th>
+                            <th scope="col">Número de Série</th>
                         </tr>
                         </thead>
                     </table>
@@ -51,7 +60,7 @@
     </div>
     <div th:replace="fragments/modal :: modal"></div>
 </section>
-<script	th:src="@{/js/categoria.js(v=${version})}" th:fragment="js"></script>
+<script	th:src="@{/js/equipamento.js(v=${version})}" th:fragment="js"></script>
 <script th:inline="javascript" th:fragment="inlinescript"></script>
 
 </body>

@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8"/>
 </head>
+
 <body>
 <section class="layout-content" layout:fragment="corpo">
 
@@ -23,121 +24,37 @@
         </div>
     </nav>
 
-    <div class="container" id="listagem">
+    <div class="album py-5 bg-light">
+        <div class="container">
 
-        <p>
-            <i class="oi oi-magnifying-glass"></i><span></span>
-            <button aria-controls="collapseNome" class="btn btn-primary" data-target="#collapseNome" data-toggle="collapse"
-                    type="button">Nome
-            </button>
-            <button aria-controls="collapseAmbiente" class="btn btn-primary" data-target="#collapseAmbiente" data-toggle="collapse"
-                    type="button">Ambiente
-            </button>
-        </p>
+            <div class="row">
+                <div class="col-md-12">
 
-        <div class="row">
-            <div class="col">
-                <div class="collapse" id="collapseNome">
 
-                    <nav class="navbar navbar-light bg-light">
-                        <form class="form-inline" method="GET"
-                              th:action="@{/departamentos/buscar/nome(page=${pageDepartamento.pagina}, dir=${pageDepartamento.direcao})}">
-                            <input aria-label="Search" class="form-control mr-sm-2" name="nome" placeholder="nome"
-                                   type="search"/>
-                            <button class="btn btn-outline-success my-2 my-sm-0">Pesquisar</button>
-                        </form>
-                    </nav>
-
+                    <div th:replace="fragments/alert"></div>
+                    <h2>Lista de Departamentos</h2>
+                    <table class="table table-sm table-striped table-bordered nowrap"
+                           id="table-departamentos"
+                           style="width: 100%">
+                        <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">Ambiente</th>
+                            <th scope="col">Telefone</th>
+                            <th scope="col">Editar</th>
+                            <th scope="col">Excluir</th>
+                        </tr>
+                        </thead>
+                    </table>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <div class="collapse" id="collapseAmbiente">
-
-                    <nav class="navbar navbar-light bg-light">
-                        <form class="form-inline" method="GET" th:action="@{/departamentos/buscar/ambiente}">
-                            <input aria-label="Search" class="form-control mr-sm-2" name="ambiente" placeholder="nome"
-                                   type="search"/>
-                            <button class="btn btn-outline-success my-2 my-sm-0">Pesquisar</button>
-                        </form>
-                    </nav>
-
-                </div>
-            </div>
-        </div>
-
-
-        <div th:replace="fragments/alert"></div>
-
-        <div class="table-responsive">
-            <table class="table table-striped table-hover table-sm">
-                <thead>
-                <tr>
-                    <th>
-                        <a class="" tabindex="-1"
-                           th:href="@{/departamentos/listar(page=${pageDepartamento.pagina}, dir=desc)}">
-                            <span class="oi oi-arrow-bottom"></span></a>
-                        Nome
-                        <a class="" tabindex="-1"
-                           th:href="@{/departamentos/listar(page=${pageDepartamento.pagina}, dir=asc)}">
-                            <span class="oi oi-arrow-top"></span></a>
-                    </th>
-                    <th>Ambiente</th>
-                    <th>Telefone</th>
-                    <th>Ação</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="d : ${pageDepartamento.registros}">
-                    <td th:text="${d.nome}"></td>
-                    <td th:text="${d.ambiente}"></td>
-                    <td th:text="${d.telefone}"></td>
-                    <td colspan="2">
-                        <a class="btn btn-info btn-sm" role="button"
-                           th:href="@{/departamentos/editar/{id} (id=${d.id})}">
-                            <span aria-hidden="true" class="oi oi-brush" title="Editar"></span>
-                        </a>
-                        <button class="btn btn-danger btn-sm" data-target="#myModal"
-                                data-toggle="modal"
-                                th:id="${'btn_departamentos/excluir/' + d.id}" type="button">
-                            <span aria-hidden="true" class="oi oi-circle-x" title="Exclusão desabilitada"></span>
-                        </button>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-            <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item">
-                        <a class="page-link"
-                           tabindex="-1" th:href="@{/departamentos/listar(page=${1}, dir=${pageDepartamento.direcao})}">Primeira</a>
-                    </li>
-                    <li th:class="${pageDepartamento.pagina == 1} ? 'page-item disabled' : 'page-item'">
-                        <a class="page-link"
-                           tabindex="-1"
-                           th:href="@{/departamentos/listar(page=${pageDepartamento.pagina -1}, dir=${pageDepartamento.direcao})}">Anterior</a>
-                    </li>
-                    <li class="page-item">
-                        <span class="page-link"
-                              th:text="|${pageDepartamento.pagina} de ${pageDepartamento.totalDePaginas}|"></span>
-                    </li>
-                    <li th:class="${pageDepartamento.pagina == pageDepartamento.totalDePaginas} ? 'page-item disabled' : 'page-item'">
-                        <a class="page-link"
-                           th:href="@{/departamentos/listar(page=${pageDepartamento.pagina +1}, dir=${pageDepartamento.direcao})}">Próxima</a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link"
-                           tabindex="-1"
-                           th:href="@{/departamentos/listar(page=${pageDepartamento.totalDePaginas}, dir=${pageDepartamento.direcao})}">Última</a>
-                    </li>
-                </ul>
-            </nav>
         </div>
     </div>
     <div th:replace="fragments/modal :: modal"></div>
 </section>
-<script th:fragment="js" th:src="~{}"></script>
-<script th:fragment="inlinescript" th:inline="javascript"></script>
+<script	th:src="@{/js/departamento.js(v=${version})}" th:fragment="js"></script>
+<script th:inline="javascript" th:fragment="inlinescript"></script>
+
 </body>
-</html>		
+</html>

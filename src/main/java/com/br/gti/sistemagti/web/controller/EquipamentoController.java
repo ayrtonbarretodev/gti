@@ -4,65 +4,52 @@ import com.br.gti.sistemagti.domain.Categoria;
 import com.br.gti.sistemagti.domain.Departamento;
 import com.br.gti.sistemagti.domain.Equipamento;
 import com.br.gti.sistemagti.domain.enums.Status;
-import com.br.gti.sistemagti.service.CategoriaService;
-import com.br.gti.sistemagti.service.DepartamentoService;
-import com.br.gti.sistemagti.service.EquipamentoService;
-import com.br.gti.sistemagti.util.PaginacaoUtil;
+import com.br.gti.sistemagti.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 @RequestMapping("/equipamentos")
 public class EquipamentoController {
 
     @Autowired
-    private EquipamentoService equipamentoService;
+    private EquiService equiService;
 
     @Autowired
-    private CategoriaService categoriaService;
+    private DepService depService;
 
     @Autowired
-    private DepartamentoService departamentoService;
+    private CategoriaNewService categoriaNewService;
+
 
     @GetMapping("/cadastrar")
     public String cadastrar(Equipamento equipamento) {
         return "equipamento/cadastro";
     }
 
-    @GetMapping("/listar")
-    public String listar(ModelMap model,
-                         @RequestParam("page") Optional<Integer> page,
-                         @RequestParam("dir") Optional<String> dir) {
-        int paginaAtual = page.orElse(1);
-        String ordem = dir.orElse("asc");
-
-        PaginacaoUtil<Equipamento> pageEquipamento = equipamentoService.buscaPorPagina(paginaAtual, ordem);
-
-        model.addAttribute("pageEquipamento", pageEquipamento);
-        return "equipamento/lista";
-    }
 
     @PostMapping("/salvar")
     public String salvar(@Valid Equipamento equipamento, BindingResult result, RedirectAttributes attr) {
         if (result.hasErrors()) {
             return "equipamento/cadastro";
         }
-        equipamentoService.salvar(equipamento);
+        equiService.salvarEquipamento(equipamento);
         attr.addFlashAttribute("success", "Equipamento inserido com sucesso");
         return "redirect:/equipamentos/cadastrar";
     }
 
     @GetMapping("/editar/{id}")
     public String preEditar(@PathVariable("id") Long id, ModelMap model) {
-        model.addAttribute("equipamento", equipamentoService.buscarPorId(id));
+        model.addAttribute("equipamento", equiService.buscarPorId(id));
         return "equipamento/cadastro";
     }
 
@@ -71,39 +58,42 @@ public class EquipamentoController {
         if (result.hasErrors()) {
             return "equipamento/cadastro";
         }
-        equipamentoService.editar(equipamento);
+        equiService.editarEquipamento(equipamento);
         attr.addFlashAttribute("success", "Equipamento editado com sucesso");
         return "redirect:/equipamentos/cadastrar";
     }
 
     @GetMapping("/excluir/{id}")
     public String excluir(@PathVariable("id") Long id, RedirectAttributes attr) {
-        equipamentoService.excluir(id);
+        equiService.deletarEquipamento(id);
         attr.addFlashAttribute("success", "Equipamento removido com sucesso.");
         return "redirect:/equipamentos/listar";
     }
 
-//    @GetMapping("buscar/nome")
-//    public String getPorNome(@RequestParam("nome") String nome, ModelMap model) {
-//        equipamentoService.buscarPorNome(nome);
-//        //model.addAttribute("equipamentos", equipamentoService.buscarPorNome(nome));
-//        return "/funcionario/lista";
-//    }
+    //listar equipamentos na datatables
+    @GetMapping("/datatables/server/equipamentos")
+    public ResponseEntity<?> listarEquipamentosDatatables(HttpServletRequest request){
+        return ResponseEntity.ok(equiService.buscarTodos(request));
+    }
 
+    @GetMapping("/listar")
+    public String listar(){
+        return "equipamento/listaTeste";
+    }
 
     @ModelAttribute("categorias")
     public List<Categoria> listaDeCategorias() {
-        return categoriaService.buscarTodos();
+        return categoriaNewService.buscarTodasCategorias();
     }
 
     @ModelAttribute("departamentos")
     public List<Departamento> listaDeDepartamentos() {
-        return departamentoService.buscarTodos();
+        return depService.buscarTodosDepartamentos();
     }
 
     @ModelAttribute("qtdDepartamentos")
     public int listaDeDepartamentosTotal() {
-        return departamentoService.buscarTodos().size();
+        return depService.buscarTodosDepartamentos().size();
     }
 
     @ModelAttribute("status")

@@ -1,5 +1,6 @@
 package com.br.gti.sistemagti.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -32,6 +33,7 @@ public class Departamento extends AbstractEntity<Long> {
     @Setter
     private String telefone;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "departamento")
     @Getter
     @Setter

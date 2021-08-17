@@ -1,8 +1,6 @@
 package com.br.gti.sistemagti.web.controller;
 
-import com.br.gti.sistemagti.service.CategoriaService;
-import com.br.gti.sistemagti.service.DepartamentoService;
-import com.br.gti.sistemagti.service.EquipamentoService;
+import com.br.gti.sistemagti.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,14 +9,23 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 @Controller
 public class HomeController {
 
-    @Autowired
-    private DepartamentoService departamentoService;
+//    @Autowired
+//    private DepartamentoService departamentoService;
+
+//    @Autowired
+//    private EquipamentoService equipamentoService;
 
     @Autowired
-    private EquipamentoService equipamentoService;
+    private EquiService equiService;
+
+//    @Autowired
+//    private CategoriaService categoriaService;
 
     @Autowired
-    private CategoriaService categoriaService;
+    private DepService depService;
+
+    @Autowired
+    private CategoriaNewService categoriaNewService;
 
     @GetMapping({"/home"})
     public String home() {
@@ -26,18 +33,48 @@ public class HomeController {
     }
 
 
+//    @ModelAttribute("qtdDepartamentos")
+//    public int totalDepartamentos() {
+//        return departamentoService.buscarTodos().size();
+//    }
+
     @ModelAttribute("qtdDepartamentos")
     public int totalDepartamentos() {
-        return departamentoService.buscarTodos().size();
+        return depService.buscarTodosDepartamentos().size();
     }
+
+//    @ModelAttribute("qtdEquipamentos")
+//    public int totalEquipamentos() {
+//        return equipamentoService.buscarTodos().size();
+//    }
 
     @ModelAttribute("qtdEquipamentos")
     public int totalEquipamentos() {
-        return equipamentoService.buscarTodos().size();
+        return equiService.buscarTodosEquipamentos().size();
     }
+
+//    @ModelAttribute("qtdCategorias")
+//    public int totalCategorias() {
+//        return categoriaService.buscarTodos().size();
+//    }
 
     @ModelAttribute("qtdCategorias")
     public int totalCategorias() {
-        return categoriaService.buscarTodos().size();
+        return categoriaNewService.buscarTodasCategorias().size();
+    }
+
+    @ModelAttribute("qtdEquipamentosEmUso")
+    public int totalEquipamentosEmUso() {
+        return equiService.buscarTodosEquipamentosEmUso().size();
+    }
+
+    @ModelAttribute("qtdEquipamentosDeposito")
+    public int totalEquipamentosDeposito() {
+        return equiService.buscarTodosEquipamentosDeposito().size();
+    }
+
+    @ModelAttribute("qtdEquipamentosManutencao")
+    public int totalEquipamentosManutencao() {
+        return equiService.buscarTodosEquipamentosManutencao().size();
     }
 }

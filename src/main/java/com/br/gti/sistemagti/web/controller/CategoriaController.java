@@ -1,44 +1,47 @@
 package com.br.gti.sistemagti.web.controller;
 
 import com.br.gti.sistemagti.domain.Categoria;
-import com.br.gti.sistemagti.service.CategoriaService;
-import com.br.gti.sistemagti.util.PaginacaoUtil;
+import com.br.gti.sistemagti.service.CategoriaNewService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.Optional;
 
 
 @Controller
 @RequestMapping("/categorias")
 public class CategoriaController {
 
+//    @Autowired
+//    private CategoriaService service;
+
     @Autowired
-    private CategoriaService service;
+    private CategoriaNewService categoriaNewService;
 
     @GetMapping("/cadastrar")
     public String cadastrar(Categoria categoria) {
         return "categoria/cadastro";
     }
 
-    @GetMapping("/listar")
-    public String listar(ModelMap model,
-                         @RequestParam("page") Optional<Integer> page,
-                         @RequestParam("dir") Optional<String> dir) {
-
-        int paginaAtual = page.orElse(1);
-        String ordem = dir.orElse("asc");
-
-        PaginacaoUtil<Categoria> pageCategoria = service.buscaPorPagina(paginaAtual, ordem);
-
-        model.addAttribute("pageCategoria", pageCategoria);
-        return "categoria/lista";
-    }
+//    @GetMapping("/listar")
+//    public String listar(ModelMap model,
+//                         @RequestParam("page") Optional<Integer> page,
+//                         @RequestParam("dir") Optional<String> dir) {
+//
+//        int paginaAtual = page.orElse(1);
+//        String ordem = dir.orElse("asc");
+//
+//        PaginacaoUtil<Categoria> pageCategoria = service.buscaPorPagina(paginaAtual, ordem);
+//
+//        model.addAttribute("pageCategoria", pageCategoria);
+//        return "categoria/lista";
+//    }
 
     @PostMapping("/salvar")
     public String salvar(@Valid Categoria categoria, BindingResult result, RedirectAttributes attr) {
@@ -46,14 +49,14 @@ public class CategoriaController {
             return "categoria/cadastro";
         }
 
-        service.salvar(categoria);
+        categoriaNewService.salvarCategoria(categoria);
         attr.addFlashAttribute("success", "Categoria inserida com sucesso");
         return "redirect:/categorias/cadastrar";
     }
 
     @GetMapping("/editar/{id}")
     public String preEditar(@PathVariable("id") Long id, ModelMap model) {
-        model.addAttribute("categoria", service.buscarPorId(id));
+        model.addAttribute("categoria", categoriaNewService.buscarPorId(id));
         return "categoria/cadastro";
     }
 
@@ -62,34 +65,57 @@ public class CategoriaController {
         if (result.hasErrors()) {
             return "categoria/cadastro";
         }
-        service.editar(categoria);
+        categoriaNewService.editarCategoria(categoria);
         attr.addFlashAttribute("success", "Categoria editada com sucesso");
         return "redirect:/categorias/cadastrar";
     }
 
     @GetMapping("/excluir/{id}")
-    public String excluir(@PathVariable("id") Long id, RedirectAttributes attr) {
-        if (service.categoriaTemEquipamentos(id)) {
+    public String excluirCategoria(@PathVariable("id") Long id, RedirectAttributes attr) {
+        if (categoriaNewService.categoriaTemEquipamentos(id)) {
             attr.addFlashAttribute("fail", "Categoria não removida, possui equipamento(s) vinculado(s).");
         } else {
-            service.excluir(id);
+            //service.excluir(id);
+            categoriaNewService.deletarCategoria(id);
             attr.addFlashAttribute("success", "Categoria excluída com sucesso.");
         }
         return "redirect:/categorias/listar";
     }
 
-    @GetMapping("buscar/nome")
-    public String getPorNome(ModelMap model,
-                             @RequestParam("page") Optional<Integer> page,
-                             @RequestParam("dir") Optional<String> dir,
-                             @RequestParam("nome") Optional<String> nome) {
-        int paginaAtual = page.orElse(1);
-        String ordem = dir.orElse("asc");
-        String name = nome.orElse("");
+//    @GetMapping("buscar/nome")
+//    public String getPorNome(ModelMap model,
+//                             @RequestParam("page") Optional<Integer> page,
+//                             @RequestParam("dir") Optional<String> dir,
+//                             @RequestParam("nome") Optional<String> nome) {
+//        int paginaAtual = page.orElse(1);
+//        String ordem = dir.orElse("asc");
+//        String name = nome.orElse("");
+//
+//        PaginacaoUtil<Categoria> pageNome = service.buscaPorNome(paginaAtual, ordem, name);
+//
+//        model.addAttribute("pageCategoria", pageNome);
+//        return "categoria/lista";
+//    }
 
-        PaginacaoUtil<Categoria> pageNome = service.buscaPorNome(paginaAtual, ordem, name);
+    //listar categorias na datatables
+    @GetMapping("/datatables/server/categorias")
+    public ResponseEntity<?> listarCategoriasDatatables(HttpServletRequest request){
+        return ResponseEntity.ok(categoriaNewService.buscarTodos(request));
+    }
 
-        model.addAttribute("pageCategoria", pageNome);
+//    @PostMapping("/salvarCategoria")
+//    public String salvarCategoria(@Valid Categoria categoria, BindingResult result, RedirectAttributes attr) {
+//        if (result.hasErrors()) {
+//            return "categoria/cadastro";
+//        }
+//
+//        categoriaNewService.salvarCategoria(categoria);
+//        attr.addFlashAttribute("success", "Categoria inserida com sucesso");
+//        return "redirect:/categorias/cadastrar";
+//    }
+
+    @GetMapping("/listar")
+    public String listar(){
         return "categoria/lista";
     }
 
