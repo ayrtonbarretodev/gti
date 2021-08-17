@@ -2,16 +2,12 @@ package com.br.gti.sistemagti.web.conversor;
 
 import com.br.gti.sistemagti.domain.Departamento;
 import com.br.gti.sistemagti.service.DepService;
-//import com.br.gti.sistemagti.service.DepartamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 @Component
 public class StringToDepartamentoConverter implements Converter<String, Departamento> {
-
-//    @Autowired
-//    private DepartamentoService service;
 
     @Autowired
     private DepService depService;

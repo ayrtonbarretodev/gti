@@ -47,11 +47,6 @@ public class Equipamento extends AbstractEntity<Long> {
     @Setter
     private Integer tomboPatrimonial;
 
-//    @Size(max = 255)
-//    @Getter
-//    @Setter
-//    private String observacao;
-
     @NotNull(message = "{NotNull.equipamento.status}")
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
