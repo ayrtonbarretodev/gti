@@ -24,4 +24,7 @@ public interface EquipamentoRepository extends JpaRepository<Equipamento, Long> 
     @Query("select e from Equipamento e where  e.status = 'MANUTENCAO'")
     List<Equipamento> getEquipamentosByStatusManutencao();
 
+    @Query("select e.status from Equipamento e order by e.status asc")
+    List<String> findStatus();
+
 }

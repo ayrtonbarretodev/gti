@@ -14,6 +14,6 @@ public interface DepartamentoRepository extends JpaRepository<Departamento, Long
             + "where d.nome like %:search% OR d.ambiente like %:search%")
     Page<Departamento> findByNameOrAmbiente(String search, Pageable pageable);
 
-    @Query("select d.nome from Departamento d order by d.nome asc")
+    @Query("select distinct d.nome from Departamento d order by d.nome asc")
     List<String> findDepartamentos();
 }

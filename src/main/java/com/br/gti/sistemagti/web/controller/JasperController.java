@@ -21,11 +21,11 @@ public class JasperController {
     @Autowired
     private JasperService service;
 
-    @Autowired
-    private CategoriaRepository categoriaRepository;
-
-    @Autowired
-    private DepartamentoRepository departamentoRepository;
+//    @Autowired
+//    private CategoriaRepository categoriaRepository;
+//
+//    @Autowired
+//    private DepartamentoRepository departamentoRepository;
 
     @GetMapping("/relatorio/pdf/jr1")
     public void exibirRelatorioTotal(@RequestParam ("code") String code,
@@ -65,13 +65,41 @@ public class JasperController {
         response.getOutputStream().write(bytes);
     }
 
-    @ModelAttribute("categorias")
-    public List<String> getCategorias(){
-        return categoriaRepository.findCategorias();
+
+    @GetMapping("/relatorio/pdf/jr4/{code}")
+    public void exibirRelatorioPorCategoriaDepartamento(@PathVariable("code") String code,
+                                               @RequestParam (name = "departamento", required = false) String departamento,
+                                               @RequestParam (name = "categoria", required = false) String categoria,
+                                               HttpServletResponse response) throws IOException {
+
+        service.addParams("DEPARTAMENTO_DESC", departamento.isEmpty() ? null : departamento);
+        service.addParams("CATEGORIA_DESC", categoria.isEmpty() ? null : categoria);
+        byte[] bytes = service.exportarPDF(code);
+        response.setContentType(MediaType.APPLICATION_PDF_VALUE);
+        response.setHeader("Content-disposition", "inline; filename=relatorio-"+ code + ".pdf" );
+        response.getOutputStream().write(bytes);
     }
 
-    @ModelAttribute("departamentos")
-    public List<String> getDepartamentos(){
-        return departamentoRepository.findDepartamentos();
+
+    @GetMapping("/relatorio/pdf/jr6/{code}")
+    public void exibirRelatorioPorStatus(@PathVariable("code") String code,
+                                               @RequestParam (name = "status", required = false) String status,
+                                               HttpServletResponse response) throws IOException {
+
+        service.addParams("STATUS_DESC", status.isEmpty() ? null : status);
+        byte[] bytes = service.exportarPDF(code);
+        response.setContentType(MediaType.APPLICATION_PDF_VALUE);
+        response.setHeader("Content-disposition", "inline; filename=relatorio-"+ code + ".pdf" );
+        response.getOutputStream().write(bytes);
     }
+
+//    @ModelAttribute("categorias")
+//    public List<String> getCategorias(){
+//        return categoriaRepository.findCategorias();
+//    }
+//
+//    @ModelAttribute("departamentos")
+//    public List<String> getDepartamentos(){
+//        return departamentoRepository.findDepartamentos();
+//    }
 }

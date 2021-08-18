@@ -32,6 +32,23 @@
 
         <hr>
 
+        <h3>Relatório por Categoria e Departamento</h3>
+        <form th:action="@{/relatorio/pdf/jr4/04}" method="get">
+            <select id="categoriaFilter" name="categoria" >
+                <option value="">Selecione a Categoria</option>
+                <option th:each="categoria : ${categorias}" th:value="${categoria}" th:text="${categoria}">Selecione a Categoria</option>
+            </select>
+            <select id="departamentoFilter" name="departamento" >
+                <option value="">Selecione o Departamento</option>
+                <option th:each="departamento : ${departamentos}" th:value="${departamento}" th:text="${departamento}">Selecione o Departamento</option>
+            </select>
+            <button class="oi oi-eye" type="submit" aria-hidden="true" title="Visualizar"></button>
+            </a>
+        </form>
+
+        <hr>
+
+
         <h3>Relatório por Categoria</h3>
         <form th:action="@{/relatorio/pdf/jr2/02}" method="get">
             <select id="categoria" name="categoria" >
@@ -57,12 +74,12 @@
         <hr>
 
         <h3>Relatório por Status</h3>
-        <form>
-            <select id="status" name="">
-                <option>Selecione o Status</option>
+        <form th:action="@{/relatorio/pdf/jr6/06}" method="get">
+            <select id="status" name="status" >
+                <option value="">Selecione o Status</option>
+                <option th:each="status : ${status}" th:value="${status}" th:text="${status}">Selecione o Status</option>
             </select>
-            <a class="btn btn-info btn-sm" role="button"  target="_blank">
-                <span aria-hidden="true" class="oi oi-eye" title="Visualizar"></span>
+            <button class="oi oi-eye" type="submit" aria-hidden="true" title="Visualizar"></button>
             </a>
         </form>
 
