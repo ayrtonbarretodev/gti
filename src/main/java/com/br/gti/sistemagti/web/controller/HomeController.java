@@ -9,17 +9,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 @Controller
 public class HomeController {
 
-//    @Autowired
-//    private DepartamentoService departamentoService;
-
-//    @Autowired
-//    private EquipamentoService equipamentoService;
-
     @Autowired
     private EquiService equiService;
-
-//    @Autowired
-//    private CategoriaService categoriaService;
 
     @Autowired
     private DepService depService;
@@ -32,31 +23,15 @@ public class HomeController {
         return "home";
     }
 
-
-//    @ModelAttribute("qtdDepartamentos")
-//    public int totalDepartamentos() {
-//        return departamentoService.buscarTodos().size();
-//    }
-
     @ModelAttribute("qtdDepartamentos")
     public int totalDepartamentos() {
         return depService.buscarTodosDepartamentos().size();
     }
 
-//    @ModelAttribute("qtdEquipamentos")
-//    public int totalEquipamentos() {
-//        return equipamentoService.buscarTodos().size();
-//    }
-
     @ModelAttribute("qtdEquipamentos")
     public int totalEquipamentos() {
         return equiService.buscarTodosEquipamentos().size();
     }
-
-//    @ModelAttribute("qtdCategorias")
-//    public int totalCategorias() {
-//        return categoriaService.buscarTodos().size();
-//    }
 
     @ModelAttribute("qtdCategorias")
     public int totalCategorias() {

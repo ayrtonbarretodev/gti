@@ -78,7 +78,7 @@ public class EquipamentoController {
 
     @GetMapping("/listar")
     public String listar(){
-        return "equipamento/listaTeste";
+        return "equipamento/lista";
     }
 
     @ModelAttribute("categorias")

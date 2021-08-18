@@ -18,9 +18,6 @@ import javax.validation.Valid;
 @RequestMapping("/departamentos")
 public class DepartamentoController {
 
-//    @Autowired
-//    private DepartamentoService service;
-
     @Autowired
     private DepService depService;
 
@@ -29,19 +26,6 @@ public class DepartamentoController {
         return "departamento/cadastro";
     }
 
-//    @GetMapping("/listar")
-//    public String listar(ModelMap model,
-//                         @RequestParam("page") Optional<Integer> page,
-//                         @RequestParam("dir") Optional<String> dir) {
-//
-//        int paginaAtual = page.orElse(1);
-//        String ordem = dir.orElse("asc");
-//
-//        PaginacaoUtil<Departamento> pageDepartamento = service.buscaPorPagina(paginaAtual, ordem);
-//
-//        model.addAttribute("pageDepartamento", pageDepartamento);
-//        return "departamento/lista";
-//    }
 
     @PostMapping("/salvar")
     public String salvar(@Valid Departamento departamento, BindingResult result, RedirectAttributes attr) {
@@ -82,27 +66,6 @@ public class DepartamentoController {
         }
         return "redirect:/departamentos/listar";
     }
-
-//    @GetMapping("buscar/nome")
-//    public String getPorNome(ModelMap model,
-//                             @RequestParam("page") Optional<Integer> page,
-//                             @RequestParam("dir") Optional<String> dir,
-//                             @RequestParam("nome") Optional<String> nome) {
-//        int paginaAtual = page.orElse(1);
-//        String ordem = dir.orElse("asc");
-//        String name = nome.orElse("");
-//
-//        PaginacaoUtil<Departamento> pageNome = service.buscarPorNome(paginaAtual, ordem, name);
-//
-//        model.addAttribute("pageDepartamento", pageNome);
-//        return "departamento/lista";
-//    }
-
-//    @GetMapping("buscar/ambiente")
-//    public String getPorAmbiente(@RequestParam("ambiente") String ambiente, ModelMap model) {
-//        model.addAttribute("departamentos", service.buscarPorAmbiente(ambiente));
-//        return "departamento/lista";
-//    }
 
     //listar departamentos na datatables
     @GetMapping("/datatables/server/departamentos")

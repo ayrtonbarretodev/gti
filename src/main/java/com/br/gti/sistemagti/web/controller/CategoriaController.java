@@ -18,9 +18,6 @@ import javax.validation.Valid;
 @RequestMapping("/categorias")
 public class CategoriaController {
 
-//    @Autowired
-//    private CategoriaService service;
-
     @Autowired
     private CategoriaNewService categoriaNewService;
 
@@ -28,20 +25,6 @@ public class CategoriaController {
     public String cadastrar(Categoria categoria) {
         return "categoria/cadastro";
     }
-
-//    @GetMapping("/listar")
-//    public String listar(ModelMap model,
-//                         @RequestParam("page") Optional<Integer> page,
-//                         @RequestParam("dir") Optional<String> dir) {
-//
-//        int paginaAtual = page.orElse(1);
-//        String ordem = dir.orElse("asc");
-//
-//        PaginacaoUtil<Categoria> pageCategoria = service.buscaPorPagina(paginaAtual, ordem);
-//
-//        model.addAttribute("pageCategoria", pageCategoria);
-//        return "categoria/lista";
-//    }
 
     @PostMapping("/salvar")
     public String salvar(@Valid Categoria categoria, BindingResult result, RedirectAttributes attr) {
@@ -82,37 +65,11 @@ public class CategoriaController {
         return "redirect:/categorias/listar";
     }
 
-//    @GetMapping("buscar/nome")
-//    public String getPorNome(ModelMap model,
-//                             @RequestParam("page") Optional<Integer> page,
-//                             @RequestParam("dir") Optional<String> dir,
-//                             @RequestParam("nome") Optional<String> nome) {
-//        int paginaAtual = page.orElse(1);
-//        String ordem = dir.orElse("asc");
-//        String name = nome.orElse("");
-//
-//        PaginacaoUtil<Categoria> pageNome = service.buscaPorNome(paginaAtual, ordem, name);
-//
-//        model.addAttribute("pageCategoria", pageNome);
-//        return "categoria/lista";
-//    }
-
     //listar categorias na datatables
     @GetMapping("/datatables/server/categorias")
     public ResponseEntity<?> listarCategoriasDatatables(HttpServletRequest request){
         return ResponseEntity.ok(categoriaNewService.buscarTodos(request));
     }
-
-//    @PostMapping("/salvarCategoria")
-//    public String salvarCategoria(@Valid Categoria categoria, BindingResult result, RedirectAttributes attr) {
-//        if (result.hasErrors()) {
-//            return "categoria/cadastro";
-//        }
-//
-//        categoriaNewService.salvarCategoria(categoria);
-//        attr.addFlashAttribute("success", "Categoria inserida com sucesso");
-//        return "redirect:/categorias/cadastrar";
-//    }
 
     @GetMapping("/listar")
     public String listar(){

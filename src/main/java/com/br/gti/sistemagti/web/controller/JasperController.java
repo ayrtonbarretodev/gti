@@ -13,19 +13,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 @Controller
 public class JasperController {
 
     @Autowired
     private JasperService service;
-
-//    @Autowired
-//    private CategoriaRepository categoriaRepository;
-//
-//    @Autowired
-//    private DepartamentoRepository departamentoRepository;
 
     @GetMapping("/relatorio/pdf/jr1")
     public void exibirRelatorioTotal(@RequestParam ("code") String code,
@@ -93,13 +86,4 @@ public class JasperController {
         response.getOutputStream().write(bytes);
     }
 
-//    @ModelAttribute("categorias")
-//    public List<String> getCategorias(){
-//        return categoriaRepository.findCategorias();
-//    }
-//
-//    @ModelAttribute("departamentos")
-//    public List<String> getDepartamentos(){
-//        return departamentoRepository.findDepartamentos();
-//    }
 }
