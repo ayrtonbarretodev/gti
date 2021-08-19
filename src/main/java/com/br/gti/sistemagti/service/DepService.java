@@ -29,7 +29,7 @@ public class DepService {
         datatables.setRequest(request);
         datatables.setColunas(DatatablesColunas.DEPARTAMENTOS);
         Page<Departamento> page = datatables.getSearch().isEmpty()
-                ? repository.findAll(datatables.getPageable())
+                ? repository.getDepartamentosByDeletedFalse(datatables.getPageable())
                 : repository.findByNameOrAmbiente(datatables.getSearch(), datatables.getPageable());
         return datatables.getResponse(page);
     }
@@ -46,12 +46,12 @@ public class DepService {
 
     @Transactional(readOnly = true)
     public List<Departamento> buscarTodosDepartamentos() {
-        return repository.findAll();
+        return repository.getAllByDeletedFalse();
     }
 
     @Transactional(readOnly = false)
     public void deletarDepartamento(Long id) {
-        repository.deleteById(id);
+        repository.deleteDepartamento(id);
     }
 
 

@@ -3,6 +3,8 @@ package com.br.gti.sistemagti.domain;
 import com.br.gti.sistemagti.domain.enums.Status;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 import org.hibernate.envers.Audited;
 import org.hibernate.envers.RelationTargetAuditMode;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -18,6 +20,10 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "EQUIPAMENTOS")
 public class Equipamento extends AbstractEntity<Long> {
+
+    @Getter
+    @Setter
+    private Boolean deleted = false;
 
     @NotBlank(message = "O Campo Nome do Equipamento é Obrigatório.")
     @Column(nullable = false, length = 60)

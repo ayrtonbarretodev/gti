@@ -3,6 +3,8 @@ package com.br.gti.sistemagti.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +18,8 @@ import java.util.List;
 @Entity
 @Table(name = "DEPARTAMENTOS")
 public class Departamento extends AbstractEntity<Long> {
+
+    private Boolean deleted = false;
 
     @NotBlank(message = "O Campo Departamento é Obrigatório.")
     @Column(nullable = false, length = 60)

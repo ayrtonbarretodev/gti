@@ -65,6 +65,7 @@ public class EquipamentoController {
 
     @GetMapping("/excluir/{id}")
     public String excluir(@PathVariable("id") Long id, RedirectAttributes attr) {
+        equiService.buscarPorId(id).setDeleted(true);
         equiService.deletarEquipamento(id);
         attr.addFlashAttribute("success", "Equipamento removido com sucesso.");
         return "redirect:/equipamentos/listar";

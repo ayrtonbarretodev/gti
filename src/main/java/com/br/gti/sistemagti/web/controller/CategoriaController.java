@@ -12,6 +12,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.text.DateFormat;
+import java.util.Date;
 
 
 @Controller
@@ -58,7 +60,10 @@ public class CategoriaController {
         if (categoriaNewService.categoriaTemEquipamentos(id)) {
             attr.addFlashAttribute("fail", "Categoria não removida, possui equipamento(s) vinculado(s).");
         } else {
-            //service.excluir(id);
+//            Date d = new Date();
+//            String dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
+//            categoriaNewService.buscarPorId(id).setNome(categoriaNewService.buscarPorId(id).getNome() + "(deletada)" + dStr);
+            //categoriaNewService.deletarCategoria(id);
             categoriaNewService.deletarCategoria(id);
             attr.addFlashAttribute("success", "Categoria excluída com sucesso.");
         }

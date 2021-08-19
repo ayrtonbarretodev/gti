@@ -28,7 +28,7 @@ public class EquiService {
         datatables.setRequest(request);
         datatables.setColunas(DatatablesColunas.EQUIPAMENTOS);
         Page<Equipamento> page = datatables.getSearch().isEmpty()
-                ? repository.findAll(datatables.getPageable())
+                ? repository.getEquipamentosByDeletedFalse(datatables.getPageable())
                 : repository.findByName(datatables.getSearch(), datatables.getPageable());
         return datatables.getResponse(page);
     }
@@ -45,7 +45,7 @@ public class EquiService {
 
     @Transactional(readOnly = true)
     public List<Equipamento> buscarTodosEquipamentos() {
-        return repository.findAll();
+        return repository.getAllByDeletedFalse();
     }
 
     @Transactional(readOnly = true)
@@ -63,10 +63,9 @@ public class EquiService {
         return repository.getEquipamentosByStatusManutencao();
     }
 
-
     @Transactional(readOnly = false)
     public void deletarEquipamento(Long id) {
-        repository.deleteById(id);
+        repository.deleteEquipamento(id);
     }
 
     @Transactional(readOnly = false)

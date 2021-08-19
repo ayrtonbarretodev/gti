@@ -27,7 +27,7 @@ public class CategoriaNewService {
         datatables.setRequest(request);
         datatables.setColunas(DatatablesColunas.CATEGORIAS);
         Page<Categoria> page = datatables.getSearch().isEmpty()
-                ? repository.findAll(datatables.getPageable())
+                ? repository.getCategoriaByDeletedFalse(datatables.getPageable())
                 : repository.findByName(datatables.getSearch(), datatables.getPageable());
         return datatables.getResponse(page);
     }
@@ -46,7 +46,8 @@ public class CategoriaNewService {
 
     @Transactional(readOnly = false)
     public void deletarCategoria(Long id) {
-        repository.deleteById(id);
+        //repository.deleteById(id);
+        repository.deleteCategoria(id);
     }
 
     @Transactional(readOnly = true)
@@ -63,7 +64,7 @@ public class CategoriaNewService {
 
     @Transactional(readOnly = true)
     public List<Categoria> buscarTodasCategorias() {
-        return repository.findAll();
+        return repository.getAllByDeletedFalse();
     }
 
 }
