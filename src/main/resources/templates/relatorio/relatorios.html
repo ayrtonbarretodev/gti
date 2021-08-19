@@ -42,7 +42,7 @@
                 <option value="">Selecione o Departamento</option>
                 <option th:each="departamento : ${departamentos}" th:value="${departamento}" th:text="${departamento}">Selecione o Departamento</option>
             </select>
-            <button class="oi oi-eye" type="submit" aria-hidden="true" title="Visualizar"></button>
+            <button class="oi oi-eye" type="submit" aria-hidden="true" title="Visualizar" target="_blank"></button>
             </a>
         </form>
 
@@ -55,7 +55,8 @@
                 <option value="">Selecione a Categoria</option>
                 <option th:each="categoria : ${categorias}" th:value="${categoria}" th:text="${categoria}">Selecione a Categoria</option>
             </select>
-            <button class="oi oi-eye" type="submit" aria-hidden="true" title="Visualizar"></button>
+            <a>
+            <button class="oi oi-eye" type="submit" aria-hidden="true" title="Visualizar" ></button>
             </a>
         </form>
 
