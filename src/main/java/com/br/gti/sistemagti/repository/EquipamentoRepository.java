@@ -11,8 +11,20 @@ import java.util.List;
 
 public interface EquipamentoRepository extends JpaRepository<Equipamento, Long> {
 
-    @Query("select distinct e from Equipamento e "
-            + "where e.deleted=false and e.nome like :search% OR e.modelo like :search% OR e.fabricante like :search% OR e.enderecoMac like :search% OR e.categoria.nome like :search% OR e.departamento.nome like :search%")
+//    @Query("select distinct e from Equipamento e "
+//            + "where e.deleted=false and e.nome like :search% OR e.modelo like :search% OR e.fabricante like :search% OR e.enderecoMac like :search% OR e.categoria.nome like :search% OR e.departamento.nome like :search%")
+//    Page<Equipamento> findByName(String search, Pageable pageable);
+
+    @Query("select " +
+            "distinct e " +
+            "from Equipamento e "
+            + "where e.deleted=false and "
+            + " e.categoria.nome like :search% OR"
+            + " e.departamento.nome like :search% OR"
+            + " e.enderecoMac like :search% and e.deleted = false OR"
+            + " e.modelo like :search% and e.deleted = false OR"
+            + " e.nome like :search% and e.deleted = false OR"
+            + " e.fabricante like :search% and e.deleted = false")
     Page<Equipamento> findByName(String search, Pageable pageable);
 
     @Query("select e from Equipamento e where  e.status = 'EMUSO' and e.deleted=false")

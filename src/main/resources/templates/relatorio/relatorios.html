@@ -23,10 +23,10 @@
     <div class="container" id="cadastro">
 
         <h3>Relatório Completo</h3>
-        <a class="btn btn-info btn-sm" role="button" th:href="@{/relatorio/pdf/jr1(code='01' , acao='v')}" target="_blank">
+        <a class="btn btn-info btn-sm complete" role="button" th:href="@{/relatorio/pdf/jr1(code='01' , acao='v')}" target="_blank">
             <span aria-hidden="true" class="oi oi-eye" title="Visualizar"></span>
         </a>
-        <a class="btn btn-info btn-sm" role="button" th:href="@{/relatorio/pdf/jr1(code='01' , acao='d')}">
+        <a class="btn btn-info btn-sm complete" role="button" th:href="@{/relatorio/pdf/jr1(code='01' , acao='d')}">
             <span aria-hidden="true" class="oi oi-data-transfer-download" title="Download"></span>
         </a>
 
@@ -42,8 +42,7 @@
                 <option value="">Selecione o Departamento</option>
                 <option th:each="departamento : ${departamentos}" th:value="${departamento}" th:text="${departamento}">Selecione o Departamento</option>
             </select>
-            <button class="oi oi-eye" type="submit" aria-hidden="true" title="Visualizar" target="_blank"></button>
-            </a>
+            <button class="oi oi-eye" type="submit" aria-hidden="true" title="Visualizar" formtarget="_blank"></button>
         </form>
 
         <hr>
@@ -55,9 +54,7 @@
                 <option value="">Selecione a Categoria</option>
                 <option th:each="categoria : ${categorias}" th:value="${categoria}" th:text="${categoria}">Selecione a Categoria</option>
             </select>
-            <a>
-            <button class="oi oi-eye" type="submit" aria-hidden="true" title="Visualizar" ></button>
-            </a>
+            <button class="oi oi-eye" type="submit" aria-hidden="true" title="Visualizar" formtarget="_blank"></button>
         </form>
 
         <hr>
@@ -68,8 +65,7 @@
                 <option value="">Selecione o Departamento</option>
                 <option th:each="departamento : ${departamentos}" th:value="${departamento}" th:text="${departamento}">Selecione o Departamento</option>
             </select>
-            <button class="oi oi-eye" type="submit" aria-hidden="true" title="Visualizar"></button>
-            </a>
+            <button class="oi oi-eye" type="submit" aria-hidden="true" title="Visualizar" formtarget="_blank"></button>
         </form>
 
         <hr>
@@ -80,8 +76,7 @@
                 <option value="">Selecione o Status</option>
                 <option th:each="status : ${status}" th:value="${status}" th:text="${status}">Selecione o Status</option>
             </select>
-            <button class="oi oi-eye" type="submit" aria-hidden="true" title="Visualizar"></button>
-            </a>
+            <button class="oi oi-eye" type="submit" aria-hidden="true" title="Visualizar" formtarget="_blank"></button>
         </form>
 
 

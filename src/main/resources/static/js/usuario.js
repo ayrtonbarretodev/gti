@@ -51,7 +51,7 @@ $(document).ready(function() {
             },
             {	data : 'id',
                 render : function(id) {
-                    return ''.concat('<a class="btn btn-info btn-sm btn-block"', ' ')
+                    return ''.concat('<a class="btn btn-info btn-sm btn-block btn-dado"', ' ')
                         .concat('id="dp_').concat(id).concat('"', ' ')
                         .concat('role="button" title="Editar" data-toggle="tooltip" data-placement="right">', ' ')
                         .concat('<i class="fas fa-edit"></i></a>');

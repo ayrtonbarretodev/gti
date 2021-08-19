@@ -209,6 +209,11 @@ body {
     border-color:black;
 }
 
+.btn.btn-info.btn-sm.btn-block.btn-dado{
+    background-color: #1e94d2;
+    border-color:black;
+}
+
 .btn.btn-success.btn-sm.btn-block{
     border-color:black;
 }
@@ -217,3 +222,15 @@ body {
 /*    width: 1000px;*/
 /*    margin: 0 auto;*/
 /*}*/
+
+button.oi.oi-eye{
+    background-color: #1e94d2;
+    border-radius: .2rem;
+    border-color: #1e94d2;
+    color: #fff;
+}
+
+a.btn.btn-info.btn-sm.complete{
+    background-color: #1e94d2;
+    border-color: #1e94d2;
+}
