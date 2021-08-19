@@ -16,7 +16,7 @@ public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
             + "where c.deleted = false and c.nome like %:search%")
     Page<Categoria> findByName(String search, Pageable pageable);
 
-    @Query("select c.nome from Categoria c order by c.nome asc")
+    @Query("select c.nome from Categoria c where c.deleted=false order by c.nome asc")
     List<String> findCategorias();
 
     //lista de todas as categorias com deleted=false
