@@ -46,8 +46,17 @@ public class CategoriaNewService {
 
     @Transactional(readOnly = false)
     public void deletarCategoria(Long id) {
-        //repository.deleteById(id);
         repository.deleteCategoria(id);
+    }
+
+    @Transactional(readOnly = false)
+    public void reativarCategoria(String nome) {
+        repository.reativarCategoria(nome);
+    }
+
+    @Transactional(readOnly = true)
+    public Categoria buscarPorNome(String nome) {
+        return repository.findByNome(nome);
     }
 
     @Transactional(readOnly = true)

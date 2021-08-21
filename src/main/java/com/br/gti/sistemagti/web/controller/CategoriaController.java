@@ -34,8 +34,22 @@ public class CategoriaController {
             return "categoria/cadastro";
         }
 
-        categoriaNewService.salvarCategoria(categoria);
-        attr.addFlashAttribute("success", "Categoria inserida com sucesso");
+//        categoriaNewService.salvarCategoria(categoria);
+//        attr.addFlashAttribute("success", "Categoria inserida com sucesso");
+//        return "redirect:/categorias/cadastrar";
+
+        Categoria categoriaExiste = categoriaNewService.buscarPorNome(categoria.getNome());
+
+        if (categoriaExiste == null){
+            categoriaNewService.salvarCategoria(categoria);
+            attr.addFlashAttribute("success", "Categoria inserida com sucesso");
+        }else if (categoria.getNome().equals(categoriaExiste.getNome()) && categoriaExiste.getDeleted().equals(false)){
+            attr.addFlashAttribute("fail", "Categoria já existe e está ativa");
+        }else{
+            categoriaNewService.reativarCategoria(categoria.getNome());
+            attr.addFlashAttribute("success", "Categoria reativada com sucesso");
+        }
+
         return "redirect:/categorias/cadastrar";
     }
 
@@ -60,10 +74,6 @@ public class CategoriaController {
         if (categoriaNewService.categoriaTemEquipamentos(id)) {
             attr.addFlashAttribute("fail", "Categoria não removida, possui equipamento(s) vinculado(s).");
         } else {
-//            Date d = new Date();
-//            String dStr = java.text.DateFormat.getDateInstance(DateFormat.MEDIUM).format(d);
-//            categoriaNewService.buscarPorId(id).setNome(categoriaNewService.buscarPorId(id).getNome() + "(deletada)" + dStr);
-            //categoriaNewService.deletarCategoria(id);
             categoriaNewService.deletarCategoria(id);
             attr.addFlashAttribute("success", "Categoria excluída com sucesso.");
         }
