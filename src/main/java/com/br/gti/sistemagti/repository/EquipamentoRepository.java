@@ -7,20 +7,17 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
+import javax.persistence.Tuple;
 import java.util.List;
 
 public interface EquipamentoRepository extends JpaRepository<Equipamento, Long> {
-
-//    @Query("select distinct e from Equipamento e "
-//            + "where e.deleted=false and e.nome like :search% OR e.modelo like :search% OR e.fabricante like :search% OR e.enderecoMac like :search% OR e.categoria.nome like :search% OR e.departamento.nome like :search%")
-//    Page<Equipamento> findByName(String search, Pageable pageable);
 
     @Query("select " +
             "distinct e " +
             "from Equipamento e "
             + "where e.deleted=false and "
-            + " e.categoria.nome like :search% OR"
-            + " e.departamento.nome like :search% OR"
+            + " e.categoria.nome like :search% and e.deleted = false OR"
+            + " e.departamento.nome like :search% and e.deleted = false OR"
             + " e.enderecoMac like :search% and e.deleted = false OR"
             + " e.modelo like :search% and e.deleted = false OR"
             + " e.nome like :search% and e.deleted = false OR"
@@ -44,5 +41,8 @@ public interface EquipamentoRepository extends JpaRepository<Equipamento, Long> 
     int deleteEquipamento(Long id);
 
     Page<Equipamento> getEquipamentosByDeletedFalse(Pageable pageable);
+
+    @Query("select distinct e.id as id, e.tomboPatrimonial as tombo, e.nome as nome, e.enderecoMac as mac from Equipamento e where e.enderecoMac like %:mac% or e.tomboPatrimonial like %:mac% or e.nome like %:mac%")
+    List<Tuple> findEquipamentoByEnderecoMacOrTomboPatrimonialOrNome(String mac);
 
 }

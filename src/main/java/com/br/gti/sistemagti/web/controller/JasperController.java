@@ -70,6 +70,18 @@ public class JasperController {
         response.getOutputStream().write(bytes);
     }
 
+    @GetMapping("/relatorio/pdf/jr5/{code}")
+    public void exibirRelatorioPorMac(@PathVariable("code") String code,
+                                               @RequestParam (name = "idf", required = false) Long id,
+                                               HttpServletResponse response) throws IOException {
+
+        service.addParams("ID_EQUIPAMENTO", id);
+        byte[] bytes = service.exportarPDF(code);
+        response.setContentType(MediaType.APPLICATION_PDF_VALUE);
+        response.setHeader("Content-disposition", "inline; filename=relatorio-"+ code + ".pdf" );
+        response.getOutputStream().write(bytes);
+    }
+
 
     @GetMapping("/relatorio/pdf/jr6/{code}")
     public void exibirRelatorioPorStatus(@PathVariable("code") String code,

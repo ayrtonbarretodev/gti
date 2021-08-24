@@ -38,6 +38,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/u/**").hasAuthority(ADMIN)
                 .antMatchers("/departamentos/**", "/categorias/**").hasAuthority(ADMIN)
                 .antMatchers("/relatorios/**").hasAuthority(ADMIN)
+                .antMatchers("/historico/**").hasAuthority(ADMIN)
 
 
                 //acessos privados estagiarios

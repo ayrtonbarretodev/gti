@@ -3,8 +3,6 @@ package com.br.gti.sistemagti.domain;
 import com.br.gti.sistemagti.domain.enums.Status;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.SQLDelete;
-import org.hibernate.annotations.Where;
 import org.hibernate.envers.Audited;
 import org.hibernate.envers.RelationTargetAuditMode;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -47,11 +45,11 @@ public class Equipamento extends AbstractEntity<Long> {
     @Setter
     private LocalDate dataEntrada = LocalDate.now();
 
-    @Column(unique = true,length = 10)
-    //@Size(min = 10, max = 10, message = "{Size.equipamento.tombo}")
+    @Column(unique = false,length = 10)
+    @Size(max = 10, message = "{Size.equipamento.tombo}")
     @Getter
     @Setter
-    private Integer tomboPatrimonial;
+    private String tomboPatrimonial;
 
     @NotNull(message = "{NotNull.equipamento.status}")
     @Column(nullable = false)
@@ -82,7 +80,7 @@ public class Equipamento extends AbstractEntity<Long> {
     private Departamento departamento;
 
     @Size(max = 17, message = "{Size.equipamento.enderecoMac}")
-    @Column(unique = true, length = 17)
+    @Column(unique = false, length = 17)
     @Getter
     @Setter
     private String enderecoMac;

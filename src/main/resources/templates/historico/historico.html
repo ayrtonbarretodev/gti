@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt" layout:decorate="~{layout}"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+<section class="layout-content" layout:fragment="corpo">
+
+    <nav class="navbar navbar-expand-md bg-light">
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <i class="oi oi-caret-right"></i>
+                    <span>Relatórios</span>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container" id="cadastro">
+
+        <div>
+            <h3>Histórico do Equipamento</h3>
+            <form th:action="@{/buscar/equipamentos}" method="get">
+                <label>Informe o endereço MAC, Tombo Patrimonial ou Nome do Equipamento:</label>
+                <input name="mac" id="mac" type="text">
+                <button type="submit">Buscar</button>
+            </form>
+            <br>
+            <table class="table table-sm table-striped table-bordered nowrap"
+                   id="table-equipamentos-historico"
+                   style="width: 100%">
+                <thead class="thead-dark">
+                    <th>Nome do Equipamento</th>
+                    <th>MAC</th>
+                    <th>Tombo</th>
+                    <th>Emitir Histórico</th>
+                </thead>
+                <tbody>
+                    <tr th:each="e : ${equipamentos}">
+                        <td th:text="${e.get('nome')}"></td>
+                        <td th:text="${e.get('mac')}"></td>
+                        <td th:text="${e.get('tombo')}"></td>
+                        <td>
+                            <a class="btn btn-info btn-sm complete" th:href="@{/relatorio/pdf/jr5/07(idf=${e.get('id')})}" target="_blank">
+                                <span aria-hidden="true" class="oi oi-eye" title="Visualizar"></span>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<script th:fragment="js" th:src="~{}"></script>
+<script th:fragment="inlinescript" th:inline="javascript"></script>
+</body>
+</html>
