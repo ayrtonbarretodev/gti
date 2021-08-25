@@ -33,158 +33,128 @@
     </nav>
 
     <div class="container">
-        <!-- Container for all products -->
         <div class="container mb-5 mt-5">
             <div class="row">
-
-                <!-- Card 1 -->
-                <div class="col-md-3">
-                    <div class="card mt-3">
-                        <div class="product-1 align-items-center p-2 text-center">
-                            <img alt="" class="rounded" src="/image/equipment.png" width="160">
-                            <h5>Equipamentos</h5>
-
-                            <!-- card info-->
-                            <div class="cost mt-3 text-dark">
-                                <h5>Total</h5>
-                                <span th:text="${qtdEquipamentos}"></span>
-                            </div>
-                            <!-- button for cards -->
-                            <div class="p-3 pc text-center text-white mt-3 cursor">
-                                <span class="text-uppercase"></span>
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-warning shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                        Total de Equipamentos
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><span
+                                            th:text="${qtdEquipamentos}"></span></div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-desktop fa-2x text-gray-300"></i>
+                                </div>
                             </div>
                         </div>
-                        <!-- card info ends here-->
                     </div>
                 </div>
-                <!-- card 1 ends here -->
 
-
-                <!-- Card 2 -->
-                <div class="col-md-3">
-                    <div class="card mt-3">
-                        <div class="product-1 align-items-center p-2 text-center">
-                            <img alt="" class="rounded" src="/image/department.png" width="160">
-                            <h5>Departamentos</h5>
-
-                            <!-- card info-->
-                            <div class="net mt-3 text-dark">
-                                <h5>Total</h5>
-                                <span th:text="${qtdDepartamentos}"></span>
-                            </div>
-                            <!-- button for cards -->
-                            <div class="p-3 network text-center text-white mt-3 cursor">
-                                <span class="text-uppercase"></span>
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-primary shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                        Total de Departamentos
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><span
+                                            th:text="${qtdDepartamentos}"></span></div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-building fa-2x text-gray-300"></i>
+                                </div>
                             </div>
                         </div>
-                        <!-- card info ends here-->
                     </div>
                 </div>
-                <!-- card 2 ends here -->
 
-                <!-- Card 3 -->
-                <div class="col-md-3">
-                    <div class="card mt-3">
-                        <div class="product-1 align-items-center p-2 text-center">
-                            <img alt="" class="rounded" src="/image/digital.png" width="160">
-                            <h5>Categorias</h5>
-
-                            <!-- card info-->
-                            <div class="impress mt-3 text-dark">
-                                <h5>Total</h5>
-                                <span th:text="${qtdCategorias}"></span>
-                            </div>
-                            <!-- button for cards -->
-                            <div class="p-3 imp text-center text-white mt-3 cursor">
-                                <span class="text-uppercase"></span>
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-success shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                        Total de Categorias
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><span
+                                            th:text="${qtdCategorias}"></span></div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-laptop fa-2x text-gray-300"></i>
+                                </div>
                             </div>
                         </div>
-                        <!-- card info ends here-->
                     </div>
                 </div>
-                <!-- card 3 ends here -->
             </div>
         </div>
-        <!-- Container for all products ends -->
 
         <div class="container mb-5 mt-5">
             <div class="row">
 
-                <!-- Card 4 -->
-                <div class="col-md-3">
-                    <div class="card mt-3">
-                        <div class="product-1 align-items-center p-2 text-center">
-                            <img alt="" class="rounded" src="/image/gear.png" width="160">
-                            <h5>Equipamentos</h5>
-                            <h4>Ativos</h4>
-
-                            <!-- card info-->
-                            <div class="cost mt-3 text-dark">
-                                <h5>Total</h5>
-                                <span th:text="${qtdEquipamentosEmUso}"></span>
-                            </div>
-                            <!-- button for cards -->
-                            <div class="p-3 pc text-center text-white mt-3 cursor">
-                                <span class="text-uppercase"></span>
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-ativo shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-ativo text-uppercase mb-1">
+                                        Em Uso
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><span
+                                            th:text="${qtdEquipamentosEmUso}"></span></div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-check-circle fa-2x text-gray-300"></i>
+                                </div>
                             </div>
                         </div>
-                        <!-- card info ends here-->
                     </div>
                 </div>
-                <!-- card 4 ends here -->
 
-
-                <!-- Card 5 -->
-                <div class="col-md-3">
-                    <div class="card mt-3">
-                        <div class="product-1 align-items-center p-2 text-center">
-                            <img alt="" class="rounded" src="/image/store.png" width="160">
-                            <h5>Equipamentos</h5>
-                            <h4>Depósito GTI</h4>
-
-                            <!-- card info-->
-                            <div class="net mt-3 text-dark">
-                                <h5>Total</h5>
-                                <span th:text="${qtdEquipamentosDeposito}"></span>
-                            </div>
-                            <!-- button for cards -->
-                            <div class="p-3 network text-center text-white mt-3 cursor">
-                                <span class="text-uppercase"></span>
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-dep shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-dep text-uppercase mb-1">
+                                        Em Depósito
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><span
+                                            th:text="${qtdEquipamentosDeposito}"></span></div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-boxes fa-2x text-gray-300"></i>
+                                </div>
                             </div>
                         </div>
-                        <!-- card info ends here-->
                     </div>
                 </div>
-                <!-- card 5 ends here -->
 
-                <!-- Card 6 -->
-                <div class="col-md-3">
-                    <div class="card mt-3">
-                        <div class="product-1 align-items-center p-2 text-center">
-                            <img alt="" class="rounded" src="/image/manutencao.png" width="160">
-                            <h5>Equipamentos</h5>
-                            <h4>Em Manutenção</h4>
-
-                            <!-- card info-->
-                            <div class="impress mt-3 text-dark">
-                                <h5>Total</h5>
-                                <span th:text="${qtdEquipamentosManutencao}"></span>
-                            </div>
-                            <!-- button for cards -->
-                            <div class="p-3 imp text-center text-white mt-3 cursor">
-                                <span class="text-uppercase"></span>
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <div class="card border-left-danger shadow h-100 py-2">
+                        <div class="card-body">
+                            <div class="row no-gutters align-items-center">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                        Em Manutenção
+                                    </div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800"><span
+                                            th:text="${qtdEquipamentosManutencao}"></span></div>
+                                </div>
+                                <div class="col-auto">
+                                    <i class="fas fa-laptop-medical fa-2x text-gray-300"></i>
+                                </div>
                             </div>
                         </div>
-                        <!-- card info ends here-->
                     </div>
                 </div>
-                <!-- card 6 ends here -->
-
             </div>
         </div>
-        <!-- Container for all products ends -->
-
-
     </div>
 
 </section>
@@ -195,7 +165,7 @@
         <span class="footer-copy">&copy; 2021 UFRN. Todos os direitos reservados.</span>
     </div>
 </footer>
-<script th:src="~{}" th:fragment="js"></script>
-<script th:inline="javascript" th:fragment="inlinescript"></script>
+<script th:fragment="js" th:src="~{}"></script>
+<script th:fragment="inlinescript" th:inline="javascript"></script>
 </body>
 </html>

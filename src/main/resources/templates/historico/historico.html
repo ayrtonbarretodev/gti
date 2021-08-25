@@ -26,8 +26,8 @@
             <h3>Histórico do Equipamento</h3>
             <form th:action="@{/buscar/equipamentos}" method="get">
                 <label>Informe o endereço MAC, Tombo Patrimonial ou Nome do Equipamento:</label>
-                <input name="mac" id="mac" type="text">
-                <button type="submit">Buscar</button>
+                <input name="mac" id="mac" type="text" required />
+                <button class="oi oi-magnifying-glass" title="Buscar" type="submit"></button>
             </form>
             <br>
             <table class="table table-sm table-striped table-bordered nowrap"
@@ -42,8 +42,8 @@
                 <tbody>
                     <tr th:each="e : ${equipamentos}">
                         <td th:text="${e.get('nome')}"></td>
-                        <td th:text="${e.get('mac')}"></td>
-                        <td th:text="${e.get('tombo')}"></td>
+                        <td th:text="${e.get('mac') == ''} ? 'Equipamento sem MAC' : ${e.get('mac')}"></td>
+                        <td th:text="${e.get('tombo') == ''} ? 'Equipamento sem TOMBO' : ${e.get('tombo')}"></td>
                         <td>
                             <a class="btn btn-info btn-sm complete" th:href="@{/relatorio/pdf/jr5/07(idf=${e.get('id')})}" target="_blank">
                                 <span aria-hidden="true" class="oi oi-eye" title="Visualizar"></span>
