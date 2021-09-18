@@ -6,6 +6,7 @@
 <head>
     <meta charset="UTF-8"/>
 </head>
+
 <body>
 <section class="layout-content" layout:fragment="corpo">
 
@@ -35,7 +36,7 @@
 
             <div class="form-row">
                 <div class="form-group col-md-4 required">
-                    <label for="nome">Departamento</label>
+                    <label for="nome">Nome do Departamento</label>
                     <input autofocus="autofocus" class="form-control" id="nome"
                            placeholder="Ex: Graduação" th:field="*{nome}" type="text"/>
                 </div>
@@ -43,18 +44,37 @@
 
             <div class="form-row">
                 <div class="form-group col-md-4">
-                    <label for="ambiente">Ambiente</label>
+                    <label for="ambiente">Sala</label>
                     <input autofocus="autofocus" class="form-control" id="ambiente"
                            placeholder="Ex: Laboratório de Informática" th:field="*{ambiente}" type="text"/>
                 </div>
             </div>
 
             <div class="form-row">
-                <div class="form-group col-md-2">
-                    <label for="telefone">Telefone</label>
-                    <input class="form-control" data-mask="0000-0000" id="telefone" placeholder="Ex.: 0000-0000"
+                <div class="form-group col-md-4">
+                    <label for="telefone">Telefone/Ramal</label>
+                    <input class="form-control"  id="telefone"
                            th:field="*{telefone}" type="text"/>
                 </div>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                <script>
+                    $().ready(() => {
+                        var maskOptions = {
+                            placeholder: "(__) ____-____ ou ___",
+                            onKeyPress: function(cep, e, field, options) {
+                                // Use um dígito opcional (9) no final para acionar a mudança
+                                var masks = ["0009", "(00) 0 0000-0000"],
+                                    digits = cep.replace(/[^0-9]/g, "").length,
+                                    // Quando você recebe um valor para o parâmetro opcional, você precisa trocar
+                                    // para o novo formato
+                                    mask = digits <= 3 ? masks[0] : masks[1];
+                                $("#telefone").mask(mask, options);
+                            }
+                        };
+
+                        $("#telefone").mask("(00) 0000-0000", maskOptions);
+                    });
+                </script>
             </div>
             <input id="id" th:field="*{id}" type="hidden"/>
             <button class="btn btn-primary btn-sm" type="submit">Salvar</button>

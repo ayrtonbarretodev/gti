@@ -24,7 +24,7 @@ public class Equipamento extends AbstractEntity<Long> {
     private Boolean deleted = false;
 
     @NotBlank(message = "O Campo Nome do Equipamento é Obrigatório.")
-    @Column(nullable = false, length = 60)
+    @Column(nullable = false,unique = true, length = 60)
     @Getter
     @Setter
     private String nome;
@@ -63,7 +63,7 @@ public class Equipamento extends AbstractEntity<Long> {
     @Setter
     private String numeroSerie;
 
-    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
+    //@Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
     @NotNull(message = "{NotNull.equipamento.categoria}")
     @ManyToOne
     @JoinColumn(name = "id_categoria_fk", nullable = false)
@@ -71,7 +71,7 @@ public class Equipamento extends AbstractEntity<Long> {
     @Setter
     private Categoria categoria;
 
-    @Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
+    //@Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED)
     @NotNull(message = "{NotNull.equipamento.departamento}")
     @ManyToOne
     @JoinColumn(name = "id_departamento_fk", nullable = false)

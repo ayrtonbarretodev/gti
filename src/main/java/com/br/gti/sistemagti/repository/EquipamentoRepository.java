@@ -21,6 +21,7 @@ public interface EquipamentoRepository extends JpaRepository<Equipamento, Long> 
             + " e.enderecoMac like :search% and e.deleted = false OR"
             + " e.modelo like :search% and e.deleted = false OR"
             + " e.nome like :search% and e.deleted = false OR"
+            + " e.tomboPatrimonial like :search% and e.deleted = false OR"
             + " e.fabricante like :search% and e.deleted = false")
     Page<Equipamento> findByName(String search, Pageable pageable);
 

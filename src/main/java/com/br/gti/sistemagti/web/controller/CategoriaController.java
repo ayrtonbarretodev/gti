@@ -34,9 +34,6 @@ public class CategoriaController {
             return "categoria/cadastro";
         }
 
-//        categoriaNewService.salvarCategoria(categoria);
-//        attr.addFlashAttribute("success", "Categoria inserida com sucesso");
-//        return "redirect:/categorias/cadastrar";
 
         Categoria categoriaExiste = categoriaNewService.buscarPorNome(categoria.getNome());
 

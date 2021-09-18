@@ -74,8 +74,10 @@
 <script type="text/javascript">
 
     var url = '';
+    console.log(url);
 
     $('button[id*="btn_"]').click(function () {
+        console.log(url);
         url = "http://localhost:8080/" + $(this).attr('id').split("_")[1];
         console.log(url);
     });
@@ -83,7 +85,8 @@
     $('#ok_confirm').click(function () {
         console.log(url);
         document.location.href = url;
-    })
+        console.log(document.location.href);
+    });
 
     $(function () {
         $('[data-toggle="popover"]').popover();

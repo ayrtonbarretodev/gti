@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
+import org.hibernate.envers.Audited;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,6 +16,7 @@ import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
+@Audited
 @Entity
 @Table(name = "DEPARTAMENTOS")
 public class Departamento extends AbstractEntity<Long> {
@@ -31,8 +33,8 @@ public class Departamento extends AbstractEntity<Long> {
     @Setter
     private String ambiente;
 
-    @Column(length = 9)
-    @Size(min = 9, max = 9, message = "{Size.departamento.telefone}")
+    //@Column(length = 9)
+    //@Size(max = 9, message = "{Size.departamento.telefone}")
     @Getter
     @Setter
     private String telefone;

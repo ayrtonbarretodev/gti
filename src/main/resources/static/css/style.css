@@ -158,51 +158,51 @@ body {
 }
 
 
-/* card 1 */
-.cost span {
-    color: #fb3531;
-    font-weight: bold;
-    font-size: 20px;
-}
+/*!* card 1 *!*/
+/*.cost span {*/
+/*    color: #fb3531;*/
+/*    font-weight: bold;*/
+/*    font-size: 20px;*/
+/*}*/
 
-.pc {
-    background: #dc3545;
-}
+/*.pc {*/
+/*    background: #dc3545;*/
+/*}*/
 
-/* card 2 */
+/*!* card 2 *!*/
 
-.net span {
-    color: #286783;
-    font-weight: bold;
-    font-size: 20px;
-}
+/*.net span {*/
+/*    color: #286783;*/
+/*    font-weight: bold;*/
+/*    font-size: 20px;*/
+/*}*/
 
-.network {
-    background: #286783;
-}
+/*.network {*/
+/*    background: #286783;*/
+/*}*/
 
-/* card 3 */
+/*!* card 3 *!*/
 
-.impress span {
-    color: #0012b2;
-    font-weight: bold;
-    font-size: 20px;
-}
+/*.impress span {*/
+/*    color: #0012b2;*/
+/*    font-weight: bold;*/
+/*    font-size: 20px;*/
+/*}*/
 
-.imp {
-    background-color: #0012b2;
-}
+/*.imp {*/
+/*    background-color: #0012b2;*/
+/*}*/
 
-/*Univeral Styling again for all product cards */
-.imp:hover, .network:hover, .pc:hover {
-    opacity: .8;
-}
+/*!*Univeral Styling again for all product cards *!*/
+/*.imp:hover, .network:hover, .pc:hover {*/
+/*    opacity: .8;*/
+/*}*/
 
-.cursor {
-    cursor: pointer;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
-}
+/*.cursor {*/
+/*    cursor: pointer;*/
+/*    border-bottom-left-radius: 20px;*/
+/*    border-bottom-right-radius: 20px;*/
+/*}*/
 
 .btn.btn-info.btn-sm.btn-block{
     background-color: #ea4646;
